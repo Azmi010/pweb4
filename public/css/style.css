@@ -1,0 +1,32 @@
+:root {
+    --table-border-radius: 0.5rem;
+}
+
+tr:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+thead th:first-child {
+    border-top-left-radius: var(--table-border-radius);
+}
+
+thead th:last-child {
+    border-top-right-radius: var(--table-border-radius);
+}
+
+tbody tr:last-child> :first-child {
+    border-bottom-left-radius: var(--table-border-radius);
+}
+
+tbody tr:last-child> :last-child {
+    border-bottom-right-radius: var(--table-border-radius);
+}
+
+tr * {
+    text-align: center;
+}
+
+td,
+th {
+    padding: 0.75rem 0;
+}
