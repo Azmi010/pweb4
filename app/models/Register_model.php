@@ -17,19 +17,19 @@ class Register_model {
         }
     }
 
-    public function getValidRoles() {
-        $query = "SHOW COLUMNS FROM mahasiswa LIKE 'role'";
-        $result = $this->conn->query($query);
+    // public function getValidRoles() {
+    //     $query = "SHOW COLUMNS FROM mahasiswa LIKE 'role'";
+    //     $result = $this->conn->query($query);
 
-        if (!$result) {
-            die("Query error: " . $this->conn->error);
-        }
+    //     if (!$result) {
+    //         die("Query error: " . $this->conn->error);
+    //     }
 
-        $enumStr = $result->fetch_assoc()['Type'];
-        $enumStr = str_replace(["enum('", "')"], ['', ''], $enumStr);
+    //     $enumStr = $result->fetch_assoc()['Type'];
+    //     $enumStr = str_replace(["enum('", "')"], ['', ''], $enumStr);
 
-        return explode("','", $enumStr);
-    }
+    //     return explode("','", $enumStr);
+    // }
 
     public function registerUser($nama, $nim, $fakultas, $prodi, $role, $password) {
 

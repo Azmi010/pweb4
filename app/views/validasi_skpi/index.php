@@ -1,3 +1,4 @@
+
 <div class="bg-gray-100">
     <div class="w-9/12 mx-auto mt-36 border border-gray-200 rounded-md shadow-md">
         <div class="bg-gray-100 px-4 py-3 h-auto rounded font-medium text-lg">
@@ -43,15 +44,20 @@
                     <th class="">STATUS</th>
                     <th class=" rounded-tr">Aksi</th>
                 </tr>
-                <tr class="text-center border-b border-gray-300">
-                    <td class="py-2">1.</td>
-                    <td>222410102068</td>
-                    <td><a class=" hover:text-purple-800 hover:underline" href="<?= BASEURL; ?>/validasi/detail_validasi">ULUL 'AZMI</a></td>
+                <?php 
+                $count = 1;
+                foreach ($data['mhs'] as $mhs) :
+                ?>
+                    <tr class="text-center border-b border-gray-300">
+                    <td class="py-2"><?= $count++; ?></td>
+                    <td><?= $mhs['nim'] ?></td>
+                    <td><a class=" hover:text-purple-800 hover:underline" href="<?= BASEURL; ?>/validasi/detail_validasi/<?= $mhs['id_mahasiswa']; ?>"><?= $mhs['nama'] ?></a></td>
                     <td>Teknologi Informasi</td>
                     <td></td>
                     <td></td>
                     <td><button>ya</button></td>
                 </tr>
+                <?php endforeach ?>
             </table>
         </div>
         <div class="flex justify-between pb-3 px-3 bg-white rounded-md">

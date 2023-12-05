@@ -5,11 +5,11 @@ class Register extends Controller {
 
     public function index() {
         $data['judul'] = 'Register';
-        $data['roles'] = $this->model('Register_model')->getValidRoles();
-        $this->view('templates/sidebar');
-        $this->view('templates/header', $data);
+        // $data['roles'] = $this->model('Register_model')->getValidRoles();
+        // $this->view('templates/sidebar');
+        // $this->view('templates/header', $data);
         $this->view('register/index', $data);
-        $this->view('templates/footer');
+        // $this->view('templates/footer');
     }
 
     public function processRegistration() {

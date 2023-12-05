@@ -16,7 +16,7 @@
                 </tr>
                 <tr class="bg-gray-100">
                     <td class="text-center py-10">1.</td>
-                    <td class="">Juara I - <span class="font-bold">Tingkat Kab/Kota</span> <br>
+                    <td class="">Juara I - <span class="font-bold"><?= $data['mhs']['nama']; ?></span> <br>
                         Juara 1 Dyah Kabupaten Magetan (Duta Pariwisata Kabupaten Magetan) <br>
                         <div class="flex">
                             <label for="" class="font-bold">

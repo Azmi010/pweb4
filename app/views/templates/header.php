@@ -1,15 +1,58 @@
+<?php 
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: " . BASEURL . "/login");
+    exit();
+}
+
+$role = $_SESSION['role'];
+
+// Inisialisasi variabel username dan nim
+$username = '';
+$nim = '';
+
+// Menyesuaikan variabel username dan nim berdasarkan role
+switch ($role) {
+    case 'mahasiswa':
+        $username = $_SESSION['mahasiswa'];
+        $nim = $_SESSION['nim'];
+        break;
+    case 'tim skpi':
+        $username = $_SESSION['tim_skpi'];
+        $nim = $_SESSION['nip_tim_skpi'];
+        break;
+    case 'dekan':
+        $username = $_SESSION['dekan'];
+        $nim = $_SESSION['nip_dekan'];
+        break;
+    case 'operator akademik':
+        $username = $_SESSION['operator_akademik'];
+        $nim = $_SESSION['nip_operator_akademik'];
+        break;
+    default:
+        // Handle jika role tidak dikenali
+        echo "Role tidak valid.";
+        exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <!-- <link rel="stylesheet" href="<?= BASEURL ?>/css/login.css">
+    <link rel="stylesheet" href="<?= BASEURL ?>/css/register.css"> -->
+    <link rel="stylesheet" href="<?= BASEURL ?>/css/homepage.css">
     <title>Halaman <?= $data['judul']; ?></title>
     <link rel="stylesheet" href="<?= BASEURL ?>/output.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
 
-<div class="bg-gray-800 w-full h-20 flex justify-between fixed top-0">
+<div class="bg-gray-800 w-full h-20 flex justify-between fixed top-0 shadow-xl">
   <div class="flex items-center ml-24">
       <div class="flex flex-col text-white mr-2">
           <p class="font-bold">
@@ -25,11 +68,12 @@
       <img class="w-16" src="<?= BASEURL ?> . /images/toga-asset.webp" alt="">
       <div class="flex-col text-white ml-2">
           <h3 class="font-medium">
-              Nama
+              <?= $username ?>
           </h3>
           <h4 class="text-xs">
-              Nim/Nip
+              <?= $nim ?>
           </h4>
       </div>
+      <button class="ml-10 bg-red-600 px-2.5 py-1 rounded text-white hover:bg-red-800">Logout</button>
   </div>
 </div>

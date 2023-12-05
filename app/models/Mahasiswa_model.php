@@ -35,7 +35,7 @@ class Mahasiswa_model {
     }
 
     public function getMahasiswaById($id) {
-        $query = "SELECT * FROM mahasiswa WHERE id = $id";
+        $query = "SELECT * FROM mahasiswa WHERE id_mahasiswa = $id";
         $result = $this->conn->query($query);
     
         if (!$result) {
