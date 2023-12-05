@@ -1,5 +1,4 @@
 <?php
-
 class Database {
     private $host = DB_HOST;
     private $username = DB_USER;
@@ -25,3 +24,4 @@ class Database {
         }
     }
 }
+?>

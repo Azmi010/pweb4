@@ -1,5 +1,4 @@
 <?php 
-
 class Home extends Controller {
     public function index()
     {
@@ -10,3 +9,4 @@ class Home extends Controller {
         $this->view('templates/footer');
     }
 }
+?>
