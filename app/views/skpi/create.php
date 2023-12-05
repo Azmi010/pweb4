@@ -61,6 +61,11 @@
           class="border-black border rounded focus:bg-slate-50 py-1 px-2"
         />
 
+        <label for='file_bukti'>File Bukti</label>
+        <input type='file' accept='image/*,.pdf' name='file_bukti' id='file_bukti'>
+        
+        
+
         <div class="mt-5">
           <button type="submit" name="submit" class="bg-green-600 text-gray-50 px-3 py-1 rounded w-min">
             Simpan
