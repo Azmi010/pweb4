@@ -16,17 +16,8 @@ $(document).ready(() => {
       contentType: false,
       processData: false,
       success: function (response) {
-        console.log(response);
+        location.replace(`${BASEURL}/?url=skpi/prestasi/`);
       },
     });
-
-    //   window.location.replace(`${BASEURL}/?url=skpi/prestasi/`);
-
-    // $.post(, data, function (data, textStatus) {
-    //   if (textStatus == 'success') {
-    //     console.log(data);
-    //     //   window.location.replace(`${BASEURL}/?url=skpi/prestasi/`);
-    //   }
-    // });
   });
 });

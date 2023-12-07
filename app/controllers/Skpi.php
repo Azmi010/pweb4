@@ -6,6 +6,7 @@
         public function prestasi($action = 'index', $id = 0) {
             if ($action == 'delete') {
                 $this->model('SkpiModel')->delete($id);
+                header("Location: " . BASEURL . '?url=skpi/prestasi/');
                 exit;
             }
             $data = $this->model('SkpiModel')->getAll();

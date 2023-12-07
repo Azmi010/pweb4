@@ -60,7 +60,7 @@ foreach ($data as $key => $value) {
               <?php } ?>
               <td>
                 <button class="bg-orange-400 px-3 py-1 rounded">Edit</button>
-                <a href="<?= BASEURL; ?>/?url=skpi/prestasi/delete/<?= $skpi['id_item_skpi']; ?>">
+                <a onclick="return confirm('Apakah Anda yakin ingin menghapus?');" href="<?= BASEURL; ?>/?url=skpi/prestasi/delete/<?= $skpi['id_item_skpi']; ?>">
                 <button class="bg-red-600 px-3 py-1 rounded">Hapus</button>
                 </a>
               </td>
