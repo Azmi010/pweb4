@@ -2,12 +2,11 @@
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: " . BASEURL . "/login");
+    header("Location: " . BASEURL . "/?url=login");
     exit();
 }
 ?>
 
-// TODO: lengkapi struktur html
 <section id="box">
     <div class="box hover:bg-blue-800">
         <h1>7</h1>

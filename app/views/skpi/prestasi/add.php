@@ -19,15 +19,17 @@
       <h1 class="text-2xl font-medium mb-4">Tambah Data SKPI</h1>
       <form id="prestasi-form" method="post" enctype class="flex flex-col gap-1">
         <label for="judul">Judul</label>
-        <input
+        <input 
+          required
           type="text"
           name="judul"
           id="judul"
-          class="border-black border rounded focus:bg-slate-50 py7866-1 px-2"
+          class="border-black border rounded focus:bg-slate-50 py-1 px-2"
         />
 
         <label for="tanggal_pelaksanaan">Tanggal Pelaksanaan</label>
-        <input
+        <input 
+          required
           type="date"
           name="tanggal_pelaksanaan"
           id="tanggal_pelaksanaan"
@@ -35,14 +37,14 @@
         />
 
         <label for="butir">Juara</label>
-        <select name="butir" id="butir" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
+        <select required name="butir" id="butir" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
           <?php foreach ($data['butir'] as $butir) { ?>
             <option value="<?= $butir['id_butir'] ?>"><?= $butir['nama_butir'] ?></option>
           <?php } ?>
         </select>
 
         <label for="sub_butir">Level/Tingkat</label>
-        <select name="sub_butir" id="sub_butir" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
+        <select required name="sub_butir" id="sub_butir" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
           <?php foreach ($data['sub_butir'] as $sub_butir) { ?>
             <option value="<?= $sub_butir['id_sub_butir'] ?>"><?= $sub_butir['nama_sub_butir'] ?></option>
           <?php } ?>
@@ -50,7 +52,8 @@
 
 
         <label for="peserta">Nama Peserta</label>
-        <input
+        <input 
+          required
           type="text"
           name="peserta"
           id="peserta"
@@ -58,9 +61,8 @@
         />
 
         <label for='file_bukti'>File Bukti</label>
-        <input type='file' accept='image/*,.pdf' name='file_bukti' id='file_bukti'>
-        
-        
+        <input required type='file' accept='.pdf' name='file_bukti' id='file_bukti'>
+
 
         <div class="mt-5">
           <button type="submit" name="submit" class="bg-green-600 text-gray-50 px-3 py-1 rounded w-min">

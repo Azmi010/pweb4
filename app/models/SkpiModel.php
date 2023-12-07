@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 class SkpiModel extends Model 
 {
     public function __construct() {
@@ -11,7 +13,9 @@ class SkpiModel extends Model
         $this->db->query($query);
         $last_id = $this->db->single(PDO::FETCH_NUM)[0];
         if ($last_id == 0) $last_id = 1;
+
         $file_name = $last_id . $file['file_bukti']['name'];
+
         $id_poin = $data['kategori'] . $data['unsur'] . $data['butir'] . $data['sub_butir'];
 
         $query = "INSERT INTO item_skpi 
@@ -24,7 +28,7 @@ class SkpiModel extends Model
         $this->db->bind('file_bukti', $file_name);
         $this->db->bind('validasi', $data['validasi'] = 0);
         $this->db->bind('verifikasi', $data['verifikasi'] = 0);
-        $this->db->bind('id_mahasiswa', $data['id_mahasiswa'] = 3);
+        $this->db->bind('id_mahasiswa', $data['id_mahasiswa']);
         $this->db->bind('id_poin', $id_poin);
 
         $this->db->execute();
