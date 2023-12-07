@@ -5,3 +5,5 @@ package-lock.json
 tailwind.config.js
 
 test.*
+
+**/output.css

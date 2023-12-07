@@ -2,14 +2,14 @@
 abstract class Model
 {
     protected $table;
-    private $db;
+    protected $db;
 
     public function __construct()
     {
-        $this->db = new Database();
+        $this->db = new DatabasePDO();
     }
 
-    abstract public function insert($data);
+    abstract public function insert($data, $file = NULL);
 
     abstract public function update($data);
 
@@ -21,14 +21,14 @@ abstract class Model
 
     public function getById($id)
     {
-        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id=:id');
+        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_' . $this->table . '=:id');
         $this->db->bind('id', $id);
         return $this->db->single();
     }
 
     public function delete($id)
     {
-        $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
+        $query = 'DELETE FROM ' . $this->table . ' WHERE id_' . $this->table . '= :id';
         
         $this->db->query($query);
         $this->db->bind('id', $id);

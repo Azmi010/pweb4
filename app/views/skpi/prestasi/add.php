@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="<?= BASEURL ?>/css/style.css"> -->
+    <!-- <link rel="stylesheet" href="<?= BASEURL ?>/css/output.css" /> -->
+    <script src="<?= BASEURL ?>/js/tailwind_3.3.5.js"></script>
+    <script src="<?= BASEURL; ?>/js/jquery-3.7.1.js"></script>
+    <script>
+      const idKategori = 1;
+      const idUnsur = 1;
+    </script>
+    <title>Input Data SKPI</title>
+  </head>
+
+  <body class="bg-slate-200 my-5">
+    <section class="bg-slate-50 px-20 pt-8 pb-16 w-4/5 m-auto shadow-xl rounded-2xl">
+      <h1 class="text-2xl font-medium mb-4">Tambah Data SKPI</h1>
+      <form id="prestasi-form" method="post" enctype class="flex flex-col gap-1">
+        <label for="judul">Judul</label>
+        <input
+          type="text"
+          name="judul"
+          id="judul"
+          class="border-black border rounded focus:bg-slate-50 py7866-1 px-2"
+        />
+
+        <label for="tanggal_pelaksanaan">Tanggal Pelaksanaan</label>
+        <input
+          type="date"
+          name="tanggal_pelaksanaan"
+          id="tanggal_pelaksanaan"
+          class="border-black border rounded focus:bg-slate-50 py-1 px-2"
+        />
+
+        <label for="butir">Juara</label>
+        <select name="butir" id="butir" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
+          <?php foreach ($data['butir'] as $butir) { ?>
+            <option value="<?= $butir['id_butir'] ?>"><?= $butir['nama_butir'] ?></option>
+          <?php } ?>
+        </select>
+
+        <label for="sub_butir">Level/Tingkat</label>
+        <select name="sub_butir" id="sub_butir" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
+          <?php foreach ($data['sub_butir'] as $sub_butir) { ?>
+            <option value="<?= $sub_butir['id_sub_butir'] ?>"><?= $sub_butir['nama_sub_butir'] ?></option>
+          <?php } ?>
+        </select>
+
+
+        <label for="peserta">Nama Peserta</label>
+        <input
+          type="text"
+          name="peserta"
+          id="peserta"
+          class="border-black border rounded focus:bg-slate-50 py-1 px-2"
+        />
+
+        <label for='file_bukti'>File Bukti</label>
+        <input type='file' accept='image/*,.pdf' name='file_bukti' id='file_bukti'>
+        
+        
+
+        <div class="mt-5">
+          <button type="submit" name="submit" class="bg-green-600 text-gray-50 px-3 py-1 rounded w-min">
+            Simpan
+          </button>
+          <a href="<?= BASEURL ?>/?url=skpi/prestasi/">
+            <button
+              type="button"
+              class="bg-red-600 text-gray-50 px-3 py-1 rounded w-min"
+            >
+              Batal
+            </button>
+          </a>
+        </div>
+      </form>
+    </section>
+
+  <script src="<?= BASEURL; ?>/js/index.js"></script>
+  <script src="<?= BASEURL; ?>/js/add-skpi.js"></script>
+  </body>
+</html>
