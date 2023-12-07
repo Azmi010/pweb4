@@ -5,10 +5,10 @@ class Register_model {
 
     public function __construct()
     {
-        $host = 'localhost';
-        $username = 'root';
-        $password = '';
-        $database = 'mvc';
+        $host = DB_HOST;
+        $username = DB_USER;
+        $password = DB_PASS;
+        $database = DB_NAME;
 
         $this->conn = new mysqli($host, $username, $password, $database);
 
@@ -17,30 +17,142 @@ class Register_model {
         }
     }
 
-    // public function getValidRoles() {
-    //     $query = "SHOW COLUMNS FROM mahasiswa LIKE 'role'";
-    //     $result = $this->conn->query($query);
+    public function registerMahasiswa($nama, $nip_nim, $prodi, $password) {
+        $roleID = $this->getRoleID('Mahasiswa');
+        $prodiID = $this->getProdiID($prodi);
+        
+        $queryAkun = "INSERT INTO akun (password, id_role) VALUES (?, ?)";
+        $stmtAkun = $this->conn->prepare($queryAkun);
+        $stmtAkun->bind_param("si", $password, $roleID);
+        $stmtAkun->execute();
+        $stmtAkun->close();
 
-    //     if (!$result) {
-    //         die("Query error: " . $this->conn->error);
-    //     }
+        $id_akun = $this->conn->insert_id;
 
-    //     $enumStr = $result->fetch_assoc()['Type'];
-    //     $enumStr = str_replace(["enum('", "')"], ['', ''], $enumStr);
+        $queryMahasiswa = "INSERT INTO mahasiswa (nama, nim, id_prodi, id_akun) VALUES (?, ?, ?, ?)";
+        $stmtMahasiswa = $this->conn->prepare($queryMahasiswa);
+        $stmtMahasiswa->bind_param("ssii", $nama, $nip_nim, $prodiID, $id_akun);
+        $stmtMahasiswa->execute();
+        $stmtMahasiswa->close();
+    }
 
-    //     return explode("','", $enumStr);
-    // }
+    public function registerTimSkpi($nama, $nip_nim, $password) {
+        $roleID = $this->getRoleID('Tim SKPI');
+        
+        $queryAkun = "INSERT INTO akun (password, id_role) VALUES (?, ?)";
+        $stmtAkun = $this->conn->prepare($queryAkun);
+        $stmtAkun->bind_param("si", $password, $roleID);
+        $stmtAkun->execute();
+        $stmtAkun->close();
 
-    public function registerUser($nama, $nim, $fakultas, $prodi, $role, $password) {
+        $id_akun = $this->conn->insert_id;
 
-        $query = "INSERT INTO mahasiswa (nama, nim, fakultas, prodi, role, password) VALUES (?, ?, ?, ?, ?, ?)";
+        $queryTimSkpi = "INSERT INTO tim_skpi (nama, nip, id_akun) VALUES (?, ?, ?)";
+        $stmtTimSkpi = $this->conn->prepare($queryTimSkpi);
+        $stmtTimSkpi->bind_param("ssi", $nama, $nip_nim, $id_akun);
+        $stmtTimSkpi->execute();
+        $stmtTimSkpi->close();
+    }
+
+    public function registerOperatorAkademik($nama, $nip_nim, $password) {
+        $roleID = $this->getRoleID('Operator Akademik');
+        
+        $queryAkun = "INSERT INTO akun (password, id_role) VALUES (?, ?)";
+        $stmtAkun = $this->conn->prepare($queryAkun);
+        $stmtAkun->bind_param("si", $password, $roleID);
+        $stmtAkun->execute();
+        $stmtAkun->close();
+
+        $id_akun = $this->conn->insert_id;
+
+        $queryOperatorAkademik = "INSERT INTO operator_akademik (nama, nip, id_akun) VALUES (?, ?, ?)";
+        $stmtOperatorAkademik = $this->conn->prepare($queryOperatorAkademik);
+        $stmtOperatorAkademik->bind_param("ssi", $nama, $nip_nim, $id_akun);
+        $stmtOperatorAkademik->execute();
+        $stmtOperatorAkademik->close();
+    }
+
+    public function registerDekan($nama, $nip_nim, $password) {
+        $roleID = $this->getRoleID('Wakil Dekan');
+        
+        $queryAkun = "INSERT INTO akun (password, id_role) VALUES (?, ?)";
+        $stmtAkun = $this->conn->prepare($queryAkun);
+        $stmtAkun->bind_param("si", $password, $roleID);
+        $stmtAkun->execute();
+        $stmtAkun->close();
+
+        $id_akun = $this->conn->insert_id;
+
+        $queryDekan = "INSERT INTO wadek (nama, nip, id_akun) VALUES (?, ?, ?)";
+        $stmtDekan = $this->conn->prepare($queryDekan);
+        $stmtDekan->bind_param("ssi", $nama, $nip_nim, $id_akun);
+        $stmtDekan->execute();
+        $stmtDekan->close();
+    }
+    // Implementasi fungsi register untuk tim_skpi, operator_akademik, dan dekan
+    // ...
+
+    private function getRoleID($role) {
+        $query = "SELECT id_role FROM role WHERE nama_role = ?";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("ssssss", $nama, $nim, $fakultas, $prodi, $role, $password);
+        $stmt->bind_param("s", $role);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        if ($stmt->execute()) {
-            return true;
+        if ($result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            return $row['id_role'];
         } else {
-            return false;
+            echo "ID Role tidak ditemukan.";
+            return null;
         }
+    }
+
+    private function getProdiID($namaprodi) {
+        $query = "SELECT id_prodi FROM prodi WHERE nama_prodi = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("s", $namaprodi);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            return $row['id_prodi'];
+        } else {
+            echo "ID Role tidak ditemukan.";
+            return null;
+        }
+    }
+
+    public function getRoles() {
+        $query = "SELECT * FROM role";
+        $result = $this->conn->query($query);
+
+        if (!$result) {
+            die("Query error: " . $this->conn->error);
+        }
+
+        $roles = [];
+        while ($row = $result->fetch_assoc()) {
+            $roles[] = $row;
+        }
+
+        return $roles;
+    }
+
+    public function getProdi() {
+        $query = "SELECT * FROM prodi";
+        $result = $this->conn->query($query);
+
+        if (!$result) {
+            die("Query error: " . $this->conn->error);
+        }
+
+        $prodi = [];
+        while ($row = $result->fetch_assoc()) {
+            $prodi[] = $row;
+        }
+
+        return $prodi;
     }
 }

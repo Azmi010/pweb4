@@ -27,9 +27,9 @@ class Login extends Controller {
                 $_SESSION['nip_tim_skpi'] = $user['nip_tim_skpi'];
                 $_SESSION['nip_dekan'] = $user['nip_dekan'];
                 $_SESSION['nip_operator_akademik'] = $user['nip_operator_akademik'];
-                $_SESSION['role'] = $user['role'];
+                $_SESSION['role'] = $user['id_role'];
 
-                $this->redirectToRole($user['role']);
+                $this->redirectToRole($user['id_role']);
             } else {
                 echo "Login gagal. Periksa kembali username dan password Anda.";
             }
@@ -38,27 +38,29 @@ class Login extends Controller {
 
     private function redirectToRole($role) {
         switch ($role) {
-            case '1':
-                // var_dump($role);
-                header("Location: " . BASEURL . "/home");
+            case 1:
+                header("Location: " . BASEURL . "/?url=home");
                 break;
-            case '2':
-                // var_dump($role);
-                header("Location: " . BASEURL . "/home");
+            case 2:
+                header("Location: " . BASEURL . "/?url=home");
                 break;
-            case '4':
-                // var_dump($role);
-                header("Location: " . BASEURL . "/validasi");
+            case 3:
+                header("Location: " . BASEURL . "/?url=validasi");
                 break;
-            case '3':
-                // var_dump($role);
-                header("Location: " . BASEURL . "/persetujuan");
+            case 4:
+                header("Location: " . BASEURL . "/?url=persetujuan");
                 break;
             default:
                 echo "Role tidak valid.";
                 break;
         }
 
+        exit();
+    }
+
+    public function logout() {
+        header("Location:" . BASEURL . "/?url=login");
+        session_destroy();  
         exit();
     }
 }

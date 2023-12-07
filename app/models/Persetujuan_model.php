@@ -1,6 +1,6 @@
 <?php
 
-class Validasi_model {
+class Persetujuan_model {
 
     private $conn;
 
@@ -19,10 +19,7 @@ class Validasi_model {
     }
 
     public function getAllMahasiswa() {
-        $query = "SELECT m.nim, m.nama, p.nama_prodi, i.verifikasi
-        FROM mahasiswa m
-        JOIN prodi p ON m.id_prodi = p.id_prodi
-        JOIN item_skpi i ON m.id_mahasiswa = i.id_mahasiswa WHERE i.verifikasi = 1";
+        $query = 'SELECT * FROM mahasiswa';
         $result = $this->conn->query($query);
 
         if (!$result) {
