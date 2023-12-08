@@ -52,7 +52,6 @@ if ($_SESSION['role'] != 3) {
                     <th class="">NIM</th>
                     <th class="font-sans">NAMA</th>
                     <th class="">PRODI</th>
-                    <th class="">Verifikator</th>
                     <th class="">STATUS</th>
                     <th class=" rounded-tr px-2">Aksi</th>
                 </tr>
@@ -63,9 +62,8 @@ if ($_SESSION['role'] != 3) {
                     <tr class="text-center border-b border-gray-300">
                     <td class="py-2"><?= $count++; ?></td>
                     <td><?= $mhs['nim'] ?></td>
-                    <td><a class=" hover:text-purple-800 hover:underline" href="<?= BASEURL; ?>/?url=validasi/detail_validasi/<?= $mhs['id_mahasiswa']; ?>"><?= $mhs['nama'] ?></a></td>
+                    <td><a class=" hover:text-purple-800 hover:underline" href="<?= BASEURL ?>/?url=validasi/detail_validasi/<?= $mhs['id_mahasiswa']; ?>"><?= $mhs['nama'] ?></a></td>
                     <td><?= $mhs['nama_prodi'] ?></td>
-                    <td></td>
                     <td></td>
                     <td><button>ya</button></td>
                 </tr>
