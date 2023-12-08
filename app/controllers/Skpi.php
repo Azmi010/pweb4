@@ -6,13 +6,16 @@ class Skpi extends Controller {
         $this->view('skpi/index');
     }
     public function prestasi($action = 'index', $id = 0) {
+        $data['id_mahasiswa'] = $_SESSION['id_mhs'];
+        $data = $this->model('SkpiModel')->getAllOfMhs($data['id_mahasiswa']);
         if ($action == 'delete') {
             $this->model('SkpiModel')->delete($id);
             header("Location: " . BASEURL . '?url=skpi/prestasi/');
             exit;
         }
-        $data = $this->model('SkpiModel')->getAll();
-        $data['id_mahasiswa'] = $_SESSION['id_mhs'];
+        elseif ($action == 'edit') {
+            $data = $this->model('SkpiModel')->getById($id);
+        }
         $skpiAttr = $this->model('SkpiAttrModel');
         $data['kategori'] = $skpiAttr->getAll('kategori');
         $data['unsur'] = $skpiAttr->getAll('unsur');
@@ -24,6 +27,11 @@ class Skpi extends Controller {
     public function addPrestasi() {
         $_POST['id_mahasiswa'] = $_SESSION['id_mhs'];
         $row_count = $this->model('SkpiModel')->insert($_POST, $_FILES);
+        if ($row_count > 0) echo 'success';
+        else echo 'failed';
+    }
+    public function editPrestasi() {
+        $row_count = $this->model('SkpiModel')->update($_POST, $_FILES);
         if ($row_count > 0) echo 'success';
         else echo 'failed';
     }

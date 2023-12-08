@@ -8,7 +8,7 @@ $(document).ready(() => {
 
     $.ajax({
       type: 'post',
-      url: `${BASEURL}/?url=skpi/addprestasi/`,
+      url: `${BASEURL}/?url=skpi/editprestasi/`,
       data: data,
       contentType: false,
       processData: false,

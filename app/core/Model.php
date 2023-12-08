@@ -11,7 +11,7 @@ abstract class Model
 
     abstract public function insert($data, $file = NULL);
 
-    abstract public function update($data);
+    abstract public function update($data, $file = NULL);
 
     public function getAll()
     {

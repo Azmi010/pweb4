@@ -38,6 +38,7 @@ class Login extends Controller {
     }
 
     private function redirectToRole($role) {
+        var_dump($role);
         switch ($role) {
             case 1:
                 // var_dump($role);
@@ -56,6 +57,7 @@ class Login extends Controller {
                 header("Location: " . BASEURL . "/?url=persetujuan");
                 break;
             default:
+            var_dump($role);
                 echo "Role tidak valid.";
                 break;
         }
