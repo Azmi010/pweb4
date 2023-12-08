@@ -1,5 +1,5 @@
 <?php 
-session_start();
+// session_start();
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: " . BASEURL . "/?url=login");
@@ -11,8 +11,6 @@ if ($_SESSION['role'] != 1 && $_SESSION['role'] != 2) {
     session_destroy();
 }
 ?>
-
-// TODO: lengkapi struktur html
 
 <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
    <span class="sr-only">Open sidebar</span>
@@ -54,25 +52,25 @@ if ($_SESSION['role'] != 1 && $_SESSION['role'] != 2) {
 </aside>
 
 <section id="box">
-    <div class="box hover:bg-blue-800">
+    <a class="box hover:bg-blue-800" href="<?= BASEURL ?>/?url=skpi/prestasi/">
         <h1>7</h1>
         <div class="teks">
             <p>Data Prestasi</p>
             <i class="ri-database-2-fill"></i>
         </div>
-    </div>
-    <div class="box1 hover:bg-green-700">
+</a>
+    <a class="box1 hover:bg-green-700">
         <h1>5</h1>
         <div class="teks-1">
         <p>Data Keikutsertaan Kegiatan</p>
         <i class="ri-database-2-fill"></i>
         </div>
-    </div>
-    <div class="box2 hover:bg-orange-600">
+</a>
+    <a class="box2 hover:bg-orange-600">
         <h1>3</h1>
         <div class="teks-2">
         <p>Data Sertifikasi kompetensi</p>
         <i class="ri-database-2-fill"></i>
         </div>
-    </div>
+</a>
 </section>

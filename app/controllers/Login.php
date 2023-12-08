@@ -20,6 +20,7 @@ class Login extends Controller {
             if ($user) {
                 $_SESSION['user_id'] = $user['id_akun'];
                 $_SESSION['mahasiswa'] = $user['nama_mahasiswa'];
+                $_SESSION['id_mhs'] = $user['id_mahasiswa'];
                 $_SESSION['tim_skpi'] = $user['nama_tim_skpi'];
                 $_SESSION['operator_akademik'] = $user['nama_operator_akademik'];
                 $_SESSION['dekan'] = $user['nama_dekan'];
@@ -37,20 +38,26 @@ class Login extends Controller {
     }
 
     private function redirectToRole($role) {
+        var_dump($role);
         switch ($role) {
             case 1:
+                // var_dump($role);
                 header("Location: " . BASEURL . "/?url=home");
                 break;
             case 2:
+                // var_dump($role);
                 header("Location: " . BASEURL . "/?url=home");
                 break;
-            case 3:
+            case 4:
+                // var_dump($role);
                 header("Location: " . BASEURL . "/?url=validasi");
                 break;
-            case 4:
+            case 3:
+                // var_dump($role);
                 header("Location: " . BASEURL . "/?url=persetujuan");
                 break;
             default:
+            var_dump($role);
                 echo "Role tidak valid.";
                 break;
         }
