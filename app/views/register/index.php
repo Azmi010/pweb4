@@ -9,25 +9,34 @@
 <body>
     <div class="login-container">
         <h2>Register</h2>
-        <form>
+        <form action="<?= BASEURL ?>/?url=register/processRegister" method="post">
             <input type="text" name="nama" placeholder="Nama Lengkap" required>
-            <input type="text" name="nim" placeholder="NIM/NIP" required>
-            <select id="Status">
+            <input type="text" name="nip_nim" placeholder="NIM/NIP" required>
+            <select id="status" name="status" onchange="handleStatusChange()">
                 <option value="" disabled selected hidden>Status</option>
-                <option value="Mahasiswa">Mahasiswa</option>
-                <option value="Operator Akademik">Operator Akademik</option>
-                <option value="Tim SKPI">Tim SKPI</option>
-                <option value="Wadek">Wakil Dekan</option>
+                <?php foreach ($data['roles'] as $role) : ?>
+                <option value="<?= $role['nama_role']; ?>"><?= $role['nama_role']; ?></option>
+                <?php endforeach ?>
             </select>
-            <select id="Prodi">
+            <select id="prodi" name="prodi">
                 <option value="" disabled selected hidden>Program Studi</option>
-                <option value="TI">Sistem Informasi</option>
-                <option value="SI">Teknologi Informasi</option>
-                <option value="IF">Informatika</option>
+                <?php foreach ($data['prodi'] as $prodi) : ?>
+                <option value="<?= $prodi['nama_prodi']; ?>"><?= $prodi['nama_prodi']; ?></option>
+                <?php endforeach ?>
             </select>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Register</button>
         </form>
     </div>
+    <script>
+    function handleStatusChange() {
+        var status = document.getElementById('status').value;
+        var prodiDropdown = document.getElementById('prodi');
+
+        // Reset prodiDropdown
+        prodiDropdown.selectedIndex = 0;
+        prodiDropdown.disabled = (status !== 'Mahasiswa');
+    }
+    </script>
 </body>
 </html>

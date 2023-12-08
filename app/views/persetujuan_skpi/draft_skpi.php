@@ -1,8 +1,8 @@
 <div class="bg-gray-100">
     <div class="h-screen mt-36">
         <div class="mx-20 flex">
-            <a href="<?= BASEURL ?>/persetujuan"><button class="btn-color mr-1 h-8 rounded"><img class="w-7 mx-1" src="<?= BASEURL ?>/images/chevron-left.png" alt=""></button></a>
-            <h1 class="text-2xl font-bold">Draft SKPI ULUL 'AZMI (222410102068)</h1>
+            <a href="<?= BASEURL ?>/?url=persetujuan"><button class="bg-blue-400 mr-1 h-8 rounded hover:bg-blue-700"><img class="w-7 mx-1" src="<?= BASEURL ?>/images/chevron-left.png" alt=""></button></a>
+            <h1 class="text-2xl font-bold">Draft SKPI <?= $data['mhs']['nama'] ?> (<?= $data['mhs']['nim'] ?>)</h1>
         </div>
         <div class="flex h-screen bg-white p-7 my-10 mx-20 rounded-lg">
             <div class="w-8/12">

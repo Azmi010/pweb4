@@ -64,4 +64,10 @@ class Login extends Controller {
 
         exit();
     }
+
+    public function logout() {
+        header("Location:" . BASEURL . "/?url=login");
+        session_destroy();  
+        exit();
+    }
 }

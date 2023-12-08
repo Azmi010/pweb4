@@ -5,32 +5,45 @@ class Register extends Controller {
 
     public function index() {
         $data['judul'] = 'Register';
-        // $data['roles'] = $this->model('Register_model')->getValidRoles();
-        // $this->view('templates/sidebar');
-        // $this->view('templates/header', $data);
+        $registerModel = $this->model('Register_model');
+        $data['roles'] = $registerModel->getRoles();
+        $data['prodi'] = $registerModel->getProdi();
         $this->view('register/index', $data);
-        // $this->view('templates/footer');
     }
 
-    public function processRegistration() {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    public function processRegister() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nama = $_POST['nama'];
-            $nim = $_POST['nim'];
-            $fakultas = $_POST['fakultas'];
+            $nip_nim = $_POST['nip_nim'];
+            $status = $_POST['status'];
             $prodi = $_POST['prodi'];
-            $role = $_POST['role'];
             $password = $_POST['password'];
 
             $registerModel = $this->model('Register_model');
-            $success = $registerModel->registerUser($nama, $nim, $fakultas, $prodi, $role, $password);
 
-            if ($success) {
-                // echo "Registrasi berhasil. Silakan login dengan akun yang baru dibuat.";
-                header("Location: " . BASEURL . "/login");
-                exit();
-            } else {
-                echo "Registrasi gagal. Silakan coba lagi.";
+            switch ($status) {
+                case 'Mahasiswa':
+                    $registerModel->registerMahasiswa($nama, $nip_nim, $prodi, $password);
+                    header("Location: " . BASEURL . "/?url=login");
+                    break;
+                case 'Tim SKPI':
+                    $registerModel->registerTimSkpi($nama, $nip_nim, $password);
+                    header("Location: " . BASEURL . "/?url=login");
+                    break;
+                case 'Operator Akademik':
+                    $registerModel->registerOperatorAkademik($nama, $nip_nim, $password);
+                    header("Location: " . BASEURL . "/?url=login");
+                    break;
+                case 'Wakil Dekan':
+                    $registerModel->registerDekan($nama, $nip_nim, $password);
+                    header("Location: " . BASEURL . "/?url=login");
+                    break;
+                default:
+                    echo "Status tidak valid.";
+                    break;
             }
+
+            echo "Registrasi berhasil!";
         }
     }
 }

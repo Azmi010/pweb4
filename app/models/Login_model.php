@@ -6,10 +6,10 @@ class Login_model {
 
     public function __construct()
     {
-        $host = 'localhost';
-        $username = 'root';
-        $password = '';
-        $database = 'skpi';
+        $host = DB_HOST;
+        $username = DB_USER;
+        $password = DB_PASS;
+        $database = DB_NAME;
 
         $this->conn = new mysqli($host, $username, $password, $database);
 

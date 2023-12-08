@@ -1,5 +1,19 @@
-<div class="bg-gray-100">
-    <div class="w-9/12 mx-auto mt-36 border border-gray-200 rounded-md shadow-md">
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: " . BASEURL . "/?url=login");
+    exit();
+}
+
+if ($_SESSION['role'] != 4) {
+    header("Location: " . BASEURL . "/?url=login");
+    session_destroy();
+}
+?>
+
+<div class="bg-gray-100 mb-10">
+    <div class="w-8/12 ml-80 mt-20 border border-gray-200 rounded-md shadow-md">
         <div class="bg-gray-100 px-4 py-3 h-auto rounded font-medium text-lg">
             <h1>Daftar Persetujuan Wakil Dekan III</h1>
         </div>
@@ -31,17 +45,21 @@
         <div class="rounded bg-white px-3 pt-5 pb-1">
             <table class="w-full rounded shadow-md mb-3">
                 <tr class="border-b-2 border-gray-500 bg-gray-800 h-10 text-white">
-                    <th class=" rounded-tl font-sans">NO.</th>
+                    <th class=" rounded-tl px-2">NO.</th>
                     <th class="">NIM</th>
                     <th class="font-sans">NAMA</th>
                     <th class="">PROGRAM STUDI</th>
                     <th class="">Verifikator</th>
-                    <th class="">DETAIL</th>
+                    <th class="rounded-tr px-2">DETAIL</th>
                 </tr>
+                <?php
+                $count = 1;
+                foreach ($data['mhs'] as $mhs) :
+                ?>
                 <tr class="text-center border-b border-gray-300">
-                    <td class="py-2">1.</td>
+                    <td class="py-2"><?= $count++ ?></td>
                     <td>222410102068</td>
-                    <td><a class=" hover:text-purple-800 hover:underline" href="<?= BASEURL ?>/persetujuan/draft_skpi">ULUL 'AZMI</a></td>
+                    <td><a class=" hover:text-purple-800 hover:underline" href="<?= BASEURL ?>/?url=persetujuan/draft_skpi/<?= $mhs['id_mahasiswa']; ?>"><?= $mhs['nama'] ?></a></td>
                     <td>Teknologi Informasi</td>
                     <td>Dr. Agustina Dewi Setyari, S.S., M.Hum.</td>
                     <td>
@@ -50,6 +68,7 @@
                         </div>
                     </td>
                 </tr>
+                <?php endforeach ?>
             </table>
         </div>
         <div class="flex justify-between pb-3 px-3 bg-white rounded-md">
