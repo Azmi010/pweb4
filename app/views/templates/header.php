@@ -14,19 +14,19 @@ $nim = '';
 
 // Menyesuaikan variabel username dan nim berdasarkan role
 switch ($role) {
-    case 'mahasiswa':
+    case 1:
         $username = $_SESSION['mahasiswa'];
         $nim = $_SESSION['nim'];
         break;
-    case 'tim skpi':
+    case 3:
         $username = $_SESSION['tim_skpi'];
         $nim = $_SESSION['nip_tim_skpi'];
         break;
-    case 'dekan':
+    case 4:
         $username = $_SESSION['dekan'];
         $nim = $_SESSION['nip_dekan'];
         break;
-    case 'operator akademik':
+    case 2:
         $username = $_SESSION['operator_akademik'];
         $nim = $_SESSION['nip_operator_akademik'];
         break;
@@ -46,8 +46,8 @@ switch ($role) {
     <!-- <link rel="stylesheet" href="<?= BASEURL ?>/css/login.css">
     <link rel="stylesheet" href="<?= BASEURL ?>/css/register.css"> -->
     <link rel="stylesheet" href="<?= BASEURL ?>/css/homepage.css">
+    <script src="<?= BASEURL ?>/js/tailwind_3.3.5.js"></script>
     <title>Halaman <?= $data['judul']; ?></title>
-    <link rel="stylesheet" href="<?= BASEURL ?>/output.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
