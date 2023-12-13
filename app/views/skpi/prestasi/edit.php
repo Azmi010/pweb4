@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <link rel="stylesheet" href="<?= BASEURL ?>/css/style.css"> -->
-    <!-- <link rel="stylesheet" href="<?= BASEURL ?>/css/output.css" /> -->
     <script src="<?= BASEURL ?>/js/tailwind_3.3.5.js"></script>
     <script src="<?= BASEURL; ?>/js/jquery-3.7.1.js"></script>
     <script>

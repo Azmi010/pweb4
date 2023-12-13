@@ -1,5 +1,5 @@
 <?php
-define('BASEURL', 'http://localhost/skpi/pweb4/public');
+define('BASEURL', 'http://localhost/pweb4/public');
 
 // DB
 define('DB_HOST', 'localhost');

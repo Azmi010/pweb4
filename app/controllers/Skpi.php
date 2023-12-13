@@ -5,6 +5,7 @@ class Skpi extends Controller {
     public function index() {
         $this->view('skpi/index');
     }
+    
     public function prestasi($action = 'index', $id = 0) {
         $data['id_mahasiswa'] = $_SESSION['id_mhs'];
         $data = $this->model('SkpiModel')->getAllOfMhs($data['id_mahasiswa']);
@@ -15,6 +16,7 @@ class Skpi extends Controller {
         }
         elseif ($action == 'edit') {
             $data = $this->model('SkpiModel')->getById($id);
+            if (!isset($data)) $data = NULL;
         }
         $skpiAttr = $this->model('SkpiAttrModel');
         $data['kategori'] = $skpiAttr->getAll('kategori');
