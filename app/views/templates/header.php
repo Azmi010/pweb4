@@ -52,19 +52,19 @@ switch ($role) {
 <body class="bg-gray-100">
 
 <div class="bg-gray-800 w-full h-20 flex justify-between fixed top-0 shadow-xl">
-  <div class="flex items-center ml-72">
+  <div class="flex items-center ml-64">
       <div class="flex flex-col text-white mr-2">
           <p class="font-bold">
-              SISTEM INFORMASI AKADEMIK
+              SURAT KETERANGAN PENDAMPING IJAZAH
           </p>
           <p class="text-right text-xs">
-              UNIVERSITAS JEMBER
+              FAKULTAS ILMU KOMPUTER
           </p>
       </div>
-      <img class="w-12" src="<?= BASEURL ?> . /images/Logo_UNEJ-removebg-preview.png" alt="">
+      <!-- <img class="w-12" src="<?= BASEURL ?> . /images/Logo_UNEJ-removebg-preview.png" alt=""> -->
   </div>
   <div class="flex items-center mr-24">
-      <img class="w-12" src="<?= BASEURL ?> . /images/toga-asset.webp" alt="">
+      <img class="w-12" src="<?= BASEURL ?> . /images/user.png" alt="">
       <div class="flex-col text-white ml-2">
             <h3 class="font-medium">
                 <?= $username ?>

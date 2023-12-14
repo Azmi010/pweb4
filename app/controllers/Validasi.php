@@ -6,6 +6,7 @@ class Validasi extends Controller {
         $data['judul'] = 'Validasi SKPI';
         $data['mhs'] = $this->model('Validasi_model')->getAllValidasi();
         $this->view('templates/header', $data);
+        $this->view('templates/sidebar');
         $this->view('validasi_skpi/index', $data);
         $this->view('templates/footer');
     }

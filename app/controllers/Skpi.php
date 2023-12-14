@@ -3,14 +3,17 @@ session_start();
 
 class Skpi extends Controller {
     public function index() {
+        
         $this->view('skpi/index');
     }
     public function prestasi($action = 'index', $id = 0) {
+        $data['judul'] = 'Input SKPI';
+        $this->view('templates/header', $data);
         $data['id_mahasiswa'] = $_SESSION['id_mhs'];
         $data = $this->model('SkpiModel')->getAllOfMhs($data['id_mahasiswa']);
         if ($action == 'delete') {
             $this->model('SkpiModel')->delete($id);
-            header("Location: " . BASEURL . '?url=skpi/prestasi/');
+            header("Location: " . BASEURL . "?url=Skpi/prestasi/");
             exit;
         }
         elseif ($action == 'edit') {

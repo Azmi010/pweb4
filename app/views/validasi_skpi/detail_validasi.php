@@ -1,6 +1,7 @@
 <div class="bg-gray-100">
     <div class="mt-20">
-        <div class="w-full h-20 px-20 py-5 font-bold text-xl">
+        <div class="w-full h-20 px-10 py-7 font-bold text-xl flex">
+            <a href="<?= BASEURL ?>/?url=Validasi"><button class="bg-blue-400 mr-1 h-8 rounded hover:bg-blue-700"><img class="w-7 mx-1" src="<?= BASEURL ?>/images/chevron-left.png" alt=""></button></a>
             <h1>Validasi Informasi Tambahan pada SKPI</h1>
         </div>
         <div class="bg-white rounded-t-xl mx-7 p-5">

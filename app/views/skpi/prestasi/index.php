@@ -17,14 +17,14 @@ foreach ($data as $key => $value) {
   </head>
   <body class="bg-slate-100">
     <section class="p-4">
-      <div class="flex justify-between px-8">
+      <div class="flex justify-between px-8 mt-10">
         <h1 class="text-4xl font-medium">Daftar Prestasi</h1>
         <a href="<?= BASEURL ?>/?url=skpi/prestasi/add/" type="button" class="bg-green-600 text-white px-3 py-2 rounded-lg">Tambah Data</a>
       </div>
 
       <table class=" w-full border-collapse table-auto mt-4 shadow-lg">
         <thead class="text-blue-50">
-          <tr class="bg-blue-800">
+          <tr class="bg-gray-800">
             <th class="rounded-tl-lg">Nama Prestasi</th>
             <th>Tanggal Pelaksanaan</th>
             <th>Keterangan</th>
@@ -74,7 +74,7 @@ foreach ($data as $key => $value) {
         </tbody>
       </table>
     
-      <div class="flex gap-3 justify-end items-center mt-4 px-4 py-1">
+      <div class="flex gap-3 justify-end items-center mt-4 px-1 py-1">
         <a href="#" class="px-2 py-1 bg-slate-300 rounded">Previous</a>
         <p>1</p>
         <a href="#" class="px-2 py-1 bg-slate-300 rounded">Next</a>
