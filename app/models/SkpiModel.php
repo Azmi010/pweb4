@@ -40,7 +40,7 @@ class SkpiModel extends Model
         $this->db->bind('id_mahasiswa', $data['id_mahasiswa']);
         $this->db->bind('id_poin', $id_poin);
 
-        $upload_path ='upload/' . $file_name;
+        $upload_path ='../upload/' . $file_name;
         if (move_uploaded_file($file_tmp, $upload_path)) $this->db->execute();
 
         return $this->db->rowCount();
@@ -50,23 +50,35 @@ class SkpiModel extends Model
         $query = "UPDATE $this->table 
                   SET judul = :judul,
                       tanggal_pelaksanaan = :tanggal_pelaksanaan,
-                      file_bukti = :file_bukti,
                       verifikasi = :verifikasi, 
                       validasi = :validasi, 
-                      id_mahasiswa = :id_mahasiswa,
-                      id_poin = :id_poin 
-                  WHERE id_item_skpi = :id_item_skpi";
+                      id_poin = :id_poin";
+
+        $file_name = $data['id_item_skpi'] . $file['file_bukti']['name'];
+        $file_tmp = $file['file_bukti']['tmp_name'];
+
+        $id_poin = $data['kategori'] . $data['unsur'] . $data['butir'] . $data['sub_butir'];
+        $file_ok = $file['file_bukti']['error'] == UPLOAD_ERR_OK;
+
+        if($file_ok) $query .= ",file_bukti = :file_bukti ";
+
+        $query .= "WHERE id_item_skpi = :id_item_skpi";
 
         $this->db->query($query);
         $this->db->bind('judul', $data['judul']);
         $this->db->bind('tanggal_pelaksanaan', $data['tanggal_pelaksanaan']);
-        $this->db->bind('file_bukti', $data['file_bukti']);
-        $this->db->bind('verikasi', $data['verikasi']);
-        $this->db->bind('validasi', $data['validasi']);
-        $this->db->bind('id_mahasiswa', $data['id_mahasiswa']);
-        $this->db->bind('id_poin', $data['id_poin']);
+        if($file_ok) $this->db->bind('file_bukti', $file_name);
+        $this->db->bind('verifikasi', $data['verifikasi'] = 0);
+        $this->db->bind('validasi', $data['validasi'] = 0);
+        $this->db->bind('id_poin', $id_poin);
+        $this->db->bind('id_item_skpi', $data['id_item_skpi']);
 
-        $this->db->execute();
+        $upload_path ='../upload/' . $file_name;
+        if ($file_ok && (move_uploaded_file($file_tmp, $upload_path))) {
+            $this->db->execute();
+        } else {
+            $this->db->execute();
+        }
 
         return $this->db->rowCount();
     }
