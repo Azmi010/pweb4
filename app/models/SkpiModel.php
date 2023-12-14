@@ -60,9 +60,9 @@ class SkpiModel extends Model
         $id_poin = $data['kategori'] . $data['unsur'] . $data['butir'] . $data['sub_butir'];
         $file_ok = $file['file_bukti']['error'] == UPLOAD_ERR_OK;
 
-        if($file_ok) $query .= ",file_bukti = :file_bukti ";
+        if($file_ok) $query .= ",file_bukti = :file_bukti";
 
-        $query .= "WHERE id_item_skpi = :id_item_skpi";
+        $query .= " WHERE id_item_skpi = :id_item_skpi";
 
         $this->db->query($query);
         $this->db->bind('judul', $data['judul']);
@@ -73,7 +73,7 @@ class SkpiModel extends Model
         $this->db->bind('id_poin', $id_poin);
         $this->db->bind('id_item_skpi', $data['id_item_skpi']);
 
-        $upload_path ='../upload/' . $file_name;
+        $upload_path ='upload/' . $file_name;
         if ($file_ok && (move_uploaded_file($file_tmp, $upload_path))) {
             $this->db->execute();
         } else {
