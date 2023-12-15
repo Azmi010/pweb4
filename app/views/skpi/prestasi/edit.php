@@ -1,3 +1,7 @@
+<?php
+  var_dump($data);
+  var_dump($_FILES);
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,7 +20,10 @@
   <body class="bg-slate-200 my-5">
     <section class="bg-slate-50 px-20 pt-8 pb-16 w-4/5 m-auto shadow-xl rounded-2xl">
       <h1 class="text-2xl font-medium mb-4">Tambah Data SKPI</h1>
-      <form id="prestasi-form" method="post" enctype class="flex flex-col gap-1">
+      <form id="prestasi-form" method="post" enctype="multipart/form-data" action="<?= BASEURL ?>/?url=skpi/editprestasi/" class="flex flex-col gap-1">
+        <input type="hidden" name="id_item_skpi" value="<?= $data['id_item_skpi'] ?>">
+        <input type="hidden" name="kategori" value="1">
+        <input type="hidden" name="unsur" value="1">
         <label for="judul">Judul</label>
         <input 
         value="<?= $data['judul']; ?>"
@@ -51,18 +58,8 @@
           <?php } ?>
         </select>
 
-
-        <label for="peserta">Nama Peserta</label>
-        <input 
-          required
-          type="text"
-          name="peserta"
-          id="peserta"
-          class="border-black border rounded focus:bg-slate-50 py-1 px-2"
-        />
-
         <label for='file_bukti'>File Bukti</label>
-        <input required type='file' accept='.pdf' name='file_bukti' id='file_bukti'>
+        <input type='file' accept='.pdf' name='file_bukti' id='file_bukti'>
 
 
         <div class="mt-5">
@@ -82,6 +79,6 @@
     </section>
 
   <script src="<?= BASEURL; ?>/js/index.js"></script>
-  <script src="<?= BASEURL; ?>/js/edit-skpi.js"></script>
+  <!-- <script src="<?= BASEURL; ?>/js/edit-skpi.js"></script> -->
   </body>
 </html>

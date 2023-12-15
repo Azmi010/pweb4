@@ -50,16 +50,6 @@
           <?php } ?>
         </select>
 
-
-        <label for="peserta">Nama Peserta</label>
-        <input 
-          required
-          type="text"
-          name="peserta"
-          id="peserta"
-          class="border-black border rounded focus:bg-slate-50 py-1 px-2"
-        />
-
         <label for='file_bukti'>File Bukti</label>
         <input required type='file' accept='.pdf' name='file_bukti' id='file_bukti'>
 

@@ -8,16 +8,19 @@ class Skpi extends Controller {
     
     public function prestasi($action = 'index', $id = 0) {
         $data['id_mahasiswa'] = $_SESSION['id_mhs'];
+        // $data['nama_mahasiswa'] = $_SESSION['mahasiswa'];
         $data = $this->model('SkpiModel')->getAllOfMhs($data['id_mahasiswa']);
         if ($action == 'delete') {
             $this->model('SkpiModel')->delete($id);
             header("Location: " . BASEURL . '?url=skpi/prestasi/');
             exit;
         }
+
         elseif ($action == 'edit') {
             $data = $this->model('SkpiModel')->getById($id);
             if (!isset($data)) $data = NULL;
         }
+
         $skpiAttr = $this->model('SkpiAttrModel');
         $data['kategori'] = $skpiAttr->getAll('kategori');
         $data['unsur'] = $skpiAttr->getAll('unsur');
