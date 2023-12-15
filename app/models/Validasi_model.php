@@ -19,12 +19,11 @@ class Validasi_model {
     }
 
     public function getAllValidasi() {
-        // $query = "SELECT m.nim, m.nama, p.nama_prodi, i.*
-        // FROM mahasiswa m
-        // JOIN prodi p ON m.id_prodi = p.id_prodi
-        // JOIN item_skpi i ON m.id_mahasiswa = i.id_mahasiswa WHERE i.verifikasi = 1";
-        $query = "SELECT m.*, p.nama_prodi FROM mahasiswa m
-        JOIN prodi p ON m.id_prodi = p.id_prodi";
+        $query = "SELECT m.id_mahasiswa, m.nama, m.nim, p.nama_prodi, COUNT(i.id_mahasiswa) as jumlah_item_skpi
+        FROM mahasiswa m
+        JOIN prodi p ON m.id_prodi = p.id_prodi
+        JOIN item_skpi i ON m.id_mahasiswa = i.id_mahasiswa
+        GROUP BY m.id_mahasiswa, m.nama, m.nim, p.nama_prodi";
         $result = $this->conn->query($query);
 
         if (!$result) {

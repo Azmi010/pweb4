@@ -48,11 +48,11 @@ class Login extends Controller {
                 // var_dump($role);
                 header("Location: " . BASEURL . "/?url=home");
                 break;
-            case 4:
+            case 3:
                 // var_dump($role);
                 header("Location: " . BASEURL . "/?url=validasi");
                 break;
-            case 3:
+            case 4:
                 // var_dump($role);
                 header("Location: " . BASEURL . "/?url=persetujuan");
                 break;

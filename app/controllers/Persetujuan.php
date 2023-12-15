@@ -6,6 +6,7 @@ class Persetujuan extends Controller {
         $data['judul'] = 'Persetujuan SKPI';
         $data['mhs'] = $this->model('Persetujuan_model')->getAllMahasiswa();
         $this->view('templates/header', $data);
+        $this->view('templates/sidebar');
         $this->view('persetujuan_skpi/index', $data);
         $this->view('templates/footer');
     }
