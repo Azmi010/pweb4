@@ -79,6 +79,6 @@
     </section>
 
   <script src="<?= BASEURL; ?>/js/index.js"></script>
-  <!-- <script src="<?= BASEURL; ?>/js/edit-skpi.js"></script> -->
+  <script src="<?= BASEURL; ?>/js/edit-skpi.js"></script>
   </body>
 </html>
