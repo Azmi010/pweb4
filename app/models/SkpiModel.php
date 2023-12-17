@@ -40,7 +40,7 @@ class SkpiModel extends Model
         $this->db->bind('id_mahasiswa', $data['id_mahasiswa']);
         $this->db->bind('id_poin', $id_poin);
 
-        $upload_path ='../upload/' . $file_name;
+        $upload_path ='../app/upload/' . $file_name;
         if (move_uploaded_file($file_tmp, $upload_path)) $this->db->execute();
 
         return $this->db->rowCount();
@@ -73,7 +73,7 @@ class SkpiModel extends Model
         $this->db->bind('id_poin', $id_poin);
         $this->db->bind('id_item_skpi', $data['id_item_skpi']);
 
-        $upload_path ='upload/' . $file_name;
+        $upload_path ='../app/upload/' . $file_name;
         if ($file_ok && (move_uploaded_file($file_tmp, $upload_path))) {
             $this->db->execute();
         } else {
