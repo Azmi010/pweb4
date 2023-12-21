@@ -73,5 +73,9 @@ class DatabasePDO {
     {
         return $this->stmt->rowCount();
     }
+
+    public function getLastId() {
+        return $this->dbh->lastInsertId();
+    }
 }
 ?>

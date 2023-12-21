@@ -15,7 +15,7 @@
   </head>
 
   <body class="bg-slate-200 my-5">
-    <section class="bg-slate-50 px-20 pt-8 pb-16 w-4/5 m-auto shadow-xl rounded-2xl mt-10">
+    <section class="bg-slate-50 px-20 pt-8 pb-16 w-4/5 m-auto shadow-xl rounded-2xl mt-24">
       <h1 class="text-2xl font-medium mb-4">Tambah Data SKPI</h1>
       <form id="prestasi-form" method="post" enctype="multipart/form-data" action="<?= BASEURL ?>/?url=skpi/addprestasi/" class="flex flex-col gap-1">
         <label for="judul">Judul</label>
@@ -35,7 +35,7 @@
           id="tanggal_pelaksanaan"
           class="border-black border rounded focus:bg-slate-50 py-1 px-2"
         />
-
+        
         <label for="butir">Juara</label>
         <select required name="butir" id="butir" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
           <?php foreach ($data['butir'] as $butir) { ?>
@@ -47,12 +47,33 @@
         <select required name="sub_butir" id="sub_butir" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
           <?php foreach ($data['sub_butir'] as $sub_butir) { ?>
             <option value="<?= $sub_butir['id_sub_butir'] ?>"><?= $sub_butir['nama_sub_butir'] ?></option>
-          <?php } ?>
-        </select>
+            <?php } ?>
+          </select>
+          
+          <section class="peserta_sect">
+            <label>Peserta</label>
+            
+            <div>
+              <input 
+              required
+              readonly
+              value="<?= $data['nim']; ?>"
+              type="text"
+              name="peserta[]"
+              id="peserta1"
+              class="border-black border rounded focus:bg-slate-50 py-1 px-2"
+              />
+              <button type="button" id="add_peserta" class="bg-green-600 text-gray-50 px-3 py-1 rounded w-min">Tambah</button>
+            </div>
+          </section>
 
-        <label for='file_bukti'>File Bukti</label>
-        <input required type='file' accept='.pdf' name='file_bukti' id='file_bukti'>
+          <section class="file_sect">
+            <label>File Bukti</label>
+            <!-- <button type="button" id="add_file" class="bg-green-600 text-gray-50 px-3 py-1 rounded w-min">Tambah</button> -->
 
+            <input required type='file' accept='image/*,.pdf' name='file_bukti' id='file_bukti' class="block">
+          </section>
+          
 
         <div class="mt-5">
           <button type="submit" name="submit" class="bg-green-600 text-gray-50 px-3 py-1 rounded w-min">

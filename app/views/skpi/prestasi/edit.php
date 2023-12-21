@@ -1,6 +1,5 @@
 <?php
-  var_dump($data);
-  var_dump($_FILES);
+  $item_skpi = $data['item_skpi'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,12 +20,12 @@
     <section class="bg-slate-50 px-20 pt-8 pb-16 w-4/5 m-auto shadow-xl rounded-2xl">
       <h1 class="text-2xl font-medium mb-4">Tambah Data SKPI</h1>
       <form id="prestasi-form" method="post" enctype="multipart/form-data" action="<?= BASEURL ?>/?url=skpi/editprestasi/" class="flex flex-col gap-1">
-        <input type="hidden" name="id_item_skpi" value="<?= $data['id_item_skpi'] ?>">
-        <input type="hidden" name="kategori" value="1">
-        <input type="hidden" name="unsur" value="1">
+        <input type="hidden" name="id_item_skpi" value="<?= $item_skpi['id_item_skpi'] ?>">
+        <!-- <input type="hidden" name="kategori" value="1">
+        <input type="hidden" name="unsur" value="1"> -->
         <label for="judul">Judul</label>
         <input 
-        value="<?= $data['judul']; ?>"
+        value="<?= $item_skpi['judul']; ?>"
           required
           type="text"
           name="judul"
@@ -36,7 +35,7 @@
 
         <label for="tanggal_pelaksanaan">Tanggal Pelaksanaan</label>
         <input 
-        value="<?= $data['tanggal_pelaksanaan']; ?>"
+        value="<?= $item_skpi['tanggal_pelaksanaan']; ?>"
           required
           type="date"
           name="tanggal_pelaksanaan"
@@ -59,7 +58,7 @@
         </select>
 
         <label for='file_bukti'>File Bukti</label>
-        <input type='file' accept='.pdf' name='file_bukti' id='file_bukti'>
+        <input required type='file' accept='image/*,.pdf' name='file_bukti' id='file_bukti' class="block">
 
 
         <div class="mt-5">

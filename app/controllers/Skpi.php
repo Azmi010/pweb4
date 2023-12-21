@@ -11,18 +11,23 @@ class Skpi extends Controller {
         $this->view('templates/header', $data);
         $data['id_mahasiswa'] = $_SESSION['id_mhs'];
         $data['nama_mahasiswa'] = $_SESSION['mahasiswa'];
+        $data['nim'] = $_SESSION['nim'];
         
-        $data = $this->model('SkpiModel')->getAllOfMhs($data['id_mahasiswa']);
+        $data['item_skpi'] = $this->model('SkpiModel')->getAllOfMhs($data['id_mahasiswa']);
+
         if ($action == 'delete') {
             $this->model('SkpiModel')->delete($id);
             header("Location: " . BASEURL . "?url=Skpi/prestasi/");
             exit;
         }
-
+        
         elseif ($action == 'edit') {
-            $data = $this->model('SkpiModel')->getById($id);
-            if (!isset($data)) $data = NULL;
+            $data['item_skpi'] = $this->model('SkpiModel')->getById($id);
+
+            if($data['item_skpi']['id_mahasiswa'] != $data['id_mahasiswa'] || !isset($data))
+                $data = NULL;
         }
+
 
         $skpiAttr = $this->model('SkpiAttrModel');
         $data['kategori'] = $skpiAttr->getAll('kategori');
@@ -35,10 +40,12 @@ class Skpi extends Controller {
     public function addPrestasi() {
         session_start();
         $_POST['id_mahasiswa'] = $_SESSION['id_mhs'];
+        $_POST['nim_mahasiswa'] = $_SESSION['nim'];
         $row_count = $this->model('SkpiModel')->insert($_POST, $_FILES);
         if ($row_count > 0) echo 'success';
         else echo 'failed';
     }
+
     public function editPrestasi() {
         $row_count = $this->model('SkpiModel')->update($_POST, $_FILES);
         if ($row_count > 0) echo 'success';

@@ -1,4 +1,47 @@
 $(document).ready(() => {
+  let maxInputs = 10; 
+
+  let pesertaSection = '.peserta_sect';
+  let addPesertaBtn = '#add_peserta'; 
+
+  let nPeserta = 1; 
+  $(addPesertaBtn).click(function (e) {
+    e.preventDefault();
+    if (nPeserta < maxInputs) {
+      nPeserta++;
+      $(pesertaSection).append(
+        '<div><input required type="number" name="peserta[]" class="border-black border rounded focus:bg-slate-50 py-1 px-2"/><button class="remove_peserta bg-red-600 text-gray-50 px-3 py-1 rounded w-min">Hapus</button></div>'
+      ); 
+    }
+  });
+
+  $(pesertaSection).on('click', '.remove_peserta', function (e) {
+    e.preventDefault();
+    $(this).parent('div').remove();
+    nPeserta--;
+  });
+
+  // let fileSection = '.file_sect';
+  // let addfileBtn = '#add_file'; 
+
+  // let nfile = 1; 
+  // $(addfileBtn).click(function (e) {
+  //   e.preventDefault();
+  //   if (nfile < maxInputs) {
+  //     nfile++;
+  //     $(fileSection).append(
+  //       // <input required type='file' accept='.pdf' name='file_bukti' id='file_bukti'></input>
+  //       '<div><input required type="file" accept="image/*,.pdf" name="file_bukti[]" class="border-black border rounded focus:bg-slate-50 py-1 px-2"/><button class="remove_file bg-red-600 text-gray-50 px-3 py-1 rounded w-min">Hapus</button></div>'
+  //     ); 
+  //   }
+  // });
+
+  // $(fileSection).on('click', '.remove_file', function (e) {
+  //   e.preventDefault();
+  //   $(this).parent('div').remove();
+  //   nfile--;
+  // });
+
   $('#prestasi-form').submit(function (e) {
     e.preventDefault();
 
@@ -13,7 +56,8 @@ $(document).ready(() => {
       contentType: false,
       processData: false,
       success: function (response) {
-        location.replace(`${BASEURL}/?url=skpi/prestasi/`);
+        console.log(response)
+        // location.replace(`${BASEURL}/?url=skpi/prestasi/`);
       },
     });
   });

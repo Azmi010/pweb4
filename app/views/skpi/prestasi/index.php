@@ -1,8 +1,5 @@
 <?php
-foreach ($data as $key => $value) {
-  if (!is_int($key)) break;
-  $item_skpi[] = $value;
-}
+    $item_skpi = $data['item_skpi'];
 ?>
 
 <!DOCTYPE html>

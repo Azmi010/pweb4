@@ -40,8 +40,30 @@ class SkpiModel extends Model
         $this->db->bind('id_mahasiswa', $data['id_mahasiswa']);
         $this->db->bind('id_poin', $id_poin);
 
+        
         $upload_path ='../app/upload/' . $file_name;
-        if (move_uploaded_file($file_tmp, $upload_path)) $this->db->execute();
+        if (move_uploaded_file($file_tmp, $upload_path)) {
+            $this->db->execute();
+            $id_item_skpi = $this->db->getLastId();
+            var_dump($id_item_skpi);
+        }
+
+
+        foreach ($data['peserta'] as $nim) {
+            $inpo = $this->insertPesertaItem($id_item_skpi, $nim);
+            var_dump($inpo);
+        }
+
+        return $this->db->rowCount();
+    }
+
+    public function insertPesertaItem($id_item_skpi, $nim) {
+        $query = "INSERT INTO peserta_item (id_item_skpi, nim_peserta) VALUES (:id_item_skpi, :nim)";
+
+        $this->db->query($query);
+        $this->db->bind('id_item_skpi', $id_item_skpi);
+        $this->db->bind('nim', $nim);
+        $this->db->execute();
 
         return $this->db->rowCount();
     }

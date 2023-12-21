@@ -4,6 +4,11 @@ package.json
 package-lock.json
 tailwind.config.js
 
+test/*
 test.*
 
 **/output.css
+**/upload/*
+
+!**/upload/blank.pdf
+
