@@ -15,6 +15,7 @@ class SkpiModel extends Model
 
         return $this->db->resultSet();
     }
+
     public function insert($data, $file = NULL) {
         $query = "SELECT MAX(id_item_skpi) FROM $this->table";
         $this->db->query($query);
@@ -47,7 +48,6 @@ class SkpiModel extends Model
             $id_item_skpi = $this->db->getLastId();
             var_dump($id_item_skpi);
         }
-
 
         foreach ($data['peserta'] as $nim) {
             $inpo = $this->insertPesertaItem($id_item_skpi, $nim);

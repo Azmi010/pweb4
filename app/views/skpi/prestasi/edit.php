@@ -1,5 +1,8 @@
 <?php
   $item_skpi = $data['item_skpi'];
+  $id_poin = strval($item_skpi['id_poin']);
+  $id_butir = $id_poin[2];
+  $id_sub_butir = $id_poin[3];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +20,7 @@
   </head>
 
   <body class="bg-slate-200 my-5">
-    <section class="bg-slate-50 px-20 pt-8 pb-16 w-4/5 m-auto shadow-xl rounded-2xl">
+    <section class="bg-slate-50 px-20 pt-8 pb-16 w-4/5 m-auto shadow-xl rounded-2xl mt-24">
       <h1 class="text-2xl font-medium mb-4">Tambah Data SKPI</h1>
       <form id="prestasi-form" method="post" enctype="multipart/form-data" action="<?= BASEURL ?>/?url=skpi/editprestasi/" class="flex flex-col gap-1">
         <input type="hidden" name="id_item_skpi" value="<?= $item_skpi['id_item_skpi'] ?>">
@@ -46,19 +49,38 @@
         <label for="butir">Juara</label>
         <select required name="butir" id="butir" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
           <?php foreach ($data['butir'] as $butir) { ?>
-            <option value="<?= $butir['id_butir'] ?>"><?= $butir['nama_butir'] ?></option>
+            <option value="<?= $butir['id_butir'] ?>" <?php if ($butir['id_butir'] == $id_butir) echo 'selected'; ?> ><?= $butir['nama_butir'] ?></option>
           <?php } ?>
         </select>
 
         <label for="sub_butir">Level/Tingkat</label>
         <select required name="sub_butir" id="sub_butir" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
           <?php foreach ($data['sub_butir'] as $sub_butir) { ?>
-            <option value="<?= $sub_butir['id_sub_butir'] ?>"><?= $sub_butir['nama_sub_butir'] ?></option>
+            <option value="<?= $sub_butir['id_sub_butir'] ?>" <?php if ($sub_butir['id_sub_butir'] == $id_sub_butir) echo 'selected'; ?> ><?= $sub_butir['nama_sub_butir'] ?></option>
           <?php } ?>
         </select>
 
+        <section class="peserta_sect">
+          <?php
+            
+          ?>
+          <label>Peserta</label>
+          
+          <div>
+            <input 
+            required
+            readonly
+            value="<?= $data['nim']; ?>"
+            type="text"
+            name="peserta[]"
+            class="border-black border rounded focus:bg-slate-50 py-1 px-2"
+            />
+            <button type="button" id="add_peserta" class="bg-green-600 text-gray-50 px-3 py-1 rounded w-min">Tambah</button>
+          </div>
+        </section>
+
         <label for='file_bukti'>File Bukti</label>
-        <input required type='file' accept='image/*,.pdf' name='file_bukti' id='file_bukti' class="block">
+        <input type='file' accept='image/*,.pdf' name='file_bukti' id='file_bukti' class="block">
 
 
         <div class="mt-5">
@@ -75,6 +97,11 @@
           </a>
         </div>
       </form>
+    <?php
+  var_dump($item_skpi);
+  echo '<hr>';
+  var_dump($data);
+?>
     </section>
 
   <script src="<?= BASEURL; ?>/js/index.js"></script>

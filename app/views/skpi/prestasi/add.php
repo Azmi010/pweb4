@@ -60,7 +60,6 @@
               value="<?= $data['nim']; ?>"
               type="text"
               name="peserta[]"
-              id="peserta1"
               class="border-black border rounded focus:bg-slate-50 py-1 px-2"
               />
               <button type="button" id="add_peserta" class="bg-green-600 text-gray-50 px-3 py-1 rounded w-min">Tambah</button>
