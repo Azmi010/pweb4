@@ -23,6 +23,7 @@ class Skpi extends Controller {
         
         elseif ($action == 'edit') {
             $data['item_skpi'] = $this->model('SkpiModel')->getById($id);
+            $data['peserta'] = $this->model('SkpiModel')->getAllPeserta($id);
 
             if($data['item_skpi']['id_mahasiswa'] != $data['id_mahasiswa'] || !isset($data))
                 $data = NULL;
@@ -50,6 +51,10 @@ class Skpi extends Controller {
         $row_count = $this->model('SkpiModel')->update($_POST, $_FILES);
         if ($row_count > 0) echo 'success';
         else echo 'failed';
+    }
+
+    public function deletePeserta($id_peserta_item) {
+        $this->model('SkpiModel')->deletePeserta($id_peserta_item);
     }
 }
 ?>

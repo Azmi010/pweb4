@@ -68,6 +68,25 @@ class SkpiModel extends Model
         return $this->db->rowCount();
     }
 
+    public function getAllPeserta($id_item_skpi) {
+        $query = "SELECT * FROM peserta_item WHERE id_item_skpi = :id_item_skpi";
+
+        $this->db->query($query);
+        $this->db->bind('id_item_skpi', $id_item_skpi);
+        return $this->db->resultSet();
+    }
+
+    public function deletePeserta($id_peserta_item) {
+        $query = 'DELETE FROM peserta_item WHERE id_peserta_item= :id_peserta_item';
+        
+        $this->db->query($query);
+        $this->db->bind('id_peserta_item', $id_peserta_item);
+
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
     public function update($data, $file = NULL) {
         $query = "UPDATE $this->table 
                   SET judul = :judul,
