@@ -36,9 +36,17 @@
                 $id_poin = strval($skpi['id_poin']);
                 $id_butir = $id_poin[2] - 1;
                 $id_sub_butir = $id_poin[3] - 1;
-          ?>
+            ?>
             <tr>
-              <td><?= $skpi['judul'] ?></td>
+              <td>
+              <?php 
+                $judul = $skpi['judul'];
+                $max_len = 48;
+                if(strlen($judul) > $max_len)
+                  $judul = substr($judul, 0, $max_len) . '...';
+                echo $judul; 
+              ?>
+              </td>
               <td><?= $skpi['tanggal_pelaksanaan'] ?></td>
               <td>
                 <ul>
