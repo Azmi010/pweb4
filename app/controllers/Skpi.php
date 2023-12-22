@@ -48,6 +48,8 @@ class Skpi extends Controller {
     }
 
     public function editPrestasi() {
+        session_start();
+        $_POST['nim_mahasiswa'] = $_SESSION['nim'];
         $row_count = $this->model('SkpiModel')->update($_POST, $_FILES);
         if ($row_count > 0) echo 'success';
         else echo 'failed';

@@ -10,7 +10,7 @@ $(document).ready(() => {
     if (nPeserta < maxInputs) {
       nPeserta++;
       $(pesertaSection).append(
-        '<div><input required type="number" name="peserta[]" class="border-black border rounded focus:bg-slate-50 py-1 px-2"/><button class="remove_peserta bg-red-600 text-gray-50 px-3 py-1 rounded w-min">Hapus</button></div>'
+        '<div class="mt-1"><input required type="number" name="peserta[]" class="border-black border rounded focus:bg-slate-50 py-1 px-2"/> <button class="remove_peserta bg-red-600 text-gray-50 px-3 py-1 rounded w-min">Hapus</button></div>'
       ); 
     }
   });
@@ -56,8 +56,8 @@ $(document).ready(() => {
       contentType: false,
       processData: false,
       success: function (response) {
-        console.log(response)
-        // location.replace(`${BASEURL}/?url=skpi/prestasi/`);
+        // console.log(response)
+        location.replace(`${BASEURL}/?url=skpi/prestasi/`);
       },
     });
   });

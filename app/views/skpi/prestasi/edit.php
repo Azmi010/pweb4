@@ -73,7 +73,7 @@
             value="<?= $data['nim']; ?>"
             type="text"
             name="peserta[]"
-            class="peserta_input border-black border rounded focus:bg-slate-50 py-1 px-2"
+            class="peserta_input border-black border rounded bg-neutral-300 py-1 px-2"
             />
             <button type="button" id="add_peserta" class="bg-green-600 text-gray-50 px-3 py-1 rounded w-min">Tambah</button>
           </div>
@@ -84,7 +84,7 @@
               if ($nim == $data['nim']) continue;
               $id_peserta_item = $peserta['id_peserta_item'];
           ?>
-          <div>
+          <div class="mt-1">
             <input required type="number" name="peserta[]" class="peserta_input border-black border rounded focus:bg-slate-50 py-1 px-2" value="<?= $nim; ?>"/>
             <button type='button' class="remove_peserta bg-red-600 text-gray-50 px-3 py-1 rounded w-min" data-idpi="<?= $id_peserta_item; ?>">Hapus</button>
           </div>

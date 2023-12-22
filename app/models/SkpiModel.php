@@ -22,7 +22,7 @@ class SkpiModel extends Model
         $last_id = $this->db->single(PDO::FETCH_NUM)[0];
         if ($last_id == 0) $last_id = 1;
 
-        $file_name = $last_id + 1 . $file['file_bukti']['name'];
+        $file_name = $last_id + 1 . '_' . $file['file_bukti']['name'];
         $file_tmp = $file['file_bukti']['tmp_name'];
 
 
@@ -50,8 +50,7 @@ class SkpiModel extends Model
         }
 
         foreach ($data['peserta'] as $nim) {
-            $inpo = $this->insertPesertaItem($id_item_skpi, $nim);
-            var_dump($inpo);
+            $this->insertPesertaItem($id_item_skpi, $nim);
         }
 
         return $this->db->rowCount();
@@ -63,6 +62,17 @@ class SkpiModel extends Model
         $this->db->query($query);
         $this->db->bind('id_item_skpi', $id_item_skpi);
         $this->db->bind('nim', $nim);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function updatePesertaItem($id_peserta_item, $nim_peserta) {
+        $query = "UPDATE peserta_item SET nim_peserta = :nim_peserta WHERE id_peserta_item = :id_peserta_item";
+
+        $this->db->query($query);
+        $this->db->bind('id_peserta_item', $id_peserta_item);
+        $this->db->bind('nim_peserta', $nim_peserta);
         $this->db->execute();
 
         return $this->db->rowCount();
@@ -94,8 +104,8 @@ class SkpiModel extends Model
                       verifikasi = :verifikasi, 
                       validasi = :validasi, 
                       id_poin = :id_poin";
-
-        $file_name = $data['id_item_skpi'] . $file['file_bukti']['name'];
+        $id_item_skpi = $data['id_item_skpi'];
+        $file_name = $id_item_skpi . '_' . $file['file_bukti']['name'];
         $file_tmp = $file['file_bukti']['tmp_name'];
 
         $id_poin = $data['kategori'] . $data['unsur'] . $data['butir'] . $data['sub_butir'];
@@ -112,13 +122,37 @@ class SkpiModel extends Model
         $this->db->bind('verifikasi', $data['verifikasi'] = 0);
         $this->db->bind('validasi', $data['validasi'] = 0);
         $this->db->bind('id_poin', $id_poin);
-        $this->db->bind('id_item_skpi', $data['id_item_skpi']);
+        $this->db->bind('id_item_skpi', $id_item_skpi);
 
         $upload_path ='../app/upload/' . $file_name;
         if ($file_ok && (move_uploaded_file($file_tmp, $upload_path))) {
             $this->db->execute();
         } else {
             $this->db->execute();
+        }
+
+        $old_peserta = $this->getAllPeserta($id_item_skpi);
+
+        foreach ($old_peserta as $old)
+            $old_peserta_array[] = $old['nim_peserta'];
+
+        var_dump($old_peserta);
+        var_dump($old_peserta_array);
+        $new_peserta = array_diff($data['peserta'], $old_peserta_array);
+
+        foreach ($new_peserta as $key => $nim_peserta) {
+            var_dump($key);
+            var_dump($nim_peserta);
+            if(isset($old_peserta[$key]))
+                $id_peserta_change = $old_peserta[$key]['id_peserta_item'];
+            else
+                $id_peserta_change = NULL;
+            var_dump($id_peserta_change);
+            if(is_null($id_peserta_change))
+                $this->insertPesertaItem($id_item_skpi, $nim_peserta);
+            else
+                $this->updatePesertaItem($id_peserta_change, $nim_peserta);
+
         }
 
         return $this->db->rowCount();
