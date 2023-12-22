@@ -94,6 +94,8 @@
         </section>
 
         <label for='file_bukti'>File Bukti</label>
+        <embed src="../app/upload/<?= $item_skpi['file_bukti']; ?>">
+
         <input type='file' accept='image/*,.pdf' name='file_bukti' id='file_bukti' class="block">
 
 
@@ -111,11 +113,6 @@
           </a>
         </div>
       </form>
-    <?php
-  var_dump($item_skpi);
-  echo '<hr>';
-  var_dump($data);
-?>
     </section>
 
   <script src="<?= BASEURL; ?>/js/index.js"></script>
