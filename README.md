@@ -1,7 +1,5 @@
 # Fasilkom Credit Points
 
-Sebuah aplikasi website untuk mempermudah pengisian SKPI di Fasilkom UNEJ
-
 ## PWEB B4 Team
 
 | Nama | NIM |
