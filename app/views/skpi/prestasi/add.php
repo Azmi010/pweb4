@@ -8,8 +8,8 @@
     <script src="<?= BASEURL ?>/js/tailwind_3.3.5.js"></script>
     <script src="<?= BASEURL; ?>/js/jquery-3.7.1.js"></script>
     <script>
-      const idKategori = 1;
-      const idUnsur = 1;
+      const idKategori = 'k1';
+      const idUnsur = 'u1';
     </script>
     <title>Input Data SKPI</title>
   </head>
@@ -39,14 +39,14 @@
         <label for="butir">Juara</label>
         <select required name="butir" id="butir" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
           <?php foreach ($data['butir'] as $butir) { ?>
-            <option value="<?= $butir['id_butir'] ?>"><?= $butir['nama_butir'] ?></option>
+            <option value="b<?= $butir['id_butir'] ?>"><?= $butir['nama_butir'] ?></option>
           <?php } ?>
         </select>
 
         <label for="sub_butir">Level/Tingkat</label>
         <select required name="sub_butir" id="sub_butir" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
           <?php foreach ($data['sub_butir'] as $sub_butir) { ?>
-            <option value="<?= $sub_butir['id_sub_butir'] ?>"><?= $sub_butir['nama_sub_butir'] ?></option>
+            <option value="s<?= $sub_butir['id_sub_butir'] ?>"><?= $sub_butir['nama_sub_butir'] ?></option>
             <?php } ?>
           </select>
           
@@ -68,11 +68,11 @@
 
           <section class="file_sect">
             <label>File Bukti</label>
-            <!-- <button type="button" id="add_file" class="bg-green-600 text-gray-50 px-3 py-1 rounded w-min">Tambah</button> -->
-
-            <input required type='file' accept='image/*,.pdf' name='file_bukti' id='file_bukti' class="block">
+            <div>
+              <input required type='file' accept='image/*,.pdf' name='file_bukti[]' id='file_bukti' class="file_bukti border border-black rounded py-1 px-2">
+              <button type="button" id="add_file" class="bg-green-600 text-gray-50 px-3 py-1 rounded w-min">Tambah</button>
+            </div>
           </section>
-          
 
         <div class="mt-5">
           <button type="submit" name="submit" class="bg-green-600 text-gray-50 px-3 py-1 rounded w-min">

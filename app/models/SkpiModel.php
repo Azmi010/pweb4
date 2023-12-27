@@ -17,14 +17,13 @@ class SkpiModel extends Model
     }
 
     public function insert($data, $file = NULL) {
+        var_dump($data);
+        var_dump($file);
+
         $query = "SELECT MAX(id_item_skpi) FROM $this->table";
         $this->db->query($query);
         $last_id = $this->db->single(PDO::FETCH_NUM)[0];
         if ($last_id == 0) $last_id = 1;
-
-        $file_name = $last_id + 1 . '_' . $file['file_bukti']['name'];
-        $file_tmp = $file['file_bukti']['tmp_name'];
-
 
         $id_poin = $data['kategori'] . $data['unsur'] . $data['butir'] . $data['sub_butir'];
 
@@ -35,18 +34,26 @@ class SkpiModel extends Model
         $this->db->query($query);
         $this->db->bind('judul', $data['judul']);
         $this->db->bind('tanggal_pelaksanaan', $data['tanggal_pelaksanaan']);
-        $this->db->bind('file_bukti', $file_name);
+        $this->db->bind('file_bukti', $file_name = 'deleted col soon');
         $this->db->bind('verifikasi', $data['verifikasi'] = 0);
         $this->db->bind('validasi', $data['validasi'] = 0);
         $this->db->bind('id_mahasiswa', $data['id_mahasiswa']);
         $this->db->bind('id_poin', $id_poin);
 
-        
-        $upload_path ='../app/upload/' . $file_name;
-        if (move_uploaded_file($file_tmp, $upload_path)) {
-            $this->db->execute();
-            $id_item_skpi = $this->db->getLastId();
-            var_dump($id_item_skpi);
+        $this->db->execute();
+
+        $id_item_skpi = $this->db->getLastId();
+
+        foreach ($file['file_bukti']['name'] as $key => $file_name) {
+            $file_name = $id_item_skpi . '_' . $file_name;
+            var_dump($file_name);
+            
+            $upload_path ='../app/upload/' . $file_name;
+
+            $file_tmp = $file['file_bukti']['tmp_name'][$key];
+            var_dump($file_tmp);
+            
+            $this->insertFileBukti($id_item_skpi, $file_name, $file_tmp, $upload_path);
         }
 
         foreach ($data['peserta'] as $nim) {
@@ -63,6 +70,20 @@ class SkpiModel extends Model
         $this->db->bind('id_item_skpi', $id_item_skpi);
         $this->db->bind('nim', $nim);
         $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function insertFileBukti($id_item_skpi, $file_name, $file_tmp, $upload_path) {
+        $query = "INSERT INTO file_bukti (id_item_skpi, file_name) VALUES (:id_item_skpi, :file_name)";
+
+        $this->db->query($query);
+        $this->db->bind('id_item_skpi', $id_item_skpi);
+        $this->db->bind('file_name', $file_name);
+
+        if (move_uploaded_file($file_tmp, $upload_path)) {
+            $this->db->execute();
+        }
 
         return $this->db->rowCount();
     }
@@ -86,8 +107,24 @@ class SkpiModel extends Model
         return $this->db->resultSet();
     }
 
+    public function getAllFileBukti($id_item_skpi) {
+        $query = "SELECT * FROM file_bukti WHERE id_item_skpi = :id_item_skpi";
+        
+        $this->db->query($query);
+        $this->db->bind('id_item_skpi', $id_item_skpi);
+        return $this->db->resultSet();
+    }
+
+    public function getFileBukti($id_file_bukti) {
+        $query = "SELECT file_name FROM file_bukti WHERE id_file_bukti = :id_file_bukti";
+        
+        $this->db->query($query);
+        $this->db->bind('id_file_bukti', $id_file_bukti);
+        return $this->db->single(PDO::FETCH_NUM)[0];
+    }
+
     public function deletePeserta($id_peserta_item) {
-        $query = 'DELETE FROM peserta_item WHERE id_peserta_item= :id_peserta_item';
+        $query = 'DELETE FROM peserta_item WHERE id_peserta_item = :id_peserta_item';
         
         $this->db->query($query);
         $this->db->bind('id_peserta_item', $id_peserta_item);
@@ -97,38 +134,61 @@ class SkpiModel extends Model
         return $this->db->rowCount();
     }
 
+    public function deleteFileBukti($id_file_bukti) {
+        $file_name = $this->getFileBukti($id_file_bukti);
+
+        $query = 'DELETE FROM file_bukti WHERE id_file_bukti = :id_file_bukti';
+        
+        $this->db->query($query);
+        $this->db->bind('id_file_bukti', $id_file_bukti);
+
+        $file_path = '../app/upload/' . $file_name;
+        $this->db->execute();
+        unlink($file_path);
+
+        return $this->db->rowCount();
+    }
+
     public function update($data, $file = NULL) {
+        if (!empty($file)) var_dump($file);
         $query = "UPDATE $this->table 
                   SET judul = :judul,
                       tanggal_pelaksanaan = :tanggal_pelaksanaan,
                       verifikasi = :verifikasi, 
                       validasi = :validasi, 
                       id_poin = :id_poin";
+
         $id_item_skpi = $data['id_item_skpi'];
         $file_name = $id_item_skpi . '_' . $file['file_bukti']['name'];
         $file_tmp = $file['file_bukti']['tmp_name'];
 
         $id_poin = $data['kategori'] . $data['unsur'] . $data['butir'] . $data['sub_butir'];
-        $file_ok = $file['file_bukti']['error'] == UPLOAD_ERR_OK;
 
-        if($file_ok) $query .= ",file_bukti = :file_bukti";
 
         $query .= " WHERE id_item_skpi = :id_item_skpi";
 
         $this->db->query($query);
         $this->db->bind('judul', $data['judul']);
         $this->db->bind('tanggal_pelaksanaan', $data['tanggal_pelaksanaan']);
-        if($file_ok) $this->db->bind('file_bukti', $file_name);
+        if($file_ok) $this->db->bind('file_bukti', $file_name = 'deleted soon');
         $this->db->bind('verifikasi', $data['verifikasi'] = 0);
         $this->db->bind('validasi', $data['validasi'] = 0);
         $this->db->bind('id_poin', $id_poin);
         $this->db->bind('id_item_skpi', $id_item_skpi);
+        $this->db->execute();
 
-        $upload_path ='../app/upload/' . $file_name;
-        if ($file_ok && (move_uploaded_file($file_tmp, $upload_path))) {
-            $this->db->execute();
-        } else {
-            $this->db->execute();
+        if (!empty($file)) {
+            foreach ($file['file_bukti']['name'] as $key => $file_name) {
+                $file_name = $id_item_skpi . '_' . $file_name;
+                var_dump($file_name);
+                
+                $upload_path ='../app/upload/' . $file_name;
+                
+                $file_tmp = $file['file_bukti']['tmp_name'][$key];
+                var_dump($file_tmp);
+                
+                $this->insertFileBukti($id_item_skpi, $file_name, $file_tmp, $upload_path);
+            }
         }
 
         $old_peserta = $this->getAllPeserta($id_item_skpi);

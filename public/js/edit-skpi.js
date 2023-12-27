@@ -25,6 +25,28 @@ $(document).ready(() => {
     nPeserta--;
   });
 
+  let fileSection = '.file_sect';
+  let addfileBtn = '#add_file'; 
+  let fileInput = '.file_input';
+
+  let nfile = $(fileInput).length;
+
+  $(addfileBtn).click(function (e) {
+    e.preventDefault();
+    if (nfile < maxInputs) {
+      nfile++;
+      $(fileSection).append(
+        '<div class="mt-1"><input required type="file" accept="image/*,.pdf" name="file_bukti[]" class="file_input border border-black rounded py-1 px-2"/> <button type="button" class="remove_file bg-red-600 text-gray-50 px-3 py-1 rounded w-min">Hapus</button></div>'
+      ); 
+    }
+  });
+
+  $(fileSection).on('click', '.remove_file', function (e) {
+    let idFileBukti = $(this).attr('data-idfb');
+    $.get(`${BASEURL}/?url=skpi/deleteFileBukti/${idFileBukti}`);
+    $(this).parent('div').remove();
+    nfile--;
+  });
 
   $('#prestasi-form').submit(function (e) {
     e.preventDefault();
@@ -40,8 +62,8 @@ $(document).ready(() => {
       contentType: false,
       processData: false,
       success: function (response) {
-        // console.log(response);
-        location.replace(`${BASEURL}/?url=skpi/prestasi/`);
+        console.log(response);
+        // location.replace(`${BASEURL}/?url=skpi/prestasi/`);
       },
     });
   });

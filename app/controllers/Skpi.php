@@ -2,8 +2,11 @@
 
 class Skpi extends Controller {
     public function index() {
-        
-        $this->view('skpi/index');
+        $data['judul'] = 'Home';
+        $this->view('templates/header', $data);
+        $this->view('templates/sidebar');
+        $this->view('home/index', $data);
+        $this->view('templates/footer');
     }
     
     public function prestasi($action = 'index', $id = 0) {
@@ -24,6 +27,7 @@ class Skpi extends Controller {
         elseif ($action == 'edit') {
             $data['item_skpi'] = $this->model('SkpiModel')->getById($id);
             $data['peserta'] = $this->model('SkpiModel')->getAllPeserta($id);
+            $data['file_bukti'] = $this->model('SkpiModel')->getAllFileBukti($id);
 
             if($data['item_skpi']['id_mahasiswa'] != $data['id_mahasiswa'] || !isset($data))
                 $data = NULL;
@@ -57,6 +61,9 @@ class Skpi extends Controller {
 
     public function deletePeserta($id_peserta_item) {
         $this->model('SkpiModel')->deletePeserta($id_peserta_item);
+    }
+    public function deleteFileBukti($id_file_bukti) {
+        $this->model('SkpiModel')->deleteFileBukti($id_file_bukti);
     }
 }
 ?>

@@ -1,5 +1,6 @@
 <?php
     $item_skpi = $data['item_skpi'];
+    // var_dump($data);
 ?>
 
 <!DOCTYPE html>
@@ -32,10 +33,13 @@
         <tbody class="rounded-b-xl border-white bg-white">
           <?php
             if (isset($item_skpi)) {
-              foreach ($item_skpi as $key => $skpi) {
-                $id_poin = strval($skpi['id_poin']);
-                $id_butir = $id_poin[2] - 1;
-                $id_sub_butir = $id_poin[3] - 1;
+              foreach ($item_skpi as $skpi) {
+                $id_poin = $skpi['id_poin'];
+                echo $id_poin;
+                $id_poin = preg_split("/[a-z]/", $id_poin);
+                var_dump($id_poin);
+                $id_butir = $id_poin[3] - 1;
+                $id_sub_butir = $id_poin[4] - 1;
             ?>
             <tr>
               <td>

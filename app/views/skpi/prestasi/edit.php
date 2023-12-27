@@ -1,8 +1,10 @@
 <?php
   $item_skpi = $data['item_skpi'];
-  $id_poin = strval($item_skpi['id_poin']);
-  $id_butir = $id_poin[2];
-  $id_sub_butir = $id_poin[3];
+  $id_poin = $item_skpi['id_poin'];
+  $id_poin = preg_split("/[a-z]/", $id_poin);
+  $id_butir = $id_poin[3];
+  $id_sub_butir = $id_poin[4];
+  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,8 +15,8 @@
     <script src="<?= BASEURL ?>/js/tailwind_3.3.5.js"></script>
     <script src="<?= BASEURL; ?>/js/jquery-3.7.1.js"></script>
     <script>
-      const idKategori = 1;
-      const idUnsur = 1;
+      const idKategori = 'k1';
+      const idUnsur = 'u1';
     </script>
     <title>Edit Data SKPI</title>
   </head>
@@ -49,14 +51,14 @@
         <label for="butir">Juara</label>
         <select required name="butir" id="butir" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
           <?php foreach ($data['butir'] as $butir) { ?>
-            <option value="<?= $butir['id_butir'] ?>" <?php if ($butir['id_butir'] == $id_butir) echo 'selected'; ?> ><?= $butir['nama_butir'] ?></option>
+            <option value="b<?= $butir['id_butir'] ?>" <?php if ($butir['id_butir'] == $id_butir) echo 'selected'; ?> ><?= $butir['nama_butir'] ?></option>
           <?php } ?>
         </select>
 
         <label for="sub_butir">Level/Tingkat</label>
         <select required name="sub_butir" id="sub_butir" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
           <?php foreach ($data['sub_butir'] as $sub_butir) { ?>
-            <option value="<?= $sub_butir['id_sub_butir'] ?>" <?php if ($sub_butir['id_sub_butir'] == $id_sub_butir) echo 'selected'; ?> ><?= $sub_butir['nama_sub_butir'] ?></option>
+            <option value="s<?= $sub_butir['id_sub_butir'] ?>" <?php if ($sub_butir['id_sub_butir'] == $id_sub_butir) echo 'selected'; ?> ><?= $sub_butir['nama_sub_butir'] ?></option>
           <?php } ?>
         </select>
 
@@ -90,13 +92,31 @@
           </div>
           <?php
             }
+            ?>
+        </section>
+        
+        <section class="file_sect">
+          <label for='file_bukti'>File Bukti</label>
+          <button type="button" id="add_file" class="bg-green-600 text-gray-50 px-3 py-1 rounded w-min">Tambah</button>
+
+          <?php
+            foreach ($data['file_bukti'] as $file_bukti) {
+              $id_file_bukti = $file_bukti['id_file_bukti'];
+              $file = $file_bukti['file_name'];
+              $file_name_only = preg_split('/\d+_/', $file)[1];
+          ?>
+
+          <div class="mt-1">
+            <embed src="../app/upload/<?= $file ?>">
+            <span><?= $file_name_only; ?></span>
+            <!-- <input required type='file' accept='image/*,.pdf' name='file_bukti[]' class="file_bukti border border-black rounded py-1 px-2"> -->
+            <button type="button" class="remove_file bg-red-600 text-gray-50 px-3 py-1 rounded w-min" data-idfb="<?= $id_file_bukti; ?>">Hapus</button>
+          </div>
+          
+          <?php
+            }
           ?>
         </section>
-
-        <label for='file_bukti'>File Bukti</label>
-        <embed src="../app/upload/<?= $item_skpi['file_bukti']; ?>">
-
-        <input type='file' accept='image/*,.pdf' name='file_bukti' id='file_bukti' class="block">
 
 
         <div class="mt-5">

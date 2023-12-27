@@ -51,7 +51,7 @@ switch ($role) {
 </head>
 <body class="bg-gray-100">
 
-<div class="bg-gray-800 w-full h-20 flex justify-between fixed top-0 shadow-xl">
+<div class="hidden bg-gray-800 w-full h-20 flex justify-between fixed top-0 shadow-xl">
   <div class="flex items-center ml-64">
       <div class="flex flex-col text-white mr-2">
           <p class="font-bold">

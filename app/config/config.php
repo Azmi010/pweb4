@@ -5,6 +5,6 @@ define('BASEURL', 'http://localhost/pweb4/public');
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'skpi');
+define('DB_NAME', 'fcp');
 ?>
 

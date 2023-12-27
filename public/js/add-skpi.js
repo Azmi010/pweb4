@@ -21,26 +21,25 @@ $(document).ready(() => {
     nPeserta--;
   });
 
-  // let fileSection = '.file_sect';
-  // let addfileBtn = '#add_file'; 
+  let fileSection = '.file_sect';
+  let addfileBtn = '#add_file'; 
 
-  // let nfile = 1; 
-  // $(addfileBtn).click(function (e) {
-  //   e.preventDefault();
-  //   if (nfile < maxInputs) {
-  //     nfile++;
-  //     $(fileSection).append(
-  //       // <input required type='file' accept='.pdf' name='file_bukti' id='file_bukti'></input>
-  //       '<div><input required type="file" accept="image/*,.pdf" name="file_bukti[]" class="border-black border rounded focus:bg-slate-50 py-1 px-2"/><button class="remove_file bg-red-600 text-gray-50 px-3 py-1 rounded w-min">Hapus</button></div>'
-  //     ); 
-  //   }
-  // });
+  let nfile = 1; 
+  $(addfileBtn).click(function (e) {
+    e.preventDefault();
+    if (nfile < maxInputs) {
+      nfile++;
+      $(fileSection).append(
+        '<div class="mt-1"><input required type="file" accept="image/*,.pdf" name="file_bukti[]" class="border border-black rounded py-1 px-2"/> <button class="remove_file bg-red-600 text-gray-50 px-3 py-1 rounded w-min">Hapus</button></div>'
+      ); 
+    }
+  });
 
-  // $(fileSection).on('click', '.remove_file', function (e) {
-  //   e.preventDefault();
-  //   $(this).parent('div').remove();
-  //   nfile--;
-  // });
+  $(fileSection).on('click', '.remove_file', function (e) {
+    e.preventDefault();
+    $(this).parent('div').remove();
+    nfile--;
+  });
 
   $('#prestasi-form').submit(function (e) {
     e.preventDefault();
@@ -56,8 +55,8 @@ $(document).ready(() => {
       contentType: false,
       processData: false,
       success: function (response) {
-        // console.log(response)
-        location.replace(`${BASEURL}/?url=skpi/prestasi/`);
+        console.log(response)
+        // location.replace(`${BASEURL}/?url=skpi/prestasi/`);
       },
     });
   });
