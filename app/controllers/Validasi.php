@@ -3,7 +3,7 @@
 class Validasi extends Controller {
     public function index()
     {
-        $data['judul'] = 'Validasi SKPI';
+        $data['head_title'] = 'Validasi SKPI';
         $data['mhs'] = $this->model('Validasi_model')->getAllValidasi();
         $this->view('templates/header', $data);
         $this->view('templates/sidebar');
@@ -11,11 +11,18 @@ class Validasi extends Controller {
         $this->view('templates/footer');
     }
     public function detail_validasi($id) {
-        $data['judul'] = 'Detail Validasi';
+        $data['head_title'] = 'Detail Validasi';
         $data['mhs'] = $this->model('Validasi_model')->getMahasiswaById($id);
-        // $data['update'] = $this->model('Validasi_model')->updateValidasi($id);
         $this->view('templates/header', $data);
         $this->view('validasi_skpi/detail_validasi', $data);
         $this->view('templates/footer');
+    }
+    public function updateValidationStatus($id_item_skpi) {
+        $data['update'] = $this->model('Validasi_model')->updateValidationStatus($id_item_skpi);
+        if ($data['update']) {
+            echo "Success";
+        } else {
+            echo "Error";
+        }
     }
 }

@@ -1,5 +1,5 @@
 <?php
-
+// session_start();
 class Skpi extends Controller {
     public function index() {
         
@@ -7,7 +7,7 @@ class Skpi extends Controller {
     }
     
     public function prestasi($action = 'index', $id = 0) {
-        $data['judul'] = 'Input SKPI';
+        $data['head_title'] = 'Input SKPI';
         $this->view('templates/header', $data);
         $data['id_mahasiswa'] = $_SESSION['id_mhs'];
         $data['nama_mahasiswa'] = $_SESSION['mahasiswa'];

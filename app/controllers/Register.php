@@ -4,7 +4,7 @@ session_start();
 class Register extends Controller {
 
     public function index() {
-        $data['judul'] = 'Register';
+        $data['head_title'] = 'Register';
         $registerModel = $this->model('Register_model');
         $data['roles'] = $registerModel->getRoles();
         $data['prodi'] = $registerModel->getProdi();

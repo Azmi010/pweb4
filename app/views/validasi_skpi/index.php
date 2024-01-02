@@ -15,6 +15,7 @@ if ($_SESSION['role'] != 3) {
     <div class="w-8/12 ml-80 mt-20 border border-gray-200 rounded-md shadow-md">
         <div class="bg-gray-100 px-4 py-3 h-auto rounded font-medium text-lg">
             <h1>Daftar Prestasi & Pengalaman Mahasiswa</h1>
+            <a href="<?= BASEURL ?>/?url=validasi/ajax_handler.php">coba</a>
         </div>
         <div class="bg-white px-3">
             <form action="">
@@ -62,10 +63,14 @@ if ($_SESSION['role'] != 3) {
                     <tr class="text-center border-b border-gray-300">
                     <td class="py-2"><?= $count++; ?></td>
                     <td><?= $mhs['nim'] ?></td>
-                    <td><a class=" hover:text-purple-800 hover:underline" href="<?= BASEURL ?>/?url=validasi/detail_validasi/<?= $mhs['id_mahasiswa']; ?>"><?= $mhs['nama'] ?></a></td>
+                    <td><?= $mhs['nama'] ?></td>
                     <td><?= $mhs['nama_prodi'] ?></td>
-                    <td></td>
-                    <td><button>ya</button></td>
+                    <?php if ($mhs['validasi'] == 0) { ?>
+                    <td class="bg-red-500">Belum Validasi</td>
+                    <?php } else { ?>
+                    <td class="bg-green-400">Divalidasi</td> 
+                    <?php } ?>
+                    <td class="flex justify-center pt-2"><a href="<?= BASEURL ?>/?url=validasi/detail_validasi/<?= $mhs['id_mahasiswa']; ?>"><img class="w-6 item-center" src="<?= BASEURL ?>/images/checklist.png" alt=""></a></td>
                 </tr>
                 <?php endforeach ?>
             </table>

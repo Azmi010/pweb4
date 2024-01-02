@@ -17,7 +17,7 @@ foreach ($data as $key => $value) {
   </head>
   <body class="bg-slate-100">
     <section class="p-4">
-      <div class="flex justify-between px-8 mt-10">
+      <div class="flex justify-between px-8 mt-20">
         <h1 class="text-4xl font-medium">Daftar Prestasi</h1>
         <a href="<?= BASEURL ?>/?url=skpi/prestasi/add/" type="button" class="bg-green-600 text-white px-3 py-2 rounded-lg">Tambah Data</a>
       </div>

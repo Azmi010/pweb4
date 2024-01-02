@@ -15,7 +15,7 @@
   </head>
 
   <body class="bg-slate-200 my-5">
-    <section class="bg-slate-50 px-20 pt-8 pb-16 w-4/5 m-auto shadow-xl rounded-2xl mt-10">
+    <section class="bg-slate-50 px-20 pt-8 pb-16 w-4/5 m-auto shadow-xl rounded-2xl mt-20">
       <h1 class="text-2xl font-medium mb-4">Tambah Data SKPI</h1>
       <form id="prestasi-form" method="post" enctype="multipart/form-data" action="<?= BASEURL ?>/?url=skpi/addprestasi/" class="flex flex-col gap-1">
         <label for="judul">Judul</label>

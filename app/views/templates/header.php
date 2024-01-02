@@ -45,7 +45,7 @@ switch ($role) {
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link rel="stylesheet" href="<?= BASEURL ?>/css/homepage.css">
     <script src="<?= BASEURL ?>/js/tailwind_3.3.5.js"></script>
-    <title>Halaman <?= $data['judul']; ?></title>
+    <title>Halaman <?= $data['head_title']; ?></title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <script src="<?= BASEURL ?>/js/tailwind_3.3.5.js"></script>
 </head>
