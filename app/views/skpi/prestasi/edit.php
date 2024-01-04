@@ -2,9 +2,14 @@
   $item_skpi = $data['item_skpi'];
   $id_poin = $item_skpi['id_poin'];
   $id_poin = preg_split("/[a-z]/", $id_poin);
-  $id_butir = $id_poin[3];
-  $id_sub_butir = $id_poin[4];
-  
+  $id_unsur = $item_skpi['id_unsur'];
+  $id_butir = $item_skpi['id_butir'];
+  $id_sub_butir = $item_skpi['id_sub_butir'];
+        var_dump($data['unsur']);
+        var_dump($data['butir']);
+        var_dump($data['sub_butir']);
+var_dump($item_skpi);
+  $kategori = $_SESSION['item'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,10 +19,6 @@
     <!-- <link rel="stylesheet" href="<?= BASEURL ?>/css/style.css"> -->
     <script src="<?= BASEURL ?>/js/tailwind_3.3.5.js"></script>
     <script src="<?= BASEURL; ?>/js/jquery-3.7.1.js"></script>
-    <script>
-      const idKategori = 'k1';
-      const idUnsur = 'u1';
-    </script>
     <title>Edit Data SKPI</title>
   </head>
 
@@ -48,26 +49,30 @@
           class="border-black border rounded focus:bg-slate-50 py-1 px-2"
         />
 
-        <label for="butir">Juara</label>
-        <select required name="butir" id="butir" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
-          <?php foreach ($data['butir'] as $butir) { ?>
-            <option value="b<?= $butir['id_butir'] ?>" <?php if ($butir['id_butir'] == $id_butir) echo 'selected'; ?> ><?= $butir['nama_butir'] ?></option>
-          <?php } ?>
+        <label for="unsur">Unsur</label>
+        <select required name="unsur" id="unsur" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
+        <?php foreach ($data['unsur']['options'] as $id => $text) { ?>
+          <option value="u<?= $id; ?>" <?php if ($id == $id_unsur) echo 'selected'; ?>><?= $text; ?></option>
+        <?php } ?>
         </select>
 
-        <label for="sub_butir">Level/Tingkat</label>
+        <label for="butir">Butir</label>
+        <select required name="butir" id="butir" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
+        <?php foreach ($data['butir']['options'] as $id => $text) { ?>
+          <option value="b<?= $id; ?>" <?php if ($id == $id_butir) echo 'selected'; ?>><?= $text; ?></option>
+        <?php } ?>
+        </select>
+
+        <label for="sub_butir">Sub Butir</label>
         <select required name="sub_butir" id="sub_butir" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
-          <?php foreach ($data['sub_butir'] as $sub_butir) { ?>
-            <option value="s<?= $sub_butir['id_sub_butir'] ?>" <?php if ($sub_butir['id_sub_butir'] == $id_sub_butir) echo 'selected'; ?> ><?= $sub_butir['nama_sub_butir'] ?></option>
-          <?php } ?>
+        <?php foreach ($data['sub_butir']['options'] as $id => $text) { ?>
+          <option value="s<?= $id; ?>"><?= $text; ?></option>
+        <?php } ?>
         </select>
 
         <section class="peserta_sect">
-          <?php
-            
-          ?>
           <label>Peserta</label>
-          
+
           <div>
             <input 
             required
@@ -86,6 +91,7 @@
               if ($nim == $data['nim']) continue;
               $id_peserta_item = $peserta['id_peserta_item'];
           ?>
+
           <div class="mt-1">
             <input required type="number" name="peserta[]" class="peserta_input border-black border rounded focus:bg-slate-50 py-1 px-2" value="<?= $nim; ?>"/>
             <button type='button' class="remove_peserta bg-red-600 text-gray-50 px-3 py-1 rounded w-min" data-idpi="<?= $id_peserta_item; ?>">Hapus</button>
@@ -95,8 +101,8 @@
             ?>
         </section>
         
-        <section class="file_sect">
-          <label for='file_bukti'>File Bukti</label>
+        <section class="file_sect mt-3">
+          <label for='file_bukti' >File Bukti</label>
           <button type="button" id="add_file" class="bg-green-600 text-gray-50 px-3 py-1 rounded w-min">Tambah</button>
 
           <?php
@@ -135,6 +141,23 @@
       </form>
     </section>
 
+  <script>
+    const idKategori = <?php
+      switch ($kategori) {
+        case 'prestasi':
+          echo "'k1'";
+          break;
+        case 'kegiatan':
+          echo "'k2'";
+          break;
+        case 'sertifikasi':
+          echo "'k3'";
+          break;
+        case 'mbkm':
+          echo "'k4'";
+          break;
+      }?>;
+  </script>
   <script src="<?= BASEURL; ?>/js/index.js"></script>
   <script src="<?= BASEURL; ?>/js/edit-skpi.js"></script>
   </body>

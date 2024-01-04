@@ -1,3 +1,8 @@
+<?php
+    $kategori = $_SESSION['item'];
+    var_dump($kategori);
+    var_dump($data);
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,16 +12,12 @@
     <!-- <link rel="stylesheet" href="<?= BASEURL ?>/css/output.css" /> -->
     <script src="<?= BASEURL ?>/js/tailwind_3.3.5.js"></script>
     <script src="<?= BASEURL; ?>/js/jquery-3.7.1.js"></script>
-    <script>
-      const idKategori = 'k1';
-      const idUnsur = 'u1';
-    </script>
     <title>Input Data SKPI</title>
   </head>
 
   <body class="bg-slate-200 my-5">
     <section class="bg-slate-50 px-20 pt-8 pb-16 w-4/5 m-auto shadow-xl rounded-2xl mt-24">
-      <h1 class="text-2xl font-medium mb-4">Tambah Data SKPI</h1>
+      <h1 class="text-2xl font-medium mb-4">Tambah Data <?= ucfirst($_SESSION['item']); ?></h1>
       <form id="prestasi-form" method="post" enctype="multipart/form-data" action="<?= BASEURL ?>/?url=skpi/addprestasi/" class="flex flex-col gap-1">
         <label for="judul">Judul</label>
         <input 
@@ -36,20 +37,20 @@
           class="border-black border rounded focus:bg-slate-50 py-1 px-2"
         />
         
-        <label for="butir">Juara</label>
+<?php
+  $is_mbkm = $_SESSION['item'] == 'mbkm';
+?>
+        <label for="unsur">Unsur</label>
+        <select required name="unsur" id="unsur" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
+        </select>
+        
+        <label for="butir">Butir</label>
         <select required name="butir" id="butir" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
-          <?php foreach ($data['butir'] as $butir) { ?>
-            <option value="b<?= $butir['id_butir'] ?>"><?= $butir['nama_butir'] ?></option>
-          <?php } ?>
         </select>
 
-        <label for="sub_butir">Level/Tingkat</label>
+        <label for="sub_butir">Sub Butir</label>
         <select required name="sub_butir" id="sub_butir" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
-          <?php foreach ($data['sub_butir'] as $sub_butir) { ?>
-            <option value="s<?= $sub_butir['id_sub_butir'] ?>"><?= $sub_butir['nama_sub_butir'] ?></option>
-            <?php } ?>
-          </select>
-          
+        </select>
           <section class="peserta_sect">
             <label>Peserta</label>
             
@@ -78,7 +79,7 @@
           <button type="submit" name="submit" class="bg-green-600 text-gray-50 px-3 py-1 rounded w-min">
             Simpan
           </button>
-          <a href="<?= BASEURL ?>/?url=skpi/prestasi/">
+          <a href="<?= BASEURL ?>/?url=skpi/index/<?= $_SESSION['item']; ?>">
             <button
               type="button"
               class="bg-red-600 text-gray-50 px-3 py-1 rounded w-min"
@@ -89,7 +90,23 @@
         </div>
       </form>
     </section>
-
+  <script>
+    const idKategori = <?php
+      switch ($kategori) {
+        case 'prestasi':
+          echo "'k1'";
+          break;
+        case 'kegiatan':
+          echo "'k2'";
+          break;
+        case 'sertifikasi':
+          echo "'k3'";
+          break;
+        case 'mbkm':
+          echo "'k4'";
+          break;
+      }?>;
+  </script>
   <script src="<?= BASEURL; ?>/js/index.js"></script>
   <script src="<?= BASEURL; ?>/js/add-skpi.js"></script>
   </body>

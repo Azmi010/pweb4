@@ -1,4 +1,5 @@
 <?php 
+session_start();
 class App {
     protected $controller = 'Home';
     protected $method = 'index';

@@ -8,10 +8,33 @@ class SkpiModel extends Model
         $this->table = "item_skpi";
     }
 
-    public function getAllOfMhs($id_mahasiswa)
+    public function getAllOfMhs($id_mahasiswa, $kategori = NULL)
     {
-        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_mahasiswa=:id_mahasiswa');
+        switch ($kategori) {
+            case 'prestasi':
+                $id_kategori = 'k1';
+                break;
+            case 'kegiatan':
+                $id_kategori = 'k2';
+                break;
+            case 'sertifikasi':
+                $id_kategori = 'k3';
+                break;
+            case 'mbkm':
+                $id_kategori = 'k4';
+                break;
+            default:
+                $kategori = NULL;
+                $id_kategori = NULL;
+                break;
+        }
+
+        $query ='SELECT * FROM ' . $this->table . ' WHERE id_mahasiswa=:id_mahasiswa';
+        // if (isset($kategori)) $query .= " AND id_poin LIKE '" . $id_kategori ."%'";
+        $query .= " AND LEFT(id_poin, 2)='" . $id_kategori ."'";
+        $this->db->query($query);
         $this->db->bind('id_mahasiswa', $id_mahasiswa);
+        // if (isset($kategori)) $this->db->bind('kategori', $id_kategori);
 
         return $this->db->resultSet();
     }
@@ -49,11 +72,13 @@ class SkpiModel extends Model
             var_dump($file_name);
             
             $upload_path ='../app/upload/' . $file_name;
+            if (file_exists($upload_path)) return 0;
 
             $file_tmp = $file['file_bukti']['tmp_name'][$key];
             var_dump($file_tmp);
             
-            $this->insertFileBukti($id_item_skpi, $file_name, $file_tmp, $upload_path);
+            $file_status = $this->insertFileBukti($id_item_skpi, $file_name, $file_tmp, $upload_path);
+            if ($file_status <= 0) return 0;
         }
 
         foreach ($data['peserta'] as $nim) {
@@ -75,6 +100,13 @@ class SkpiModel extends Model
     }
 
     public function insertFileBukti($id_item_skpi, $file_name, $file_tmp, $upload_path) {
+        $query = "SELECT file_name FROM file_bukti";
+        $this->db->query($query);
+
+        $files = $this->db->resultSet(PDO::FETCH_COLUMN);
+
+        if (in_array($file_name, $files)) return 0;
+
         $query = "INSERT INTO file_bukti (id_item_skpi, file_name) VALUES (:id_item_skpi, :file_name)";
 
         $this->db->query($query);
@@ -134,6 +166,17 @@ class SkpiModel extends Model
         return $this->db->rowCount();
     }
 
+    public function deletePesertaByItem($id_item_skpi) {
+        $query = 'DELETE FROM peserta_item WHERE id_item_skpi = :id_item_skpi';
+        
+        $this->db->query($query);
+        $this->db->bind('id_item_skpi', $id_item_skpi);
+
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
     public function deleteFileBukti($id_file_bukti) {
         $file_name = $this->getFileBukti($id_file_bukti);
 
@@ -183,6 +226,7 @@ class SkpiModel extends Model
                 var_dump($file_name);
                 
                 $upload_path ='../app/upload/' . $file_name;
+                if (file_exists($upload_path)) return 0;
                 
                 $file_tmp = $file['file_bukti']['tmp_name'][$key];
                 var_dump($file_tmp);

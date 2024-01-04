@@ -53,17 +53,16 @@ $(document).ready(() => {
 
     let data = new FormData($(this)[0]);
     data.append('kategori', idKategori);
-    data.append('unsur', idUnsur);
 
     $.ajax({
       type: 'post',
-      url: `${BASEURL}/?url=skpi/editprestasi/`,
+      url: `${BASEURL}/?url=skpi/editItem/`,
       data: data,
       contentType: false,
       processData: false,
       success: function (response) {
         console.log(response);
-        // location.replace(`${BASEURL}/?url=skpi/prestasi/`);
+        location.replace(`${BASEURL}/?url=skpi/index/${kategori}/`);
       },
     });
   });

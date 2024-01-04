@@ -1,5 +1,8 @@
 <?php
     $item_skpi = $data['item_skpi'];
+    // var_dump($_SESSION);
+    // var_dump($_SESSION['item']);
+    
     // var_dump($data);
 ?>
 
@@ -16,8 +19,8 @@
   <body class="bg-slate-100">
     <section class="p-4">
       <div class="flex justify-between px-8 mt-10">
-        <h1 class="text-4xl font-medium">Daftar Prestasi</h1>
-        <a href="<?= BASEURL ?>/?url=skpi/prestasi/add/" type="button" class="bg-green-600 text-white px-3 py-2 rounded-lg">Tambah Data</a>
+        <h1 class="text-4xl font-medium">Daftar <?= ucfirst($_SESSION['item']); ?></h1>
+        <a href="<?= BASEURL ?>/?url=skpi/add/<?= $_SESSION['item']; ?>" type="button" class="bg-green-600 text-white px-3 py-2 rounded-lg">Tambah Data</a>
       </div>
 
       <table class=" w-full border-collapse table-auto mt-4 shadow-lg">
@@ -35,9 +38,8 @@
             if (isset($item_skpi)) {
               foreach ($item_skpi as $skpi) {
                 $id_poin = $skpi['id_poin'];
-                echo $id_poin;
                 $id_poin = preg_split("/[a-z]/", $id_poin);
-                var_dump($id_poin);
+                $id_unsur = $id_poin[2] - 1;
                 $id_butir = $id_poin[3] - 1;
                 $id_sub_butir = $id_poin[4] - 1;
             ?>
@@ -55,10 +57,25 @@
               <td>
                 <ul>
                   <li class="flex">
-                    <h4 class="font-medium">Level/Tingkat: </h4> <?= " ". $data['butir'][$id_butir]['nama_butir']; ?>
+                    <h4 class="font-medium">Unsur: </h4> 
+                    <?php 
+                    $nama_unsur = isset($data['unsur'][$id_unsur]) ? $data['unsur'][$id_unsur]['nama_unsur'] : " - ";
+                    echo " $nama_unsur";
+                    ?>
                   </li>
                   <li class="flex">
-                    <h4 class="font-medium">Juara: </h4> <?= " ". $data['sub_butir'][$id_sub_butir]['nama_sub_butir']; ?>
+                    <h4 class="font-medium">Butir: </h4> 
+                    <?php 
+                    $nama_butir = isset($data['butir'][$id_butir]) ? $data['butir'][$id_butir]['nama_butir'] : " - ";
+                    echo " $nama_butir";
+                    ?>
+                  </li>
+                  <li class="flex">
+                    <h4 class="font-medium">Sub Butir: </h4> 
+                    <?php 
+                    $nama_sub_butir = isset($data['sub_butir'][$id_sub_butir]) ? $data['sub_butir'][$id_sub_butir]['nama_sub_butir'] : " - "; 
+                    echo " $nama_sub_butir";
+                    ?>
                   </li>
                 </ul>
               </td>
@@ -68,10 +85,10 @@
               <td class="bg-green-400">Disetujui</td> 
               <?php } ?>
               <td>
-                <a href="<?= BASEURL; ?>/?url=skpi/prestasi/edit/<?= $skpi['id_item_skpi']; ?>">
+                <a href="<?= BASEURL; ?>/?url=skpi/edit/prestasi/<?= $skpi['id_item_skpi']; ?>">
                   <button class="bg-orange-400 px-3 py-1 rounded">Edit</button>
                 </a>
-                <a onclick="return confirm('Apakah Anda yakin ingin menghapus?');" href="<?= BASEURL; ?>/?url=skpi/prestasi/delete/<?= $skpi['id_item_skpi']; ?>">
+                <a onclick="return confirm('Apakah Anda yakin ingin menghapus?');" href="<?= BASEURL; ?>/?url=Skpi/delete/<?= $skpi['id_item_skpi']; ?>">
                 <button class="bg-red-600 px-3 py-1 rounded">Hapus</button>
                 </a>
               </td>
