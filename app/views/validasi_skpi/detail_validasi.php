@@ -23,10 +23,10 @@
                 $prevIdItemSkpi = null;
                 $file_names = [];
 
-                foreach ($data['mhs'] as $data_sertifikasi) :
-                    if ($data_sertifikasi['id_kategori'] == 1) :
-                        $file_name = $data_sertifikasi['file_name'];
-                        $id_item_skpi = $data_sertifikasi['id_item_skpi'];
+                foreach ($data['mhs'] as $data_prestasi) :
+                    if ($data_prestasi['id_kategori'] == 1) :
+                        $file_name = $data_prestasi['file_name'];
+                        $id_item_skpi = $data_prestasi['id_item_skpi'];
                         
                         if ($prevIdItemSkpi !== $id_item_skpi) {
                             $file_names = [$file_name];
@@ -34,10 +34,10 @@
                             $file_names[] = $file_name;
                         }
                         ?>
-                        <div id="mahasiswaId" data-mahasiswa-id="<?php echo $data_sertifikasi['id_mahasiswa']; ?>"></div>
+                        <div id="mahasiswaId" data-mahasiswa-id="<?php echo $data_prestasi['id_mahasiswa']; ?>"></div>
                         <tr class="bg-gray-100">
                             <td class="text-center py-8"><?= $count1++ ?></td>
-                            <td class="font-bold pl-3"><?= $data_sertifikasi['judul'] ?><br>
+                            <td class="font-bold pl-3"><?= $data_prestasi['judul'] ?><br>
                                 <div class="flex mt-2">
                                     <label for="" class="font-bold">
                                         Bukti Pendukung :
@@ -45,14 +45,14 @@
                                     <?php
                                     foreach ($file_names as $file_name) :
                                     ?>
-                                        <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('<?= APPURL ?>/upload/<?= $file_name ?>')">
+                                        <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('../app/upload/<?= $file_name ?>')">
                                             <img class="w-4" src="<?= BASEURL ?>/images/vector.png" alt="">
                                         </div>
                                     <?php endforeach; ?>
                                 </div>
                             </td>
                             <td id="container" class="flex justify-evenly py-5">
-                                <?php if ($data_sertifikasi['validasi'] == 0) { ?>
+                                <?php if ($data_prestasi['validasi'] == 0) { ?>
                                     <button data-id="<?= $id_item_skpi; ?>" class="layakButton bg-blue-500 w-full h-12/12 m-2 rounded-lg py-1 px-5 text-white hover:bg-blue-700 sm:w-5/12 sm:h-1/6">Layak</button>
                                 <?php } else { ?>
                                     <button class="bg-gray-300 w-full h-12/12 m-2 rounded-lg py-1 px-5 text-white sm:w-5/12 sm:h-1/6">Layak</button>
@@ -104,7 +104,7 @@
                                     <?php
                                     foreach ($file_names as $file_name) :
                                     ?>
-                                        <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('<?= APPURL ?>/upload/<?= $file_name ?>')">
+                                        <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('../app/upload/<?= $file_name ?>')">
                                             <img class="w-4" src="<?= BASEURL ?>/images/vector.png" alt="">
                                         </div>
                                     <?php endforeach; ?>
@@ -163,7 +163,7 @@
                                     <?php
                                     foreach ($file_names as $file_name) :
                                     ?>
-                                        <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('<?= APPURL ?>/upload/<?= $file_name ?>')">
+                                        <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('../app/upload/<?= $file_name ?>')">
                                             <img class="w-4" src="<?= BASEURL ?>/images/vector.png" alt="">
                                         </div>
                                     <?php endforeach; ?>
@@ -222,7 +222,7 @@
                                     <?php
                                     foreach ($file_names as $file_name) :
                                     ?>
-                                        <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('<?= APPURL ?>/upload/<?= $file_name ?>')">
+                                        <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('../app/upload/<?= $file_name ?>')">
                                             <img class="w-4" src="<?= BASEURL ?>/images/vector.png" alt="">
                                         </div>
                                     <?php endforeach; ?>

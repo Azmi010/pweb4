@@ -41,4 +41,28 @@ class Verifikasi_model {
 
         return $data;
     }
+
+    public function updateVerificationStatus($id_item_skpi) {
+        $sql = "UPDATE item_skpi SET verifikasi = 1 WHERE id_item_skpi = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id_item_skpi);
+        
+        if ($stmt->execute()) {
+            echo "Success";
+        } else {
+            echo "Error : " . $stmt->error;
+        }
+    }
+
+    public function revertVerificationStatus($id_item_skpi) {
+        $sql = "UPDATE item_skpi SET verifikasi = 0 WHERE id_item_skpi = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id_item_skpi);
+
+        if ($stmt->execute()) {
+            echo "Reverted";
+        } else {
+            echo "Error : " . $stmt->error;
+        }
+    }
 }

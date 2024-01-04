@@ -43,15 +43,18 @@ switch ($role) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <link rel="stylesheet" href="<?= BASEURL ?>/css/homepage.css">
-    <script src="<?= BASEURL ?>/js/tailwind_3.3.5.js"></script>
     <title>Halaman <?= $data['head_title']; ?></title>
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <script src="<?= BASEURL ?>/js/tailwind_3.3.5.js"></script>
+    <script src="<?= BASEURL ?>/js/datatables.js"></script>
+    <script src="<?= BASEURL ?>/js/sweetalert2.js"></script>
+    <link rel="stylesheet" href="<?= BASEURL ?>/css/datatables.css">
+    <link rel="stylesheet" href="<?= BASEURL ?>/css/homepage.css">
+    <link rel="stylesheet" href="<?= BASEURL ?>/css/sweetalert2.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
 
-<div class="bg-gray-800 w-full h-20 flex justify-between fixed top-0 shadow-xl">
+<div class="bg-gray-800 w-full h-20 flex justify-between fixed top-0 shadow-xl z-50">
   <div class="flex items-center ml-64">
       <div class="flex flex-col text-white mr-2">
           <p class="font-bold">

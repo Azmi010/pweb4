@@ -16,4 +16,10 @@ class Verifikasi extends Controller {
         $this->view('verifikasi_skpi/draft_skpi', $data);
         $this->view('templates/footer');
     }
+    public function updateVerification() {
+        $this->model('Verifikasi_model')->updateVerificationStatus($_POST['id']);
+    }
+    public function revertVerification() {
+        $this->model('Verifikasi_model')->revertVerificationStatus($_POST['id']);
+    }
 }

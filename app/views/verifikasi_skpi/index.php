@@ -27,77 +27,59 @@ if ($_SESSION['role'] != 2) {
                     <input type="radio" name="" id=""> Belum Validasi
                     <input type="radio" name="" id=""> Sudah Validasi <br>
                 </div>
-                <div class="mt-5 flex justify-between">
-                    <div class="flex">
-                        <label for="" class="ml-1">Show</label>
-                        <select name="" id="" class="border border-gray-200 w-48 mx-2 rounded">
-                            <option value="" disabled selected>1</option>
-                            <option value="">1</option>
-                            <option value="">2</option>
-                            <option value="">3</option>
-                        </select>
-                        <label for="">entries</label>
-                    </div>
-                    <div>
-                        <label for="">Search:</label>
-                        <input type="text" name="" id="" class="border border-gray-300 rounded">
-                    </div>
-                </div>
             </form>
         </div>
         <div class="rounded bg-white px-3 pt-5 pb-1">
-            <table class="w-full rounded shadow-md mb-3">
-                <tr class="border-b-2 border-gray-500 bg-gray-800 h-10 text-white">
-                    <th class=" rounded-tl px-2">Nama Prestasi</th>
-                    <th class="">Tanggal Pelaksanaan</th>
-                    <th class="font-sans">Keterangan</th>
-                    <th class="">Status</th>
-                    <th class="">Aksi</th>
-                </tr>
-                <?php
-                foreach ($data['verif'] as $mhs) :
-                ?>
+            <table class="pagging w-full rounded shadow-md mb-3">
+                <thead>
+                    <tr class="border-b-2 border-gray-500 bg-gray-800 h-10 text-white">
+                        <th class=" rounded-tl px-2">Nama Prestasi</th>
+                        <th class="">Tanggal Pelaksanaan</th>
+                        <th class="font-sans">Keterangan</th>
+                        <th class="">Status</th>
+                        <th class="">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($data['verif'] as $mhs) :
+                    ?>
                     <tr class=" border-b border-gray-300">
-                    <td><?= $mhs['judul'] ?></td>
-                    <td class="text-center"><?= $mhs['tanggal_pelaksanaan'] ?></td>
-                    <td>
-                        <label for="">Level/Tingkat : <?= $mhs['nama_butir'] ?></label><br>
-                        <label for="">Juara : <?= $mhs['nama_sub_butir'] ?> </label><br>
-                        <label for="">Peserta : <br>
-                            <ul>
-                                <li>nim/nama</li>
-                            </ul>
-                        </label>
-                    </td>
-                    <td class="status text-center <?= $mhs['verifikasi'] ? 'bg-green-500' : 'bg-red-500'; ?>">
-                        <?= $mhs['verifikasi'] ? 'Sudah Disetujui' : 'Belum Disetujui'; ?>
-                    </td>
-                    <td class="flex justify-center pt-2 gap-2">
-                        <button class="bg-yellow-400 p-1 rounded" onclick="openPdfModal('<?= APPURL ?>/upload/<?= $mhs['file_name'] ?>')">
-                            <img class="w-6" src="<?= BASEURL ?>/images/info.png" alt="">
-                        </button>
-                        <?php if ($mhs['verifikasi'] == 0) { ?>
-                            <button data-id="<?= $mhs['id_item_skpi'] ?>" class="accButton bg-green-500 p-1 rounded">
-                                <img class="w-6" src="<?= BASEURL ?>/images/Done_round.png" alt="">
+                        <td><?= $mhs['judul'] ?></td>
+                        <td class="text-center"><?= $mhs['tanggal_pelaksanaan'] ?></td>
+                        <td>
+                            <label for="">Level/Tingkat : <?= $mhs['nama_butir'] ?></label><br>
+                            <label for="">Juara : <?= $mhs['nama_sub_butir'] ?> </label><br>
+                            <label for="">Peserta : <br>
+                                <ul>
+                                    <li><?= $mhs['nim'] ?>/<?= $mhs['nama'] ?></li>
+                                </ul>
+                            </label>
+                        </td>
+                        <td class="status text-center <?= $mhs['verifikasi'] ? 'bg-green-500' : 'bg-red-500'; ?>">
+                            <?= $mhs['verifikasi'] ? 'Sudah Disetujui' : 'Belum Disetujui'; ?>
+                        </td>
+                        <td class="flex justify-center pt-2 gap-2">
+                            <button class="bg-yellow-400 p-1 rounded" onclick="openPdfModal('../app/upload/<?= $mhs['file_name'] ?>')">
+                                <img class="w-6" src="<?= BASEURL ?>/images/info.png" alt="">
                             </button>
-                        <?php } else { ?>
-                            <button class="bg-gray-400 p-1 rounded">
-                                <img class="w-6" src="<?= BASEURL ?>/images/Done_round.png" alt="">
+                            <?php if ($mhs['verifikasi'] == 0) { ?>
+                                <button data-id="<?= $mhs['id_item_skpi'] ?>" class="accButton bg-green-500 p-1 rounded">
+                                    <img class="w-6" src="<?= BASEURL ?>/images/Done_round.png" alt="">
+                                </button>
+                            <?php } else { ?>
+                                <button class="bg-gray-400 p-1 rounded">
+                                    <img class="w-6" src="<?= BASEURL ?>/images/Done_round.png" alt="">
+                                </button>
+                            <?php }?>
+                            <button data-id = "<?= $mhs['id_item_skpi'] ?>" class="cancelButton bg-red-500 p-1 rounded">
+                                <img class="w-6" src="<?= BASEURL ?>/images/Close_round_light.png" alt="">
                             </button>
-                        <?php }?>
-                        <button data-id = "<?= $mhs['id_item_skpi'] ?>" class="cancelButton bg-red-500 p-1 rounded">
-                            <img class="w-6" src="<?= BASEURL ?>/images/Close_round_light.png" alt="">
-                        </button>
-                    </td>
-                </tr>
-                <?php endforeach ?>
+                        </td>
+                    </tr>
+                    <?php endforeach ?>
+                </tbody>
             </table>
-        </div>
-        <div class="flex justify-between pb-3 px-3 bg-white rounded-md">
-            <p class="flex-1">Showing 1 to 4 of 4 entries</p>
-            <a href="" class="mr-4">Previous</a>
-            <label for="" class="border border-gray-400 px-2">1</label>
-            <a href="" class="mr-1 ml-4">Next</a>
         </div>
     </div>
 </div>
@@ -107,5 +89,6 @@ if ($_SESSION['role'] != 2) {
     <span class="absolute top-1 right-1 text-2xl cursor-pointer" onclick="closePdfModal()"> &times; </span>
     <iframe class="w-full h-full" id="pdfViewer" frameborder="0"></iframe>
 </div>
+<script src="<?= BASEURL ?>/js/pagination.js"></script>
 <script src="<?= BASEURL ?>/js/detail_validasi.js"></script>
 <script src="<?= BASEURL ?>/js/update_verifikasi.js"></script>
