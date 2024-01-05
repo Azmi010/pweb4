@@ -10,12 +10,21 @@
         <div class="bg-white mx-7 px-5 pb-3">
             <div class="flex justify-between">
                 <h2 class="font-semibold text-lg">1. Prestasi/Penghargaan</h2>
-                <p id="totalPoin">Total Poin : 0</p>
+                <div>
+                    <?php 
+                    $url = $_GET['url'];
+                    $segments = explode('/', $url);
+                    $nilai = end($segments);
+                    ?>
+                    <button class="bg-blue-400 px-3 py-1 rounded mr-2 mb-1 hover:bg-blue-600 text-white font-semibold" onclick="openPdfModal('../app/upload/<?= $nilai ?>')">PREVIEW</button>
+                    <button class="simpanButton bg-green-400 px-3 py-1 rounded mb-1 mr-2 hover:bg-green-600 text-white font-semibold" data-mahasiswa-id="<?= $nilai ?>">SIMPAN</button>
+                    <label id="labelPoin" for="">Total Poin : 0</label>
+                </div>
             </div>
             <table class="w-full">
                 <tr class="bg-gray-800 text-white">
                     <th class="py-2 w-10">No.</th>
-                    <th class="">Nama Prestasi</th>
+                    <th class="">Judul</th>
                     <th class="w-3/12">Aksi</th>
                 </tr>
                 <?php
