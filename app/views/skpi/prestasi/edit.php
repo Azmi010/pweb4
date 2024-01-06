@@ -5,26 +5,14 @@
   $id_unsur = $item_skpi['id_unsur'];
   $id_butir = $item_skpi['id_butir'];
   $id_sub_butir = $item_skpi['id_sub_butir'];
-        var_dump($data['unsur']);
-        var_dump($data['butir']);
-        var_dump($data['sub_butir']);
-var_dump($item_skpi);
   $kategori = $_SESSION['item'];
-?>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="<?= BASEURL ?>/css/style.css"> -->
-    <script src="<?= BASEURL ?>/js/tailwind_3.3.5.js"></script>
-    <script src="<?= BASEURL; ?>/js/jquery-3.7.1.js"></script>
-    <title>Edit Data SKPI</title>
-  </head>
+  $judul_kategori = ($kategori == 'mbkm') ? strtoupper($kategori) : ucfirst($kategori);
 
-  <body class="bg-slate-200 my-5">
+?>
+
+  <!-- <body class="bg-slate-200 my-5"> -->
     <section class="bg-slate-50 px-20 pt-8 pb-16 w-4/5 m-auto shadow-xl rounded-2xl mt-24">
-      <h1 class="text-2xl font-medium mb-4">Tambah Data SKPI</h1>
+      <h1 class="text-2xl font-medium mb-4">Edit Data <?= $judul_kategori; ?></h1>
       <form id="prestasi-form" method="post" enctype="multipart/form-data" action="<?= BASEURL ?>/?url=skpi/editprestasi/" class="flex flex-col gap-1">
         <input type="hidden" name="id_item_skpi" value="<?= $item_skpi['id_item_skpi'] ?>">
         <!-- <input type="hidden" name="kategori" value="1">
@@ -114,8 +102,7 @@ var_dump($item_skpi);
 
           <div class="mt-1">
             <embed src="../app/upload/<?= $file ?>">
-            <span><?= $file_name_only; ?></span>
-            <!-- <input required type='file' accept='image/*,.pdf' name='file_bukti[]' class="file_bukti border border-black rounded py-1 px-2"> -->
+            <span class="uploaded_file"><?= $file_name_only; ?></span>
             <button type="button" class="remove_file bg-red-600 text-gray-50 px-3 py-1 rounded w-min" data-idfb="<?= $id_file_bukti; ?>">Hapus</button>
           </div>
           
@@ -129,7 +116,7 @@ var_dump($item_skpi);
           <button type="submit" name="submit" class="bg-green-600 text-gray-50 px-3 py-1 rounded w-min">
             Simpan
           </button>
-          <a href="<?= BASEURL ?>/?url=skpi/prestasi/">
+          <a href="<?= BASEURL ?>/?url=skpi/index/<?= $_SESSION['item']; ?>">
             <button
               type="button"
               class="bg-red-600 text-gray-50 px-3 py-1 rounded w-min"
@@ -159,6 +146,8 @@ var_dump($item_skpi);
       }?>;
   </script>
   <script src="<?= BASEURL; ?>/js/index.js"></script>
+  <script src="<?= BASEURL; ?>/js/swals.js"></script>
+  <script src="<?= BASEURL; ?>/js/options.js"></script>
   <script src="<?= BASEURL; ?>/js/edit-skpi.js"></script>
   </body>
 </html>

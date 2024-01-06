@@ -19,9 +19,8 @@ class Skpi extends Controller {
         $kategori_list = ['prestasi', 'kegiatan', 'sertifikasi', 'mbkm'];
 
         if (in_array($item, $kategori_list)) {
-            $data['judul'] = ucfirst($item);
+            $data['judul'] = ($item == 'mbkm') ? strtoupper($item) : ucfirst($item);
             $data['item_skpi'] = $this->model('SkpiModel')->getAllOfMhs($data['id_mhs'], $_SESSION['item']);
-            var_dump($data);
             $this->view('templates/header', $data);
             $this->view("skpi/prestasi/index", $data);
         }
@@ -40,7 +39,8 @@ class Skpi extends Controller {
         $_SESSION['item'] = $item;
 
         $kategori_list = ['prestasi', 'kegiatan', 'sertifikasi', 'mbkm'];
-        $data['judul'] = "Input " . ucfirst($item);
+        $judul_kategori = ($item == 'mbkm') ? strtoupper($item) : ucfirst($item);
+        $data['judul'] = "Input $judul_kategori";
         $this->view('templates/header', $data);
 
         if (in_array($item, $kategori_list))
@@ -85,22 +85,32 @@ class Skpi extends Controller {
         $data['peserta'] = $this->model('SkpiModel')->getAllPeserta($id);
         $data['file_bukti'] = $this->model('SkpiModel')->getAllFileBukti($id);
 
-        if($data['item_skpi']['id_mahasiswa'] != $data['id_mhs'] || $data['item_skpi']['id_poin'][1] != $kategori || !isset($data))
+        if($data['item_skpi']['id_mahasiswa'] != $data['id_mhs'] || $data['item_skpi']['id_poin'][1] != $kategori || !isset($data)) {
             $data = NULL;
+            header("Location: ?url=skpi/index/$item");
+            exit();
+        }
 
-        $data['judul'] = 'Input SKPI';
+        $kategori_list = ['prestasi', 'kegiatan', 'sertifikasi', 'mbkm'];
+        $judul_kategori = ($item == 'mbkm') ? strtoupper($item) : ucfirst($item);
+        $data['judul'] = "Edit $judul_kategori"; 
         $this->view('templates/header', $data);
 
-        $id_poin = $data['item_skpi']['id_poin'];
-        $id_poin = preg_split("/[a-z]/", $id_poin);
-        $data['item_skpi']['id_unsur'] = $id_poin[2];
-        $data['item_skpi']['id_butir'] = $id_poin[3];
-        $data['item_skpi']['id_sub_butir'] = $id_poin[4];
+        if (in_array($item, $kategori_list)) {
+            $id_poin = $data['item_skpi']['id_poin'];
+            $id_poin = preg_split("/[a-z]/", $id_poin);
+            $data['item_skpi']['id_unsur'] = $id_poin[2];
+            $data['item_skpi']['id_butir'] = $id_poin[3];
+            $data['item_skpi']['id_sub_butir'] = $id_poin[4];
+            $data['unsur'] = $this->getOptions("k$kategori");
+            $data['butir'] = $this->getOptions("k$kategori"."u$id_poin[2]");
+            $data['sub_butir'] = $this->getOptions("k$kategori"."u$id_poin[2]"."b$id_poin[3]");
+            $this->view("skpi/prestasi/edit", $data);
+        }
+        else
+            header("Location: ?url=skpi/index/");
 
-        $data['unsur'] = $this->getOptions("k$kategori");
-        $data['butir'] = $this->getOptions("k$kategori"."u$id_poin[2]");
-        $data['sub_butir'] = $this->getOptions("k$kategori"."u$id_poin[2]"."b$id_poin[3]");
-        $this->view("skpi/prestasi/edit", $data);
+
     }
 
     public function addItem() {
@@ -114,7 +124,6 @@ class Skpi extends Controller {
     }
 
     public function editItem() {
-        session_start();
         $_POST['nim_mahasiswa'] = $_SESSION['nim'];
         $row_count = $this->model('SkpiModel')->update($_POST, $_FILES);
         if ($row_count > 0) echo 'success';

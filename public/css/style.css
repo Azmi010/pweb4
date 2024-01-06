@@ -7,36 +7,24 @@
     margin: 0px;
     padding: 0px;
 }
-body{
+
+.file_sect embed {
+    width: 80%;
+    min-height: 45vh;
+}
+/* body{
     width: 100%;
     margin: 0px;
     padding: 0px;
     font-family: inter, sans-serif;
-}
+} */
 .navbar{
     background-color: #eaf2fc;
     z-index:9999;
     padding-bottom:38px;
     width:100vw;
 }
-#icon-login{
-    margin: auto;
-    display: flex;
-}
-.icon-img{
-    position: absolute;
-    top: 40px;
-}
-.icon2-img{
-    position: absolute;
-    margin-top: 20px;
-    margin-left: 85px;
-}
-.icon3-img{
-    position: absolute;
-    margin-top: 25px;
-    margin-left: 230px;
-}
+
 .Login-form{
     margin-left: 850px;
     margin-top: 20px;
@@ -56,6 +44,7 @@ body{
     position: relative;
     width: 300px;
 }
+/* 
 form label{
     font-weight: 500;
     font-size: 15px;
@@ -75,7 +64,7 @@ form input::placeholder
 form textarea::placeholder{
     color: #363636;
     font-size: 15px;
-}
+} */
 form .login-btn{
     display: inline-block;
     margin-top: 10px;
@@ -94,32 +83,7 @@ form .login-btn:hover{
     color: white;
     cursor: pointer;
 }
-#icon2-login{
-    position: absolute;
-    margin: auto;
-    top: 0;
-    padding-top: 75px;
-    display: flex;
-}
-.img-sso{
-    position: absolute;
-    margin-top: 263px;
-}
-.text-sso{
-    margin-top: 185px;
-    margin-left: 98px;
-}
-.text-sso h1{
-    font-size: 36px;
-    font-weight: 800;
-    line-height: 1.5;
-}
-.text-sso p{
-    margin-top: 27px;
-    font-size: 18px;
-    line-height: 1.8;
-    color: #363636;
-}
+
 
 tr:not(:last-child) {
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
@@ -133,11 +97,11 @@ thead th:last-child {
     border-top-right-radius: var(--table-border-radius);
 }
 
-tbody tr:last-child> :first-child {
+tbody tr:last-child > :first-child {
     border-bottom-left-radius: var(--table-border-radius);
 }
 
-tbody tr:last-child> :last-child {
+tbody tr:last-child > :last-child {
     border-bottom-right-radius: var(--table-border-radius);
 }
 

@@ -1,23 +1,12 @@
 <?php
     $kategori = $_SESSION['item'];
-    var_dump($kategori);
-    var_dump($data);
+    $judul_kategori = ($kategori == 'mbkm') ? strtoupper($kategori) : ucfirst($kategori);
+
 ?>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="<?= BASEURL ?>/css/style.css"> -->
-    <!-- <link rel="stylesheet" href="<?= BASEURL ?>/css/output.css" /> -->
-    <script src="<?= BASEURL ?>/js/tailwind_3.3.5.js"></script>
-    <script src="<?= BASEURL; ?>/js/jquery-3.7.1.js"></script>
-    <title>Input Data SKPI</title>
-  </head>
 
   <body class="bg-slate-200 my-5">
     <section class="bg-slate-50 px-20 pt-8 pb-16 w-4/5 m-auto shadow-xl rounded-2xl mt-24">
-      <h1 class="text-2xl font-medium mb-4">Tambah Data <?= ucfirst($_SESSION['item']); ?></h1>
+      <h1 class="text-2xl font-medium mb-4">Tambah Data <?= $judul_kategori; ?></h1>
       <form id="prestasi-form" method="post" enctype="multipart/form-data" action="<?= BASEURL ?>/?url=skpi/addprestasi/" class="flex flex-col gap-1">
         <label for="judul">Judul</label>
         <input 
@@ -108,6 +97,7 @@
       }?>;
   </script>
   <script src="<?= BASEURL; ?>/js/index.js"></script>
+  <script src="<?= BASEURL; ?>/js/options.js"></script>
   <script src="<?= BASEURL; ?>/js/add-skpi.js"></script>
   </body>
 </html>

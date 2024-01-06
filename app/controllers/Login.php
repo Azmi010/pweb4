@@ -42,7 +42,7 @@ class Login extends Controller {
         switch ($role) {
             case 1:
                 // var_dump($role);
-                header("Location: " . BASEURL . "/?url=home");
+                header("Location: " . BASEURL . "/?url=skpi");
                 break;
             case 2:
                 // var_dump($role);

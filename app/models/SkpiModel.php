@@ -52,12 +52,11 @@ class SkpiModel extends Model
 
         $query = "INSERT INTO item_skpi 
                     VALUES
-                    ('', :judul, :tanggal_pelaksanaan, :file_bukti, :verifikasi, :validasi, :id_mahasiswa, :id_poin)";
+                    ('', :judul, :tanggal_pelaksanaan, :verifikasi, :validasi, :id_mahasiswa, :id_poin)";
 
         $this->db->query($query);
         $this->db->bind('judul', $data['judul']);
         $this->db->bind('tanggal_pelaksanaan', $data['tanggal_pelaksanaan']);
-        $this->db->bind('file_bukti', $file_name = 'deleted col soon');
         $this->db->bind('verifikasi', $data['verifikasi'] = 0);
         $this->db->bind('validasi', $data['validasi'] = 0);
         $this->db->bind('id_mahasiswa', $data['id_mahasiswa']);
@@ -72,13 +71,12 @@ class SkpiModel extends Model
             var_dump($file_name);
             
             $upload_path ='../app/upload/' . $file_name;
-            if (file_exists($upload_path)) return 0;
+            if (file_exists($upload_path)) continue;
 
             $file_tmp = $file['file_bukti']['tmp_name'][$key];
             var_dump($file_tmp);
             
-            $file_status = $this->insertFileBukti($id_item_skpi, $file_name, $file_tmp, $upload_path);
-            if ($file_status <= 0) return 0;
+            $this->insertFileBukti($id_item_skpi, $file_name, $file_tmp, $upload_path);
         }
 
         foreach ($data['peserta'] as $nim) {
@@ -193,7 +191,6 @@ class SkpiModel extends Model
     }
 
     public function update($data, $file = NULL) {
-        if (!empty($file)) var_dump($file);
         $query = "UPDATE $this->table 
                   SET judul = :judul,
                       tanggal_pelaksanaan = :tanggal_pelaksanaan,
@@ -202,8 +199,6 @@ class SkpiModel extends Model
                       id_poin = :id_poin";
 
         $id_item_skpi = $data['id_item_skpi'];
-        $file_name = $id_item_skpi . '_' . $file['file_bukti']['name'];
-        $file_tmp = $file['file_bukti']['tmp_name'];
 
         $id_poin = $data['kategori'] . $data['unsur'] . $data['butir'] . $data['sub_butir'];
 
@@ -213,7 +208,6 @@ class SkpiModel extends Model
         $this->db->query($query);
         $this->db->bind('judul', $data['judul']);
         $this->db->bind('tanggal_pelaksanaan', $data['tanggal_pelaksanaan']);
-        if($file_ok) $this->db->bind('file_bukti', $file_name = 'deleted soon');
         $this->db->bind('verifikasi', $data['verifikasi'] = 0);
         $this->db->bind('validasi', $data['validasi'] = 0);
         $this->db->bind('id_poin', $id_poin);
@@ -226,7 +220,7 @@ class SkpiModel extends Model
                 var_dump($file_name);
                 
                 $upload_path ='../app/upload/' . $file_name;
-                if (file_exists($upload_path)) return 0;
+                if (file_exists($upload_path)) continue;
                 
                 $file_tmp = $file['file_bukti']['tmp_name'][$key];
                 var_dump($file_tmp);

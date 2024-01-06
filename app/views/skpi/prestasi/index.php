@@ -1,32 +1,18 @@
 <?php
     $item_skpi = $data['item_skpi'];
-    // var_dump($_SESSION);
-    // var_dump($_SESSION['item']);
-    
-    // var_dump($data);
+    $kategori = $_SESSION['item'];
+    $judul_kategori = ($kategori == 'mbkm') ? strtoupper($kategori) : ucfirst($kategori);
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="<?= BASEURL ?>/css/output.css" /> -->
-    <link rel="stylesheet" href="<?= BASEURL ?>/css/style.css">
-    <script src="<?= BASEURL ?>/js/tailwind_3.3.5.js"></script>
-    <title>Data SKPI</title>
-  </head>
-  <body class="bg-slate-100">
-    <section class="p-4">
-      <div class="flex justify-between px-8 mt-10">
-        <h1 class="text-4xl font-medium">Daftar <?= ucfirst($_SESSION['item']); ?></h1>
+    <section class="p-4 mt-12">
+      <div class="flex justify-between px-8 mt-10 mb-4">
+        <h1 class="text-4xl font-medium">Daftar <?= $judul_kategori; ?></h1>
         <a href="<?= BASEURL ?>/?url=skpi/add/<?= $_SESSION['item']; ?>" type="button" class="bg-green-600 text-white px-3 py-2 rounded-lg">Tambah Data</a>
       </div>
 
-      <table class=" w-full border-collapse table-auto mt-4 shadow-lg">
+      <table id="item-table" class="w-full border-collapse table-auto mb-14 pt-4 shadow-lg">
         <thead class="text-blue-50">
           <tr class="bg-gray-800">
-            <th class="rounded-tl-lg">Nama Prestasi</th>
+            <th class="rounded-tl-lg">Nama <?= $judul_kategori ?></th>
             <th>Tanggal Pelaksanaan</th>
             <th>Keterangan</th>
             <th>Approval</th>
@@ -43,7 +29,7 @@
                 $id_butir = $id_poin[3] - 1;
                 $id_sub_butir = $id_poin[4] - 1;
             ?>
-            <tr>
+            <tr class="item_row">
               <td>
               <?php 
                 $judul = $skpi['judul'];
@@ -85,12 +71,11 @@
               <td class="bg-green-400">Disetujui</td> 
               <?php } ?>
               <td>
-                <a href="<?= BASEURL; ?>/?url=skpi/edit/prestasi/<?= $skpi['id_item_skpi']; ?>">
+                <a href="<?= BASEURL; ?>/?url=skpi/edit/<?= $_SESSION['item']; ?>/<?= $skpi['id_item_skpi']; ?>">
                   <button class="bg-orange-400 px-3 py-1 rounded">Edit</button>
                 </a>
-                <a onclick="return confirm('Apakah Anda yakin ingin menghapus?');" href="<?= BASEURL; ?>/?url=Skpi/delete/<?= $skpi['id_item_skpi']; ?>">
-                <button class="bg-red-600 px-3 py-1 rounded">Hapus</button>
-                </a>
+                <!-- <a onclick="deleteConfirm()" href="<?= BASEURL; ?>/?url=Skpi/delete/<?= $skpi['id_item_skpi']; ?>"></a> -->
+                <button type="button" data-id="<?= $skpi['id_item_skpi']; ?>" class="bg-red-600 px-3 py-1 rounded delete_item">Hapus</button>
               </td>
             </tr>
           <?php
@@ -99,12 +84,10 @@
           ?>
         </tbody>
       </table>
-    
-      <div class="flex gap-3 justify-end items-center mt-4 px-1 py-1">
-        <a href="#" class="px-2 py-1 bg-slate-300 rounded">Previous</a>
-        <p>1</p>
-        <a href="#" class="px-2 py-1 bg-slate-300 rounded">Next</a>
-      </div>
-    </section>
+
+  </section> 
+
+  <script src="<?= BASEURL; ?>/js/swals.js"></script>
+  <script src="<?= BASEURL; ?>/js/pagination.js"></script>
   </body>
 </html>

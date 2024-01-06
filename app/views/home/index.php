@@ -21,7 +21,7 @@ if ($_SESSION['role'] != 1 && $_SESSION['role'] != 2) {
 
 <section id="box">
     <a class="box hover:bg-blue-800" href="<?= BASEURL ?>/?url=skpi/index/prestasi/">
-        <h1>7</h1>
+        <!-- <h1>7</h1> -->
         <div class="teks">
             <p>Data Prestasi</p>
             <i class="ri-database-2-fill"></i>
