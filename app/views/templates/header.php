@@ -44,7 +44,7 @@ switch ($role) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link rel="stylesheet" href="<?= BASEURL ?>/css/homepage.css">
-    <title>Halaman <?= $data['judul']; ?></title>
+    <title>Halaman <?= $data['head_title']; ?></title>
     <!-- <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet"> -->
     <script src="<?= BASEURL ?>/js/jquery-3.7.1.js"></script>
     <script src="<?= BASEURL ?>/js/tailwind_3.3.5.js"></script>

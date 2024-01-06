@@ -19,14 +19,14 @@ class Skpi extends Controller {
         $kategori_list = ['prestasi', 'kegiatan', 'sertifikasi', 'mbkm'];
 
         if (in_array($item, $kategori_list)) {
-            $data['judul'] = ($item == 'mbkm') ? strtoupper($item) : ucfirst($item);
+            $data['head_title'] = ($item == 'mbkm') ? strtoupper($item) : ucfirst($item);
             $data['item_skpi'] = $this->model('SkpiModel')->getAllOfMhs($data['id_mhs'], $_SESSION['item']);
             $this->view('templates/header', $data);
             $this->view("skpi/prestasi/index", $data);
         }
 
         else {
-            $data['judul'] = 'Home';
+            $data['head_title'] = 'Home';
             $this->view('templates/header', $data);
             $this->view('templates/sidebar');
             $this->view('home/index', $data);
@@ -40,7 +40,7 @@ class Skpi extends Controller {
 
         $kategori_list = ['prestasi', 'kegiatan', 'sertifikasi', 'mbkm'];
         $judul_kategori = ($item == 'mbkm') ? strtoupper($item) : ucfirst($item);
-        $data['judul'] = "Input $judul_kategori";
+        $data['head_title'] = "Input $judul_kategori";
         $this->view('templates/header', $data);
 
         if (in_array($item, $kategori_list))
@@ -93,7 +93,7 @@ class Skpi extends Controller {
 
         $kategori_list = ['prestasi', 'kegiatan', 'sertifikasi', 'mbkm'];
         $judul_kategori = ($item == 'mbkm') ? strtoupper($item) : ucfirst($item);
-        $data['judul'] = "Edit $judul_kategori"; 
+        $data['head_title'] = "Edit $judul_kategori"; 
         $this->view('templates/header', $data);
 
         if (in_array($item, $kategori_list)) {
