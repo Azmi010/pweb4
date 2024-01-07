@@ -2,7 +2,7 @@
 class Home extends Controller {
     public function index()
     {
-        $data['judul'] = 'Home';
+        $data['head_title'] = 'Home';
         // $data['nama'] = $this->model('Login_model')->checkLogin();
         $this->view('templates/header', $data);
         $this->view('templates/sidebar');

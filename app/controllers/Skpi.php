@@ -1,5 +1,5 @@
 <?php
-
+// session_start();
 class Skpi extends Controller {
     private $data;
 
