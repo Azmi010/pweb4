@@ -19,15 +19,34 @@ class Verifikasi_model {
     }
 
     public function getAllVerifikasi() {
-        $query = "SELECT i.*, m.*, k.*, pn.*, b.*, sb.*, fb.file_name
+        $query = "SELECT i.*, m.*, k.*, pn.*, b.*, sb.*
         FROM item_skpi i
         JOIN mahasiswa m ON i.id_mahasiswa = m.id_mahasiswa
         JOIN prodi p ON m.id_prodi = p.id_prodi
         JOIN poin pn ON i.id_poin = pn.id_poin
         JOIN kategori k ON pn.id_kategori = k.id_kategori
         JOIN butir b ON pn.id_butir = b.id_butir
-        JOIN sub_butir sb ON pn.id_sub_butir = sb.id_sub_butir
-        LEFT JOIN file_bukti fb ON i.id_item_skpi = fb.id_item_skpi";
+        JOIN sub_butir sb ON pn.id_sub_butir = sb.id_sub_butir";
+        $result = $this->conn->query($query);
+
+        if (!$result) {
+            die("Query error: " . $this->conn->error);
+        }
+
+        $data = [];
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+
+        return $data;
+    }
+
+    public function getAllName() {
+        $query = "SELECT pi.*, m.nama
+        FROM peserta_item pi
+        JOIN item_skpi i ON pi.id_item_skpi = i.id_item_skpi
+        JOIN mahasiswa m ON pi.nim_peserta = m.nim";
+
         $result = $this->conn->query($query);
 
         if (!$result) {

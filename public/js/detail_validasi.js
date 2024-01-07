@@ -18,13 +18,3 @@ function closePdfModal() {
     overlay.classList.add('hidden');
     document.body.classList.remove('overflow-hidden');
 }
-
-// function confirmValidation(formId) {
-//     var confirmation = confirm("Apakah Anda yakin ingin memvalidasi ini?");
-
-//     if (confirmation) {
-//         document.getElementById(formId).submit();
-//     } else {
-//         console.log("Validasi dibatalkan.");
-//     }
-// }

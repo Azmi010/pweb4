@@ -5,15 +5,10 @@ class Verifikasi extends Controller {
     {
         $data['head_title'] = 'Verifikasi SKPI';
         $data['verif'] = $this->model('Verifikasi_model')->getAllVerifikasi();
+        $data['peserta'] = $this->model('Verifikasi_model')->getAllName();
         $this->view('templates/header', $data);
         $this->view('templates/sidebar');
         $this->view('verifikasi_skpi/index', $data);
-        $this->view('templates/footer');
-    }
-    public function draft_skpi($id) {
-        $data['head_title'] = 'Draft SKPI';
-        $this->view('templates/header', $data);
-        $this->view('verifikasi_skpi/draft_skpi', $data);
         $this->view('templates/footer');
     }
     public function updateVerification() {
