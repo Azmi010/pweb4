@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: " . BASEURL . "/?url=login");
@@ -50,9 +50,13 @@ if ($_SESSION['role'] != 2) {
                         <td>
                             <label for="">Level/Tingkat : <?= $mhs['nama_butir'] ?></label><br>
                             <label for="">Juara : <?= $mhs['nama_sub_butir'] ?> </label><br>
-                            <label for="">Peserta : <br>
+                            <label for="peserta">Peserta : <br>
                                 <ul>
-                                    <li><?= $mhs['nim'] ?>/<?= $mhs['nama'] ?></li>
+                                    <?php foreach ($data['peserta'] as $peserta) : ?>
+                                        <?php if ($peserta['id_item_skpi'] == $mhs['id_item_skpi']) : ?>
+                                            <li><?= $peserta['nim_peserta'] ?> / <?= $peserta['nama'] ?></li>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
                                 </ul>
                             </label>
                         </td>
@@ -60,7 +64,7 @@ if ($_SESSION['role'] != 2) {
                             <?= $mhs['verifikasi'] ? 'Sudah Disetujui' : 'Belum Disetujui'; ?>
                         </td>
                         <td class="flex justify-center pt-2 gap-2">
-                            <button class="bg-yellow-400 p-1 rounded" onclick="openPdfModal('../app/upload/<?= $mhs['file_name'] ?>')">
+                            <button class="bg-yellow-400 p-1 rounded">
                                 <img class="w-6" src="<?= BASEURL ?>/images/info.png" alt="">
                             </button>
                             <?php if ($mhs['verifikasi'] == 0) { ?>

@@ -13,6 +13,7 @@ class Validasi extends Controller {
     public function detail_validasi($id) {
         $data['head_title'] = 'Detail Validasi';
         $data['mhs'] = $this->model('Validasi_model')->getMahasiswaById($id);
+        $data['bukti'] = $this->model('Validasi_model')->getBukti();
         $this->view('templates/header', $data);
         $this->view('validasi_skpi/detail_validasi', $data);
         $this->view('templates/footer');

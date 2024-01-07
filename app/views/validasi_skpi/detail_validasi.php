@@ -29,19 +29,10 @@
                 </tr>
                 <?php
                 $count1 = 1;
-                $prevIdItemSkpi = null;
-                $file_names = [];
 
                 foreach ($data['mhs'] as $data_prestasi) :
                     if ($data_prestasi['id_kategori'] == 1) :
-                        $file_name = $data_prestasi['file_name'];
                         $id_item_skpi = $data_prestasi['id_item_skpi'];
-                        
-                        if ($prevIdItemSkpi !== $id_item_skpi) {
-                            $file_names = [$file_name];
-                        } else {
-                            $file_names[] = $file_name;
-                        }
                         ?>
                         <div id="mahasiswaId" data-mahasiswa-id="<?php echo $data_prestasi['id_mahasiswa']; ?>"></div>
                         <tr class="bg-gray-100">
@@ -51,12 +42,12 @@
                                     <label for="" class="font-bold">
                                         Bukti Pendukung :
                                     </label>
-                                    <?php
-                                    foreach ($file_names as $file_name) :
-                                    ?>
-                                        <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('../app/upload/<?= $file_name ?>')">
-                                            <img class="w-4" src="<?= BASEURL ?>/images/vector.png" alt="">
-                                        </div>
+                                    <?php foreach ($data['bukti'] as $bukti) : ?>
+                                        <?php if ($bukti['id_item_skpi'] == $data_prestasi['id_item_skpi']) : ?>
+                                            <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('../app/upload/<?= $bukti['file_name'] ?>')">
+                                                <img class="w-4" src="<?= BASEURL ?>/images/vector.png" alt="" >
+                                            </div>
+                                        <?php endif; ?>
                                     <?php endforeach; ?>
                                 </div>
                             </td>
@@ -70,7 +61,6 @@
                             </td>
                         </tr>
                         <?php
-                        $prevIdItemSkpi = $id_item_skpi;
                     endif;
                 endforeach;
                 ?>
@@ -88,19 +78,10 @@
                 </tr>
                 <?php
                 $count1 = 1;
-                $prevIdItemSkpi = null;
-                $file_names = [];
 
                 foreach ($data['mhs'] as $data_kegiatan) :
                     if ($data_kegiatan['id_kategori'] == 2) :
-                        $file_name = $data_kegiatan['file_name'];
                         $id_item_skpi = $data_kegiatan['id_item_skpi'];
-                        
-                        if ($prevIdItemSkpi !== $id_item_skpi) {
-                            $file_names = [$file_name];
-                        } else {
-                            $file_names[] = $file_name;
-                        }
                         ?>
                         <div id="mahasiswaId" data-mahasiswa-id="<?php echo $data_kegiatan['id_mahasiswa']; ?>"></div>
                         <tr class="bg-gray-100">
@@ -110,12 +91,12 @@
                                     <label for="" class="font-bold">
                                         Bukti Pendukung :
                                     </label>
-                                    <?php
-                                    foreach ($file_names as $file_name) :
-                                    ?>
-                                        <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('../app/upload/<?= $file_name ?>')">
-                                            <img class="w-4" src="<?= BASEURL ?>/images/vector.png" alt="">
-                                        </div>
+                                    <?php foreach ($data['bukti'] as $bukti) : ?>
+                                        <?php if ($bukti['id_item_skpi'] == $data_kegiatan['id_item_skpi']) : ?>
+                                            <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('../app/upload/<?= $bukti['file_name'] ?>')">
+                                                <img class="w-4" src="<?= BASEURL ?>/images/vector.png" alt="" >
+                                            </div>
+                                        <?php endif; ?>
                                     <?php endforeach; ?>
                                 </div>
                             </td>
@@ -129,7 +110,6 @@
                             </td>
                         </tr>
                         <?php
-                        $prevIdItemSkpi = $id_item_skpi;
                     endif;
                 endforeach;
                 ?>
@@ -147,19 +127,10 @@
                 </tr>
                 <?php
                 $count1 = 1;
-                $prevIdItemSkpi = null;
-                $file_names = [];
 
                 foreach ($data['mhs'] as $data_sertifikasi) :
                     if ($data_sertifikasi['id_kategori'] == 3) :
-                        $file_name = $data_sertifikasi['file_name'];
                         $id_item_skpi = $data_sertifikasi['id_item_skpi'];
-                        
-                        if ($prevIdItemSkpi !== $id_item_skpi) {
-                            $file_names = [$file_name];
-                        } else {
-                            $file_names[] = $file_name;
-                        }
                         ?>
                         <div id="mahasiswaId" data-mahasiswa-id="<?php echo $data_sertifikasi['id_mahasiswa']; ?>"></div>
                         <tr class="bg-gray-100">
@@ -169,12 +140,12 @@
                                     <label for="" class="font-bold">
                                         Bukti Pendukung :
                                     </label>
-                                    <?php
-                                    foreach ($file_names as $file_name) :
-                                    ?>
-                                        <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('../app/upload/<?= $file_name ?>')">
-                                            <img class="w-4" src="<?= BASEURL ?>/images/vector.png" alt="">
-                                        </div>
+                                    <?php foreach ($data['bukti'] as $bukti) : ?>
+                                        <?php if ($bukti['id_item_skpi'] == $data_sertifikasi['id_item_skpi']) : ?>
+                                            <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('../app/upload/<?= $bukti['file_name'] ?>')">
+                                                <img class="w-4" src="<?= BASEURL ?>/images/vector.png" alt="" >
+                                            </div>
+                                        <?php endif; ?>
                                     <?php endforeach; ?>
                                 </div>
                             </td>
@@ -188,7 +159,6 @@
                             </td>
                         </tr>
                         <?php
-                        $prevIdItemSkpi = $id_item_skpi;
                     endif;
                 endforeach;
                 ?>
@@ -206,19 +176,10 @@
                 </tr>
                 <?php
                 $count1 = 1;
-                $prevIdItemSkpi = null;
-                $file_names = [];
 
                 foreach ($data['mhs'] as $data_mbkm) :
                     if ($data_mbkm['id_kategori'] == 4) :
-                        $file_name = $data_mbkm['file_name'];
                         $id_item_skpi = $data_mbkm['id_item_skpi'];
-                        
-                        if ($prevIdItemSkpi !== $id_item_skpi) {
-                            $file_names = [$file_name];
-                        } else {
-                            $file_names[] = $file_name;
-                        }
                         ?>
                         <div id="mahasiswaId" data-mahasiswa-id="<?php echo $data_mbkm['id_mahasiswa']; ?>"></div>
                         <tr class="bg-gray-100">
@@ -228,12 +189,12 @@
                                     <label for="" class="font-bold">
                                         Bukti Pendukung :
                                     </label>
-                                    <?php
-                                    foreach ($file_names as $file_name) :
-                                    ?>
-                                        <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('../app/upload/<?= $file_name ?>')">
-                                            <img class="w-4" src="<?= BASEURL ?>/images/vector.png" alt="">
-                                        </div>
+                                    <?php foreach ($data['bukti'] as $bukti) : ?>
+                                        <?php if ($bukti['id_item_skpi'] == $data_mbkm['id_item_skpi']) : ?>
+                                            <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('../app/upload/<?= $bukti['file_name'] ?>')">
+                                                <img class="w-4" src="<?= BASEURL ?>/images/vector.png" alt="" >
+                                            </div>
+                                        <?php endif; ?>
                                     <?php endforeach; ?>
                                 </div>
                             </td>
@@ -247,7 +208,6 @@
                             </td>
                         </tr>
                         <?php
-                        $prevIdItemSkpi = $id_item_skpi;
                     endif;
                 endforeach;
                 ?>

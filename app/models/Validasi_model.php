@@ -40,13 +40,30 @@ class Validasi_model {
     }
 
     public function getMahasiswaById($id) {
-        $query = "SELECT i.*, m.nama, m.nim, p.nama_prodi, pn.id_kategori, fb.file_name
+        $query = "SELECT i.*, m.nama, m.nim, p.nama_prodi, pn.id_kategori
         FROM item_skpi i
         JOIN mahasiswa m ON i.id_mahasiswa = m.id_mahasiswa
         JOIN prodi p ON m.id_prodi = p.id_prodi
         JOIN poin pn ON i.id_poin = pn.id_poin
-        LEFT JOIN file_bukti fb ON i.id_item_skpi = fb.id_item_skpi
         WHERE m.id_mahasiswa = $id AND i.verifikasi = 1";
+        $result = $this->conn->query($query);
+        
+        if (!$result) {
+            die("Query error: " . $this->conn->error);
+        }
+
+        $data = [];
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+        
+        return $data;
+    }
+
+    public function getBukti() {
+        $query = "SELECT fb.*
+        FROM file_bukti fb
+        JOIN item_skpi i ON fb.id_item_skpi = i.id_item_skpi";
         $result = $this->conn->query($query);
         
         if (!$result) {
