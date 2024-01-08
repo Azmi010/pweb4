@@ -3,7 +3,7 @@
     var_dump($files);
 ?>
 
-<section class="file_sect mt-16">
+<section class="file_sect mt-16 px-8">
     <h1 class='text-2xl font-medium mb-8'>File Bukti</h1>
 
     <?php
