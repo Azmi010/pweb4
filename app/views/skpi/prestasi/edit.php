@@ -7,7 +7,7 @@
   $id_sub_butir = $item_skpi['id_sub_butir'];
   $kategori = $_SESSION['item'];
   $judul_kategori = ($kategori == 'mbkm') ? strtoupper($kategori) : ucfirst($kategori);
-
+  $tanggal_berakhir = isset($item_skpi['tanggal_berakhir']) ? $item_skpi['tanggal_berakhir'] : NULL;
 ?>
 
   <!-- <body class="bg-slate-200 my-5"> -->
@@ -36,6 +36,28 @@
           id="tanggal_pelaksanaan"
           class="border-black border rounded focus:bg-slate-50 py-1 px-2"
         />
+        <label for="tanggal_berakhir">Tanggal Berakhir</label>
+        <input 
+          <?php
+            if (isset($tanggal_berakhir)) {
+              echo " required ";
+              echo " value='" . $tanggal_berakhir ."' ";
+            }
+            else {
+              echo " disabled ";
+            }
+          ?>
+          type="date"
+          name="tanggal_berakhir"
+          id="tanggal_berakhir"
+          class="border-black border rounded focus:bg-slate-50 py-1 px-2"
+        />
+        <div>
+          <label for="checkbox_enddate">Lebih dari satu hari</label>
+          <input <?php
+            if (isset($tanggal_berakhir)) echo ' checked ';
+          ?> type="checkbox" name="checkbox_enddate" id="checkbox_enddate">
+        </div>
 
         <label for="unsur">Unsur</label>
         <select required name="unsur" id="unsur" class="border-black border rounded focus:bg-slate-50 py-1 px-2">

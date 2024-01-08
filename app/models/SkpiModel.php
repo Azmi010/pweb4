@@ -52,11 +52,13 @@ class SkpiModel extends Model
 
         $query = "INSERT INTO item_skpi 
                     VALUES
-                    ('', :judul, :tanggal_pelaksanaan, :verifikasi, :validasi, :id_mahasiswa, :id_poin)";
+                    ('', :judul, :tanggal_pelaksanaan, :tanggal_berakhir, :verifikasi, :validasi, :id_mahasiswa, :id_poin)";
 
         $this->db->query($query);
         $this->db->bind('judul', $data['judul']);
         $this->db->bind('tanggal_pelaksanaan', $data['tanggal_pelaksanaan']);
+        $tanggal_berakhir = isset($data['tanggal_berakhir']) ? $data['tanggal_berakhir'] : NULL;
+        $this->db->bind('tanggal_berakhir', $tanggal_berakhir);
         $this->db->bind('verifikasi', $data['verifikasi'] = 0);
         $this->db->bind('validasi', $data['validasi'] = 0);
         $this->db->bind('id_mahasiswa', $data['id_mahasiswa']);
@@ -68,13 +70,13 @@ class SkpiModel extends Model
 
         foreach ($file['file_bukti']['name'] as $key => $file_name) {
             $file_name = $id_item_skpi . '_' . $file_name;
-            var_dump($file_name);
+            // var_dump($file_name);
             
             $upload_path ='../app/upload/' . $file_name;
             if (file_exists($upload_path)) continue;
 
             $file_tmp = $file['file_bukti']['tmp_name'][$key];
-            var_dump($file_tmp);
+            // var_dump($file_tmp);
             
             $this->insertFileBukti($id_item_skpi, $file_name, $file_tmp, $upload_path);
         }
@@ -191,23 +193,23 @@ class SkpiModel extends Model
     }
 
     public function update($data, $file = NULL) {
+        $id_item_skpi = $data['id_item_skpi'];
         $query = "UPDATE $this->table 
                   SET judul = :judul,
                       tanggal_pelaksanaan = :tanggal_pelaksanaan,
+                      tanggal_berakhir = :tanggal_berakhir,
                       verifikasi = :verifikasi, 
                       validasi = :validasi, 
-                      id_poin = :id_poin";
-
-        $id_item_skpi = $data['id_item_skpi'];
+                      id_poin = :id_poin
+                  WHERE id_item_skpi = :id_item_skpi";
 
         $id_poin = $data['kategori'] . $data['unsur'] . $data['butir'] . $data['sub_butir'];
-
-
-        $query .= " WHERE id_item_skpi = :id_item_skpi";
 
         $this->db->query($query);
         $this->db->bind('judul', $data['judul']);
         $this->db->bind('tanggal_pelaksanaan', $data['tanggal_pelaksanaan']);
+        $tanggal_berakhir = isset($data['tanggal_berakhir']) ? $data['tanggal_berakhir'] : NULL;
+        $this->db->bind('tanggal_berakhir', $tanggal_berakhir);
         $this->db->bind('verifikasi', $data['verifikasi'] = 0);
         $this->db->bind('validasi', $data['validasi'] = 0);
         $this->db->bind('id_poin', $id_poin);

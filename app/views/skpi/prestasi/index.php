@@ -1,4 +1,7 @@
 <?php
+    setlocale (LC_TIME, 'id_ID');
+    // setlocale (LC_ALL, 'INDONESIA');
+    // $fmt = datefmt_create('id_ID', IntlDateFormatter::LONG, IntlDateFormatter::LONG);
     $item_skpi = $data['item_skpi'];
     $kategori = $_SESSION['item'];
     $judul_kategori = ($kategori == 'mbkm') ? strtoupper($kategori) : ucfirst($kategori);
@@ -28,6 +31,10 @@
                 $id_unsur = $id_poin[2] - 1;
                 $id_butir = $id_poin[3] - 1;
                 $id_sub_butir = $id_poin[4] - 1;
+                $tanggal_berakhir = isset($skpi['tanggal_berakhir']) ? $skpi['tanggal_berakhir'] : NULL;
+                $tanggal_pelaksanaan_fmt = strtotime($skpi['tanggal_pelaksanaan']);
+                $tanggal_pelaksanaan_fmt = strftime( "%e %b %Y", $tanggal_pelaksanaan_fmt);
+                // $tanggal_pelaksanaan_fmt = datefmt_format($tanggal_pelaksanaan_fmt, $fmt);
             ?>
             <tr class="item_row">
               <td>
@@ -39,7 +46,15 @@
                 echo $judul; 
               ?>
               </td>
-              <td><?= $skpi['tanggal_pelaksanaan'] ?></td>
+              <td><?= $tanggal_pelaksanaan_fmt ?>
+              <?php
+                if (isset($tanggal_berakhir)) {
+                  $tanggal_berakhir_fmt = strtotime($skpi['tanggal_berakhir']);
+                  $tanggal_berakhir_fmt = strftime( "%e %b %Y", $tanggal_berakhir_fmt);
+                  echo "<br> s.d. <br>" . $tanggal_berakhir_fmt;
+                }
+              ?>
+              </td>
               <td>
                 <ul>
                   <li class="flex">
@@ -87,6 +102,9 @@
 
   </section> 
 
+  <?php
+    // var_dump($item_skpi);
+  ?>
   <script src="<?= BASEURL; ?>/js/swals.js"></script>
   <script src="<?= BASEURL; ?>/js/pagination.js"></script>
   </body>

@@ -25,7 +25,18 @@
           id="tanggal_pelaksanaan"
           class="border-black border rounded focus:bg-slate-50 py-1 px-2"
         />
-        
+        <label for="tanggal_berakhir">Tanggal Berakhir</label>
+        <input 
+          disabled
+          type="date"
+          name="tanggal_berakhir"
+          id="tanggal_berakhir"
+          class="border-black border rounded focus:bg-slate-50 py-1 px-2"
+        />
+        <div>
+          <label for="checkbox_enddate">Lebih dari satu hari</label>
+          <input type="checkbox" name="checkbox_enddate" id="checkbox_enddate">
+        </div>
 <?php
   $is_mbkm = $_SESSION['item'] == 'mbkm';
 ?>
