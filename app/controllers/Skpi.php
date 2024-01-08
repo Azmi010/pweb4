@@ -27,6 +27,8 @@ class Skpi extends Controller {
 
         else {
             $data['head_title'] = 'Home';
+            $data['poin'] = $this->model('Poin')->getTotalPoin($data['nim']);
+            $data['poin_minimal'] = $this->model('Poin')->getMinimumPoin(2023);
             $this->view('templates/header', $data);
             $this->view('templates/sidebar');
             $this->view('home/index', $data);
