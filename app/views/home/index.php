@@ -1,6 +1,4 @@
 <?php 
-// var_dump($data['poin']);
-// var_dump($data['poin_minimal']);
 if (!isset($_SESSION['user_id'])) {
     header("Location: " . BASEURL . "/?url=login");
     exit();

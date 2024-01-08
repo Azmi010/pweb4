@@ -35,7 +35,10 @@ switch ($role) {
         echo "Role tidak valid.";
         exit();
 }
-
+?>
+<?php
+    $poin = isset($data['poin']) ? $data['poin'] : 0;
+    $poin_minimal = isset($data['poin_minimal']) ? $data['poin_minimal'] : 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,6 +80,15 @@ switch ($role) {
             <h4 class="text-xs">
                 <?= $nim ?>
             </h4>
+            <?php
+                if ($role == 1) {
+            ?>
+            <h4 class="text-xs">
+                Poin: <?= $poin . '/' . $poin_minimal  ?>
+            </h4>
+            <?php
+                }
+            ?>
       </div>
       <form action="<?= BASEURL ?>/?url=login/logout" method="post">
           <button type="submit" class="ml-10 bg-red-600 px-2.5 py-1 rounded text-white hover:bg-red-800">Logout</button>
