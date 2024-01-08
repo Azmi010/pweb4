@@ -64,9 +64,9 @@ if ($_SESSION['role'] != 2) {
                             <?= $mhs['verifikasi'] ? 'Sudah Disetujui' : 'Belum Disetujui'; ?>
                         </td>
                         <td class="flex justify-center pt-2 gap-2">
-                            <button class="bg-yellow-400 p-1 rounded">
+                            <a href="<?= BASEURL ?>/?url=verifikasi/filebukti/<?= $mhs['id_item_skpi'] ?>" class="bg-yellow-400 p-1 rounded">
                                 <img class="w-6" src="<?= BASEURL ?>/images/info.png" alt="">
-                            </button>
+                            </a href="<?= $mhs['id_item_skpi'] ?>">
                             <?php if ($mhs['verifikasi'] == 0) { ?>
                                 <button data-id="<?= $mhs['id_item_skpi'] ?>" class="accButton bg-green-500 p-1 rounded">
                                     <img class="w-6" src="<?= BASEURL ?>/images/Done_round.png" alt="">

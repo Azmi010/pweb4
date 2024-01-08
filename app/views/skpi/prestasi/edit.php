@@ -54,7 +54,7 @@
         <label for="sub_butir">Sub Butir</label>
         <select required name="sub_butir" id="sub_butir" class="border-black border rounded focus:bg-slate-50 py-1 px-2">
         <?php foreach ($data['sub_butir']['options'] as $id => $text) { ?>
-          <option value="s<?= $id; ?>"><?= $text; ?></option>
+          <option value="s<?= $id; ?>" <?php if ($id == $id_sub_butir) echo 'selected'; ?>><?= $text; ?></option>
         <?php } ?>
         </select>
 

@@ -18,12 +18,15 @@ class Validasi extends Controller {
         $this->view('validasi_skpi/detail_validasi', $data);
         $this->view('templates/footer');
     }
+
     public function updateValidation() {
         $this->model('Validasi_model')->updateValidationStatus($_POST['id']);
     }
+
     public function updateInvalidation() {
         $this->model('Validasi_model')->updateInvalidationStatus($_POST['id']);
     }
+
     public function getPoint() {
         echo json_encode($this->model('Validasi_model')->getPointById($_POST['id']));
     }

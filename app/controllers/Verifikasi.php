@@ -17,4 +17,10 @@ class Verifikasi extends Controller {
     public function revertVerification() {
         $this->model('Verifikasi_model')->revertVerificationStatus($_POST['id']);
     }
+    public function filebukti($id) {
+        $data['file_bukti'] = $this->model('SkpiModel')->getAllFileBukti($id);
+        $data['head_title'] = 'File Bukti';
+        $this->view('templates/header', $data);
+        $this->view('verifikasi_skpi/files', $data);
+    }
 }
