@@ -5,11 +5,16 @@ class Skpi extends Controller {
 
     public function __construct() {
         $this->data = $_SESSION;
+
         $skpiAttr = $this->model('SkpiAttrModel');
         $this->data['kategori'] = $skpiAttr->getAll('kategori');
         $this->data['unsur'] = $skpiAttr->getAll('unsur');
         $this->data['butir'] = $skpiAttr->getAll('butir');
         $this->data['sub_butir'] = $skpiAttr->getAll('sub_butir');
+
+        $poinModel = $this->model('Poin');
+        $this->data['poin'] = $poinModel->getTotalPoin($this->data['nim']);
+        $this->data['poin_minimal'] = $poinModel->getMinimumPoin(date('Y'));
     }
 
     public function index($item = NULL) {
@@ -27,8 +32,6 @@ class Skpi extends Controller {
 
         else {
             $data['head_title'] = 'Home';
-            $data['poin'] = $this->model('Poin')->getTotalPoin($data['nim']);
-            $data['poin_minimal'] = $this->model('Poin')->getMinimumPoin(date('Y'));
             $this->view('templates/header', $data);
             $this->view('templates/sidebar');
             $this->view('home/index', $data);
