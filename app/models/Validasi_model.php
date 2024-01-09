@@ -112,36 +112,5 @@ class Validasi_model {
         $result = $this->conn->query($query);
         $row = $result->fetch_assoc();
         return $row;
-
-        // if (!$result) {
-        //     die("Query error: " . $this->conn->error);
-        // }
-
-        // $data = [];
-        // while ($row = $result->fetch_assoc()) {
-        //     $data[] = $row;
-        //     echo "ok";
-        // }
-
-        // return $data;
     }
 }
-
-//     public function getPoinByIdItemSkpi($id_item_skpi) {
-//     $query = "SELECT p.poin FROM poin p
-//               JOIN item_skpi i ON p.id_poin = i.id_poin
-//               WHERE i.id_item_skpi = $id_item_skpi";
-
-//     $result = $this->conn->query($query);
-
-//     if (!$result) {
-//         die("Query error: " . $this->conn->error);
-//     }
-
-//     $data = [];
-//         while ($row = $result->fetch_assoc()) {
-//             $data[] = $row;
-//         }
-        
-//     return $data;
-// }

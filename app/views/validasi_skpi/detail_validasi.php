@@ -19,6 +19,10 @@
                     <button class="bg-blue-400 px-3 py-1 rounded mr-2 mb-1 hover:bg-blue-600 text-white font-semibold" onclick="openPdfModal('../app/upload/<?= $nilai ?>')">PREVIEW</button>
                     <button class="simpanButton bg-green-400 px-3 py-1 rounded mb-1 mr-2 hover:bg-green-600 text-white font-semibold" data-mahasiswa-id="<?= $nilai ?>">SIMPAN</button>
                     <label id="labelPoin" for="">Total Poin : 0</label>
+                    <?php 
+                    $poin = $data['poin'];
+                    ?>
+                    <label> / <?= $poin ?></label>
                 </div>
             </div>
             <table class="w-full">

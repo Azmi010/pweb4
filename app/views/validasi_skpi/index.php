@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: " . BASEURL . "/?url=login");
@@ -12,7 +11,7 @@ if ($_SESSION['role'] != 3) {
 }
 ?>
 <div class="bg-gray-100 mb-10">
-    <div class="w-8/12 ml-80 mt-20 border border-gray-200 rounded-md shadow-md">
+    <div class="w-10/12 mx-auto mt-28 border border-gray-200 rounded-md shadow-md">
         <div class="bg-gray-100 px-4 py-3 h-auto rounded font-medium text-lg">
             <h1>Daftar Prestasi & Pengalaman Mahasiswa</h1> 
         </div>
@@ -24,8 +23,8 @@ if ($_SESSION['role'] != 3) {
                 </div>
                 <div>
                     <label for="" class="ml-1 mr-1">Keterangan :</label>
-                    <input type="radio" name="" id=""> Belum Validasi
-                    <input type="radio" name="" id=""> Sudah Validasi <br>
+                    <input type="radio" name="status" id="belumValidasi" value="Belum Validasi"> Belum Validasi
+                    <input type="radio" name="status" id="sudahValidasi" value="Divalidasi"> Sudah Validasi <br>
                 </div>
             </form>
         </div>
@@ -46,15 +45,15 @@ if ($_SESSION['role'] != 3) {
                     $count = 1;
                     foreach ($data['mhs'] as $mhs) :
                     ?>
-                        <tr class="text-center border-b border-gray-300">
+                    <tr class="text-center border-b border-gray-300">
                         <td class="py-2"><?= $count++; ?></td>
                         <td><?= $mhs['nim'] ?></td>
                         <td><?= $mhs['nama'] ?></td>
                         <td><?= $mhs['nama_prodi'] ?></td>
                         <?php if ($mhs['validasi'] == 0) { ?>
-                        <td class="bg-red-500">Belum Validasi</td>
+                        <td class="status bg-red-500">Belum Validasi</td>
                         <?php } else { ?>
-                        <td class="bg-green-400">Divalidasi</td> 
+                        <td class="status bg-green-400">Divalidasi</td> 
                         <?php } ?>
                         <td class="flex justify-center pt-2"><a href="<?= BASEURL ?>/?url=validasi/detail_validasi/<?= $mhs['id_mahasiswa']; ?>"><img class="w-6 item-center" src="<?= BASEURL ?>/images/checklist.png" alt=""></a></td>
                     </tr>
@@ -64,4 +63,5 @@ if ($_SESSION['role'] != 3) {
         </div>
     </div>
 </div>
+<script src="<?= BASEURL ?>/js/update_validasi.js"></script>
 <script src="<?= BASEURL ?>/js/pagination.js"></script>

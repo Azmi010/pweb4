@@ -8,6 +8,10 @@ $(document).ready(function () {
         var id = $(this).data("id");
         sendRevertedRequest(id, $(this));
     });
+
+    $('input[name="status"]').change(function () {
+        filterRows();
+    });
 });
 
 function sendVerificationRequest(id, button) {
@@ -64,5 +68,12 @@ function sendRevertedRequest(id, button) {
                   });
             }
         }
+    });
+}
+function filterRows() {
+    const statusFilter = $('input[name="status"]:checked').val();
+    $('.status').each(function () {
+        const status = $(this).text().trim();
+        $(this).closest('tr').toggle(status === statusFilter);
     });
 }
