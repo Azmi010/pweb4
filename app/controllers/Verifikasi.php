@@ -7,7 +7,6 @@ class Verifikasi extends Controller {
         $data['verif'] = $this->model('Verifikasi_model')->getAllVerifikasi();
         $data['peserta'] = $this->model('Verifikasi_model')->getAllName();
         $this->view('templates/header', $data);
-        $this->view('templates/sidebar');
         $this->view('verifikasi_skpi/index', $data);
         $this->view('templates/footer');
     }

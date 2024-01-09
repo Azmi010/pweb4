@@ -36,21 +36,22 @@ class Login_model {
 
             if ($result->num_rows == 1) {
                 $user = $result->fetch_assoc();
-
+            
                 // Verifikasi password
                 if ($password == $user['password']) {
                     return $user;
                 } else {
-                    echo "Password tidak sesuai.";
+                    $_SESSION['flash_message'] = "Login gagal. Periksa kembali password Anda.";
+                    header("Location: " . BASEURL . "/?url=login");
+                    exit();
                 }
             } else {
-                echo "Identifikasi tidak ditemukan.";
+                $_SESSION['flash_message'] = "Login gagal. Periksa kembali username Anda.";
+                header("Location: " . BASEURL . "/?url=login");
+                exit();
             }
-        } else {
-            echo "Query error: " . $this->conn->error;
-        }
 
         return null;
+        }
     }
-    
 }

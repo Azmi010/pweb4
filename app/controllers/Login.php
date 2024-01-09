@@ -5,8 +5,11 @@ class Login extends Controller {
 
     public function index() {
         $data['head_title'] = 'Login';
+        if (isset($_SESSION['flash_message'])) {
+            $data['error_message'] = $_SESSION['flash_message'];
+            unset($_SESSION['flash_message']);
+        }
         $this->view('login/index', $data);
-        $this->view('templates/footer');
     }
 
     public function processLogin() {
@@ -32,7 +35,7 @@ class Login extends Controller {
 
                 $this->redirectToRole($user['id_role']);
             } else {
-                echo "Login gagal. Periksa kembali username dan password Anda.";
+                echo "Login gagal";
             }
         }
     }
@@ -41,19 +44,15 @@ class Login extends Controller {
         var_dump($role);
         switch ($role) {
             case 1:
-                // var_dump($role);
                 header("Location: " . BASEURL . "/?url=home");
                 break;
             case 2:
-                // var_dump($role);
-                header("Location: " . BASEURL . "/?url=Verifikasi");
+                header("Location: " . BASEURL . "/?url=verifikasi");
                 break;
             case 3:
-                // var_dump($role);
                 header("Location: " . BASEURL . "/?url=validasi");
                 break;
             case 4:
-                // var_dump($role);
                 header("Location: " . BASEURL . "/?url=persetujuan");
                 break;
             default:

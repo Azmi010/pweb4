@@ -14,6 +14,10 @@ $(document).ready(function () {
         getPointById(id, $(this));
     });
 
+    $('input[name="status"]').change(function () {
+        filterRows();
+    });
+
     var idOnPageLoad = $(".simpanButton").data("mahasiswa-id");
     getPointById(idOnPageLoad, $(".simpanButton"));
 });
@@ -78,17 +82,15 @@ function getPointById(id, button) {
         data: { id: id },
         dataType: 'json',
         success: function (response) {
-            // Swal.fire({
-            //     title: "Berhasil!",
-            //     text: "Semua Perubahan Berhasil Disimpan!",
-            //     icon: "success"
-            //   });
-            console.log(response)
-            console.log(response.totalPoin);
-            console.log(id);
-
             $('#labelPoin').html("Total Poin : " + response.totalPoin)
-            // button.prop("disabled", true).removeClass("bg-green-400").removeClass("hover:bg-green-600").addClass("bg-gray-300");
         }
+    });
+}
+
+function filterRows() {
+    const statusFilter = $('input[name="status"]:checked').val();
+    $('.status').each(function () {
+        const status = $(this).text().trim();
+        $(this).closest('tr').toggle(status === statusFilter);
     });
 }

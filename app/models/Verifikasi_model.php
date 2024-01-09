@@ -21,12 +21,12 @@ class Verifikasi_model {
     public function getAllVerifikasi() {
         $query = "SELECT i.*, m.*, k.*, pn.*, b.*, sb.*
         FROM item_skpi i
-        JOIN mahasiswa m ON i.id_mahasiswa = m.id_mahasiswa
-        JOIN prodi p ON m.id_prodi = p.id_prodi
-        JOIN poin pn ON i.id_poin = pn.id_poin
-        JOIN kategori k ON pn.id_kategori = k.id_kategori
-        JOIN butir b ON pn.id_butir = b.id_butir
-        JOIN sub_butir sb ON pn.id_sub_butir = sb.id_sub_butir";
+        LEFT JOIN mahasiswa m ON i.id_mahasiswa = m.id_mahasiswa
+        LEFT JOIN prodi p ON m.id_prodi = p.id_prodi
+        LEFT JOIN poin pn ON i.id_poin = pn.id_poin
+        LEFT JOIN kategori k ON pn.id_kategori = k.id_kategori
+        LEFT JOIN butir b ON pn.id_butir = b.id_butir
+        LEFT JOIN sub_butir sb ON pn.id_sub_butir = sb.id_sub_butir";
         $result = $this->conn->query($query);
 
         if (!$result) {

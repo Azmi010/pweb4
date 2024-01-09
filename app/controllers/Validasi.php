@@ -6,7 +6,6 @@ class Validasi extends Controller {
         $data['head_title'] = 'Validasi SKPI';
         $data['mhs'] = $this->model('Validasi_model')->getAllValidasi();
         $this->view('templates/header', $data);
-        $this->view('templates/sidebar');
         $this->view('validasi_skpi/index', $data);
         $this->view('templates/footer');
     }
@@ -14,6 +13,7 @@ class Validasi extends Controller {
         $data['head_title'] = 'Detail Validasi';
         $data['mhs'] = $this->model('Validasi_model')->getMahasiswaById($id);
         $data['bukti'] = $this->model('Validasi_model')->getBukti();
+        $data['poin'] = $this->model('Poin')->getMinimumPoin(date('Y'));
         $this->view('templates/header', $data);
         $this->view('validasi_skpi/detail_validasi', $data);
         $this->view('templates/footer');
