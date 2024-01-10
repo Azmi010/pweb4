@@ -9,7 +9,7 @@
 <body>
     <div class="login-container">
         <h2>Register</h2>
-        <form action="<?= BASEURL ?>/?url=register/processRegister" method="post">
+        <form action="<?= BASEURL ?>/?url=Register/processRegister" method="post">
             <input type="text" name="nama" placeholder="Nama Lengkap" required>
             <input type="text" name="nip_nim" placeholder="NIM/NIP" required>
             <select id="status" name="status" onchange="handleStatusChange()">

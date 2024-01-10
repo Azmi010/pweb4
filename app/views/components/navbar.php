@@ -20,7 +20,7 @@
                 <?= $nim ?>
             </h4>
       </div>
-      <form action="<?= BASEURL ?>/?url=login/logout" method="post">
+      <form action="<?= BASEURL ?>/?url=Login/logout" method="post">
           <button type="submit" class="ml-10 bg-red-600 px-2.5 py-1 rounded text-white hover:bg-red-800">Logout</button>
       </form>
   </div>

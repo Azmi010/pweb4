@@ -62,7 +62,7 @@ $(document).ready(() => {
       processData: false,
       success: function (response) {
         console.log(response);
-        location.replace(`${BASEURL}/?url=skpi/index/${kategori}/`);
+        location.replace(`${BASEURL}/?url=Skpi/index/${kategori}/`);
       },
     });
   });

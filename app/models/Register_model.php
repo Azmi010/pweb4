@@ -89,9 +89,7 @@ class Register_model {
         $stmtDekan->execute();
         $stmtDekan->close();
     }
-    // Implementasi fungsi register untuk tim_skpi, operator_akademik, dan dekan
-    // ...
-
+    
     private function getRoleID($role) {
         $query = "SELECT id_role FROM role WHERE nama_role = ?";
         $stmt = $this->conn->prepare($query);

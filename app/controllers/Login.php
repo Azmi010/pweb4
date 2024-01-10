@@ -45,16 +45,16 @@ class Login extends Controller {
         switch ($role) {
             case 1:
                 // var_dump($role);
-                header("Location: " . BASEURL . "/?url=skpi");
+                header("Location: " . BASEURL . "/?url=Skpi");
                 break;
             case 2:
-                header("Location: " . BASEURL . "/?url=verifikasi");
+                header("Location: " . BASEURL . "/?url=Verifikasi");
                 break;
             case 3:
-                header("Location: " . BASEURL . "/?url=validasi");
+                header("Location: " . BASEURL . "/?url=Validasi");
                 break;
             case 4:
-                header("Location: " . BASEURL . "/?url=persetujuan");
+                header("Location: " . BASEURL . "/?url=Persetujuan");
                 break;
             default:
             var_dump($role);
@@ -66,7 +66,7 @@ class Login extends Controller {
     }
 
     public function logout() {
-        header("Location:" . BASEURL . "/?url=login");
+        header("Location:" . BASEURL . "/?url=Login");
         session_destroy();  
         exit();
     }

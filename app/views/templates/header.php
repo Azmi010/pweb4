@@ -2,7 +2,7 @@
 // session_start();
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: " . BASEURL . "/?url=login");
+    header("Location: " . BASEURL . "/?url=Login");
     exit();
 }
 
@@ -59,8 +59,9 @@ switch ($role) {
 </head>
 <body class="bg-gray-100">
 
-<div class="bg-gray-800 w-full h-20 flex justify-between fixed z-10 top-0 shadow-xl">
-  <div class="flex items-center ml-64">
+<div class="bg-gray-800 w-full h-20 flex justify-between fixed z-50 top-0 shadow-xl">
+  <div class="flex items-center ml-4">
+   <button class="toggle-btn mx-4 bg-gray-400 rounded p-1 hover:bg-white" onclick="toggleSidebar()"><img class="w-6" src="<?= BASEURL ?>/images/Hamburger_icon.svg.png" alt=""></button>
       <div class="flex flex-col text-white mr-2">
           <p class="font-bold">
               SURAT KETERANGAN PENDAMPING IJAZAH
@@ -69,9 +70,8 @@ switch ($role) {
               FAKULTAS ILMU KOMPUTER
           </p>
       </div>
-      <!-- <img class="w-12" src="<?= BASEURL ?> . /images/Logo_UNEJ-removebg-preview.png" alt=""> -->
   </div>
-  <div class="flex items-center mr-24">
+  <div class="profil flex items-center mr-24">
       <img class="w-12" src="<?= BASEURL ?> . /images/user.png" alt="">
       <div class="flex-col text-white ml-2">
             <h3 class="font-medium">
@@ -90,7 +90,7 @@ switch ($role) {
                 }
             ?>
       </div>
-      <form action="<?= BASEURL ?>/?url=login/logout" method="post">
+      <form action="<?= BASEURL ?>/?url=Login/logout" method="post">
           <button type="submit" class="ml-10 bg-red-600 px-2.5 py-1 rounded text-white hover:bg-red-800">Logout</button>
       </form>
   </div>

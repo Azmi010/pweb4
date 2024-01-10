@@ -13,7 +13,7 @@
   <!-- <body class="bg-slate-200 my-5"> -->
     <section class="bg-slate-50 px-20 pt-8 pb-16 w-4/5 m-auto shadow-xl rounded-2xl mt-24">
       <h1 class="text-2xl font-medium mb-4">Edit Data <?= $judul_kategori; ?></h1>
-      <form id="prestasi-form" method="post" enctype="multipart/form-data" action="<?= BASEURL ?>/?url=skpi/editprestasi/" class="flex flex-col gap-1">
+      <form id="prestasi-form" method="post" enctype="multipart/form-data" action="<?= BASEURL ?>/?url=Skpi/editprestasi/" class="flex flex-col gap-1">
         <input type="hidden" name="id_item_skpi" value="<?= $item_skpi['id_item_skpi'] ?>">
         <!-- <input type="hidden" name="kategori" value="1">
         <input type="hidden" name="unsur" value="1"> -->
@@ -138,7 +138,7 @@
           <button type="submit" name="submit" class="bg-green-600 text-gray-50 px-3 py-1 rounded w-min">
             Simpan
           </button>
-          <a href="<?= BASEURL ?>/?url=skpi/index/<?= $_SESSION['item']; ?>">
+          <a href="<?= BASEURL ?>/?url=Skpi/index/<?= $_SESSION['item']; ?>">
             <button
               type="button"
               class="bg-red-600 text-gray-50 px-3 py-1 rounded w-min"

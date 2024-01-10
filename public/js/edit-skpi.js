@@ -20,7 +20,7 @@ $(document).ready(() => {
 
   $(pesertaSection).on('click', '.remove_peserta', function (e) {
     let idPesertaItem = $(this).attr('data-idpi');
-    $.get(`${BASEURL}/?url=skpi/deletePeserta/${idPesertaItem}`);
+    $.get(`${BASEURL}/?url=Skpi/deletePeserta/${idPesertaItem}`);
     $(this).parent('div').remove();
     nPeserta--;
   });
@@ -43,7 +43,7 @@ $(document).ready(() => {
 
   $(fileSection).on('click', '.remove_file', function (e) {
     let idFileBukti = $(this).attr('data-idfb');
-    $.get(`${BASEURL}/?url=skpi/deleteFileBukti/${idFileBukti}`);
+    $.get(`${BASEURL}/?url=Skpi/deleteFileBukti/${idFileBukti}`);
     $(this).parent('div').remove();
     nFile--;
   });
@@ -99,13 +99,13 @@ $(document).ready(() => {
     
     $.ajax({
       type: 'post',
-      url: `${BASEURL}/?url=skpi/editItem/`,
+      url: `${BASEURL}/?url=Skpi/editItem/`,
       data: data,
       contentType: false,
       processData: false,
       success: function (response) {
         console.log(response);
-        location.replace(`${BASEURL}/?url=skpi/index/${kategori}/`);
+        location.replace(`${BASEURL}/?url=Skpi/index/${kategori}/`);
       },
     });
   });

@@ -1,12 +1,12 @@
     <?php
 
     if (!isset($_SESSION['user_id'])) {
-        header("Location: " . BASEURL . "/?url=login");
+        header("Location: " . BASEURL . "/?url=Login");
         exit();
     }
 
     if ($_SESSION['role'] != 2) {
-        header("Location: " . BASEURL . "/?url=login");
+        header("Location: " . BASEURL . "/?url=Login");
         session_destroy();
     }
     ?>
@@ -75,7 +75,7 @@
                                 <?= $mhs['verifikasi'] ? 'Sudah Disetujui' : 'Belum Disetujui'; ?>
                             </td>
                             <td class="flex justify-center pt-2 gap-2">
-                                <a href="<?= BASEURL ?>/?url=verifikasi/filebukti/<?= $mhs['id_item_skpi'] ?>" class="bg-yellow-400 p-1 rounded">
+                                <a href="<?= BASEURL ?>/?url=Verifikasi/filebukti/<?= $mhs['id_item_skpi'] ?>" class="bg-yellow-400 p-1 rounded">
                                     <img class="w-6" src="<?= BASEURL ?>/images/info.png" alt="">
                                 </a href="<?= $mhs['id_item_skpi'] ?>">
                                 <?php if ($mhs['verifikasi'] == 0) { ?>

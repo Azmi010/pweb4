@@ -1,7 +1,7 @@
 
 <div class="mt-36">
     <h1>Registrasi</h1>
-    <form action="<?= BASEURL; ?>/register/processRegistration" method="post">
+    <form action="<?= BASEURL; ?>/Register/processRegistration" method="post">
         <label for="nama">Nama:</label>
         <input type="text" name="nama" required>
         <br>

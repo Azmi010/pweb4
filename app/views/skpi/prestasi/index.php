@@ -6,10 +6,11 @@
     $kategori = $_SESSION['item'];
     $judul_kategori = ($kategori == 'mbkm') ? strtoupper($kategori) : ucfirst($kategori);
 ?>
-    <section class="p-4 mt-12">
-      <div class="flex justify-between px-8 mt-10 mb-4">
+    <section class="z-10 p-4 mt-12">
+      <div id="content">
+      <div class="flex justify-between px-8 mt-10 mb-4" id="content">
         <h1 class="text-4xl font-medium">Daftar <?= $judul_kategori; ?></h1>
-        <a href="<?= BASEURL ?>/?url=skpi/add/<?= $_SESSION['item']; ?>" type="button" class="bg-green-600 text-white px-3 py-2 rounded-lg">Tambah Data</a>
+        <a href="<?= BASEURL ?>/?url=Skpi/add/<?= $_SESSION['item']; ?>" type="button" class="bg-green-600 text-white px-3 py-2 rounded-lg">Tambah Data</a>
       </div>
 
       <table id="item-table" class="w-full border-collapse table-auto mb-14 pt-4 shadow-lg">
@@ -86,7 +87,7 @@
               <td class="bg-green-400">Disetujui</td> 
               <?php } ?>
               <td>
-                <a href="<?= BASEURL; ?>/?url=skpi/edit/<?= $_SESSION['item']; ?>/<?= $skpi['id_item_skpi']; ?>">
+                <a href="<?= BASEURL; ?>/?url=Skpi/edit/<?= $_SESSION['item']; ?>/<?= $skpi['id_item_skpi']; ?>">
                   <button class="bg-orange-400 px-3 py-1 rounded">Edit</button>
                 </a>
                 <!-- <a onclick="deleteConfirm()" href="<?= BASEURL; ?>/?url=Skpi/delete/<?= $skpi['id_item_skpi']; ?>"></a> -->
@@ -99,7 +100,7 @@
           ?>
         </tbody>
       </table>
-
+      </div>
   </section> 
 
   <?php
@@ -107,5 +108,6 @@
   ?>
   <script src="<?= BASEURL; ?>/js/swals.js"></script>
   <script src="<?= BASEURL; ?>/js/pagination.js"></script>
+  <script src="<?= BASEURL ?>/js/sidebar.js"></script>
   </body>
 </html>

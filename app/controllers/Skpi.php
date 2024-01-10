@@ -27,7 +27,9 @@ class Skpi extends Controller {
             $data['head_title'] = ($item == 'mbkm') ? strtoupper($item) : ucfirst($item);
             $data['item_skpi'] = $this->model('SkpiModel')->getAllOfMhs($data['id_mhs'], $_SESSION['item']);
             $this->view('templates/header', $data);
+            $this->view('templates/sidebar');
             $this->view("skpi/prestasi/index", $data);
+            $this->view('templates/footer');
         }
 
         else {
@@ -51,7 +53,7 @@ class Skpi extends Controller {
         if (in_array($item, $kategori_list))
             $this->view("skpi/prestasi/add", $data);
         else
-            header("Location: ?url=skpi/index/");
+            header("Location: ?url=Skpi/index/");
     }
 
     public function delete($id) {
@@ -92,7 +94,7 @@ class Skpi extends Controller {
 
         if($data['item_skpi']['id_mahasiswa'] != $data['id_mhs'] || $data['item_skpi']['id_poin'][1] != $kategori || !isset($data)) {
             $data = NULL;
-            header("Location: ?url=skpi/index/$item");
+            header("Location: ?url=Skpi/index/$item");
             exit();
         }
 
@@ -113,7 +115,7 @@ class Skpi extends Controller {
             $this->view("skpi/prestasi/edit", $data);
         }
         else
-            header("Location: ?url=skpi/index/");
+            header("Location: ?url=Skpi/index/");
 
 
     }

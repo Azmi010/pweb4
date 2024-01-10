@@ -37,17 +37,16 @@ class Login_model {
             if ($result->num_rows == 1) {
                 $user = $result->fetch_assoc();
             
-                // Verifikasi password
                 if ($password == $user['password']) {
                     return $user;
                 } else {
                     $_SESSION['flash_message'] = "Login gagal. Periksa kembali password Anda.";
-                    header("Location: " . BASEURL . "/?url=login");
+                    header("Location: " . BASEURL . "/?url=Login");
                     exit();
                 }
             } else {
                 $_SESSION['flash_message'] = "Login gagal. Periksa kembali username Anda.";
-                header("Location: " . BASEURL . "/?url=login");
+                header("Location: " . BASEURL . "/?url=Login");
                 exit();
             }
 

@@ -1,12 +1,12 @@
 <?php
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: " . BASEURL . "/?url=login");
+    header("Location: " . BASEURL . "/?url=Login");
     exit();
 }
 
 if ($_SESSION['role'] != 3) {
-    header("Location: " . BASEURL . "/?url=login");
+    header("Location: " . BASEURL . "/?url=Login");
     session_destroy();
 }
 ?>
@@ -55,7 +55,7 @@ if ($_SESSION['role'] != 3) {
                         <?php } else { ?>
                         <td class="status bg-green-400">Divalidasi</td> 
                         <?php } ?>
-                        <td class="flex justify-center pt-2"><a href="<?= BASEURL ?>/?url=validasi/detail_validasi/<?= $mhs['id_mahasiswa']; ?>"><img class="w-6 item-center" src="<?= BASEURL ?>/images/checklist.png" alt=""></a></td>
+                        <td class="flex justify-center pt-2"><a href="<?= BASEURL ?>/?url=Validasi/detail_validasi/<?= $mhs['id_mahasiswa']; ?>"><img class="w-6 item-center" src="<?= BASEURL ?>/images/checklist.png" alt=""></a></td>
                     </tr>
                     <?php endforeach ?>
                 </tbody>

@@ -1,11 +1,11 @@
 <?php 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: " . BASEURL . "/?url=login");
+    header("Location: " . BASEURL . "/?url=Login");
     exit();
 }
 
 if ($_SESSION['role'] != 1) {
-    header("Location: " . BASEURL . "/?url=login");
+    header("Location: " . BASEURL . "/?url=Login");
     session_destroy();
 }
 
@@ -18,33 +18,34 @@ if ($_SESSION['role'] != 1) {
    </svg>
 </button>
 
-<section id="box">
-    <a class="box hover:bg-blue-800" href="<?= BASEURL ?>/?url=skpi/index/prestasi/">
+<section id="kotak">
+    <a class="box hover:bg-blue-800" href="<?= BASEURL ?>/?url=Skpi/index/prestasi/">
         <h1>Prestasi</h1>
         <!-- <div class="teks">
             <p>Data Prestasi</p>
             <i class="ri-database-2-fill"></i>
         </div> -->
-</a>
-    <a class="box1 hover:bg-green-700" href="<?= BASEURL ?>/?url=skpi/index/kegiatan/">
+    </a>
+    <a class="box1 hover:bg-green-700" href="<?= BASEURL ?>/?url=Skpi/index/kegiatan/">
         <!-- <h1>5</h1> -->
         <div class="teks-1">
         <h1>Kegiatan</h1>
         <i class="ri-database-2-fill"></i>
         </div>
-</a>
-    <a class="box2 hover:bg-orange-600" href="<?= BASEURL ?>/?url=skpi/index/sertifikasi/">
+    </a>
+    <a class="box2 hover:bg-orange-600" href="<?= BASEURL ?>/?url=Skpi/index/sertifikasi/">
         <!-- <h1>3</h1> -->
         <h1>Sertifikasi</h1>
         <!-- <div class="teks-2">
         <i class="ri-database-2-fill"></i>
         </div> -->
-</a>
-    <a class="box1 hover:bg-blue-600" href="<?= BASEURL ?>/?url=skpi/index/mbkm/">
+    </a>
+    <a class="box1 hover:bg-green-700" href="<?= BASEURL ?>/?url=Skpi/index/mbkm/">
         <!-- <h1>3</h1> -->
         <h1>MBKM</h1>
         <!-- <div class="teks-2">
         <i class="ri-database-2-fill"></i>
         </div> -->
-</a>
+    </a>
 </section>
+<script src="<?= BASEURL ?>/js/sidebar.js"></script>
