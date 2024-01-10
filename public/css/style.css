@@ -1,0 +1,115 @@
+:root {
+    --table-border-radius: 0.5rem;
+}
+
+*{
+    text-decoration: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.file_sect embed {
+    width: 80%;
+    min-height: 45vh;
+}
+/* body{
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    font-family: inter, sans-serif;
+} */
+.navbar{
+    background-color: #eaf2fc;
+    z-index:9999;
+    padding-bottom:38px;
+    width:100vw;
+}
+
+.Login-form{
+    margin-left: 850px;
+    margin-top: 20px;
+}
+.Login-form h1{
+    font-size: 1.7rem;
+    line-height: 2.5rem;
+    font-weight: 600;
+}
+.Login-form p{
+    color: #363636;
+    font-size: 0.9rem;
+    padding-top: 5px;
+    margin-bottom: 20px;
+}
+.Login-form form{
+    position: relative;
+    width: 300px;
+}
+/* 
+form label{
+    font-weight: 500;
+    font-size: 15px;
+    text-align: left;
+    color: #646464;
+}
+form input{
+    width: 100%;
+    padding: 20px;
+    border: none;
+    outline: none;
+    background-color: #faf9f9;
+    margin-bottom: 20px;
+    border-radius: 8px;
+} 
+form input::placeholder
+form textarea::placeholder{
+    color: #363636;
+    font-size: 15px;
+} */
+form .login-btn{
+    display: inline-block;
+    margin-top: 10px;
+    padding: 16px 30px;
+    background: #4460f1;
+    color: white;
+    border: 1px solid #4460f1;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all .50s ease;
+    width: 340px;
+}
+form .login-btn:hover{
+    background: #0521ab;
+    color: white;
+    cursor: pointer;
+}
+
+
+tr:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+thead th:first-child {
+    border-top-left-radius: var(--table-border-radius);
+}
+
+thead th:last-child {
+    border-top-right-radius: var(--table-border-radius);
+}
+
+tbody tr:last-child > :first-child {
+    border-bottom-left-radius: var(--table-border-radius);
+}
+
+tbody tr:last-child > :last-child {
+    border-bottom-right-radius: var(--table-border-radius);
+}
+
+tr * {
+    text-align: center;
+}
+
+td,
+th {
+    padding: 0.75rem 0;
+}
