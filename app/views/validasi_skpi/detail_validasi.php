@@ -49,7 +49,7 @@
                                     <?php foreach ($data['bukti'] as $bukti) : ?>
                                         <?php if ($bukti['id_item_skpi'] == $data_prestasi['id_item_skpi']) : ?>
                                             <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('<?= ROOTURL ?>/app/upload/<?= $bukti['file_name'] ?>')">
-                                                <img class="w-4" src="<?= BASEURL ?>/images/vector.png" alt="" >
+                                                <img class="w-4" src="<?= BASEURL ?>/images/Vector.png" alt="" >
                                             </div>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
@@ -98,7 +98,7 @@
                                     <?php foreach ($data['bukti'] as $bukti) : ?>
                                         <?php if ($bukti['id_item_skpi'] == $data_kegiatan['id_item_skpi']) : ?>
                                             <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('<?= ROOTURL ?>/app/upload/<?= $bukti['file_name'] ?>')">
-                                                <img class="w-4" src="<?= BASEURL ?>/images/vector.png" alt="" >
+                                                <img class="w-4" src="<?= BASEURL ?>/images/Vector.png" alt="" >
                                             </div>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
@@ -147,7 +147,7 @@
                                     <?php foreach ($data['bukti'] as $bukti) : ?>
                                         <?php if ($bukti['id_item_skpi'] == $data_sertifikasi['id_item_skpi']) : ?>
                                             <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('<?= ROOTURL ?>/app/upload/<?= $bukti['file_name'] ?>')">
-                                                <img class="w-4" src="<?= BASEURL ?>/images/vector.png" alt="" >
+                                                <img class="w-4" src="<?= BASEURL ?>/images/Vector.png" alt="" >
                                             </div>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
@@ -196,7 +196,7 @@
                                     <?php foreach ($data['bukti'] as $bukti) : ?>
                                         <?php if ($bukti['id_item_skpi'] == $data_mbkm['id_item_skpi']) : ?>
                                             <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('<?= ROOTURL ?>/app/upload/<?= $bukti['file_name'] ?>')">
-                                                <img class="w-4" src="<?= BASEURL ?>/images/vector.png" alt="" >
+                                                <img class="w-4" src="<?= BASEURL ?>/images/Vector.png" alt="" >
                                             </div>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
