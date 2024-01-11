@@ -16,7 +16,7 @@
     <div class="mb-4">
     <!-- <embed src="../app/upload/<?= $file ?>"> -->
     <span class="uploaded_file"><?= $file_name_only; ?></span>
-    <button class="bg-green-600 text-gray-50 px-3 py-1 rounded w-min" type="button" onclick="openPdfModal('../app/upload/<?= $file ?>')">Buka</button>
+    <button class="bg-green-600 text-gray-50 px-3 py-1 rounded w-min" type="button" onclick="openPdfModal('<?= ROOTURL ?>/app/upload/<?= $file ?>')">Buka</button>
     </div>
     
     <?php

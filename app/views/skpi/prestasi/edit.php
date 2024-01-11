@@ -123,7 +123,7 @@
           ?>
 
           <div class="mt-1">
-            <embed src="../app/upload/<?= $file ?>">
+            <embed src="<?= ROOTURL; ?>/app/upload/<?= $file ?>">
             <span class="uploaded_file"><?= $file_name_only; ?></span>
             <button type="button" class="remove_file bg-red-600 text-gray-50 px-3 py-1 rounded w-min" data-idfb="<?= $id_file_bukti; ?>">Hapus</button>
           </div>

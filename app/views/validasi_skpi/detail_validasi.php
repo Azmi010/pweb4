@@ -16,7 +16,7 @@
                     $segments = explode('/', $url);
                     $nilai = end($segments);
                     ?>
-                    <button class="bg-blue-400 px-3 py-1 rounded mr-2 mb-1 hover:bg-blue-600 text-white font-semibold" onclick="openPdfModal('../app/upload/<?= $nilai ?>')">PREVIEW</button>
+                    <button class="bg-blue-400 px-3 py-1 rounded mr-2 mb-1 hover:bg-blue-600 text-white font-semibold" onclick="openPdfModal('<?= ROOTURL ?>/app/upload/<?= $nilai ?>')">PREVIEW</button>
                     <button class="simpanButton bg-green-400 px-3 py-1 rounded mb-1 mr-2 hover:bg-green-600 text-white font-semibold" data-mahasiswa-id="<?= $nilai ?>">SIMPAN</button>
                     <label id="labelPoin" for="">Total Poin : 0</label>
                     <?php 
@@ -48,7 +48,7 @@
                                     </label>
                                     <?php foreach ($data['bukti'] as $bukti) : ?>
                                         <?php if ($bukti['id_item_skpi'] == $data_prestasi['id_item_skpi']) : ?>
-                                            <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('../app/upload/<?= $bukti['file_name'] ?>')">
+                                            <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('<?= ROOTURL ?>/app/upload/<?= $bukti['file_name'] ?>')">
                                                 <img class="w-4" src="<?= BASEURL ?>/images/vector.png" alt="" >
                                             </div>
                                         <?php endif; ?>
@@ -97,7 +97,7 @@
                                     </label>
                                     <?php foreach ($data['bukti'] as $bukti) : ?>
                                         <?php if ($bukti['id_item_skpi'] == $data_kegiatan['id_item_skpi']) : ?>
-                                            <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('../app/upload/<?= $bukti['file_name'] ?>')">
+                                            <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('<?= ROOTURL ?>/app/upload/<?= $bukti['file_name'] ?>')">
                                                 <img class="w-4" src="<?= BASEURL ?>/images/vector.png" alt="" >
                                             </div>
                                         <?php endif; ?>
@@ -146,7 +146,7 @@
                                     </label>
                                     <?php foreach ($data['bukti'] as $bukti) : ?>
                                         <?php if ($bukti['id_item_skpi'] == $data_sertifikasi['id_item_skpi']) : ?>
-                                            <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('../app/upload/<?= $bukti['file_name'] ?>')">
+                                            <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('<?= ROOTURL ?>/app/upload/<?= $bukti['file_name'] ?>')">
                                                 <img class="w-4" src="<?= BASEURL ?>/images/vector.png" alt="" >
                                             </div>
                                         <?php endif; ?>
@@ -195,7 +195,7 @@
                                     </label>
                                     <?php foreach ($data['bukti'] as $bukti) : ?>
                                         <?php if ($bukti['id_item_skpi'] == $data_mbkm['id_item_skpi']) : ?>
-                                            <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('../app/upload/<?= $bukti['file_name'] ?>')">
+                                            <div class="bg-blue-800 w-8 h-8 py-1.5 px-2 rounded-md ml-2 hover:cursor-pointer" onclick="openPdfModal('<?= ROOTURL ?>/app/upload/<?= $bukti['file_name'] ?>')">
                                                 <img class="w-4" src="<?= BASEURL ?>/images/vector.png" alt="" >
                                             </div>
                                         <?php endif; ?>
