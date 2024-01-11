@@ -72,7 +72,7 @@ switch ($role) {
       </div>
   </div>
   <div class="profil flex items-center mr-24">
-      <img class="w-12" src="<?= BASEURL ?> . /images/user.png" alt="">
+      <img class="w-12" src="<?= BASEURL ?>/images/user.png" alt="">
       <div class="flex-col text-white ml-2">
             <h3 class="font-medium">
                 <?= $username ?>
