@@ -1,4 +1,4 @@
-const BASEURL = 'http://localhost/pweb4/public';
+const BASEURL = 'https://fasilkompoint.simaport.net/public';
 
 const dateCheckBox = '#checkbox_enddate';
 const endDateInput = '#tanggal_berakhir';

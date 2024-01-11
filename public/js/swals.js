@@ -15,7 +15,7 @@ $(document).ready(function () {
       if (result.isConfirmed) {
         console.log(id);
         $.get(
-          `http://localhost/pweb4/public/?url=Skpi/delete/${id}`,
+          `https://fasilkompoint.simaport.net/public/?url=Skpi/delete/${id}`,
           function (data, textStatus, jqXHR) {
             if (textStatus == 'success') {
               Swal.fire({
