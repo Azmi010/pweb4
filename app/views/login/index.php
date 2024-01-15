@@ -11,10 +11,14 @@
         <?php if (isset($data['error_message'])): ?>
             <p style="color: red;"><?= $data['error_message'] ?></p>
         <?php endif; ?>
-        <h2>Login FCP</h2>
+        <h2>Sistem Informasi Fasilkom Credit Point<br>
+            (SI-FCP)
+        </h2>
         <form action="<?= BASEURL ?>/?url=Login/processLogin" method="post">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
+            <label for="">Username</label>
+            <input type="text" name="username" placeholder="Masukkan Username" required>
+            <label for="">Password</label>
+            <input type="password" name="password" placeholder="Masukkan Password" required>
             <button type="submit">Login</button>
         </form>
     </div>

@@ -64,10 +64,10 @@ switch ($role) {
    <button class="toggle-btn mx-4 bg-gray-400 rounded p-1 hover:bg-white" onclick="toggleSidebar()"><img class="w-6" src="<?= BASEURL ?>/images/Hamburger_icon.svg.png" alt=""></button>
       <div class="flex flex-col text-white mr-2">
           <p class="font-bold">
-              SURAT KETERANGAN PENDAMPING IJAZAH
+            SISTEM INFORMASI FASILKOM CREDIT POINT
           </p>
           <p class="text-right text-xs">
-              FAKULTAS ILMU KOMPUTER
+            (SI-FCP)
           </p>
       </div>
   </div>
